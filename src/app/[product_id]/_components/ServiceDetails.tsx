@@ -34,14 +34,14 @@ const ServiceDetails = () => {
         // console.log(res);
       }
     });
-  }, []);
+  }, [serviceId]);
   <h2>{service?.name}</h2>;
 
   return (
     <div className="pt-[55px] mobile:max-sm:pt-[60px] mobile:max-sm:px-2 px-24 bigScreen:px-80 gap-5 mobile:max-sm:gap-1">
       <div className="flex flex-col gap-2">
         <div className="flex pt-4 mobile:max-sm:flex-col justify-between items-center gap-10 shadow-sm p-2 mobile:max-sm:p-0">
-          <div className="iamges mobile:max-sm:w-[100%] mobile:max-sm:h-[200px] w-[700px] h-[400px]  bg-gray-200">
+          <div className="iamges mobile:max-sm:w-[100%] mobile:max-sm:h-[300px] w-[700px] h-[400px]  bg-gray-200">
             <Image
               src={
                 view ||
@@ -96,7 +96,10 @@ const ServiceDetails = () => {
                 ))}
               </div>
 
-              <button className=" border border-primarytheme text-primarytheme py-2">
+              <button
+                onClick={() => router.push("/booking")}
+                className=" border border-primarytheme text-primarytheme py-2"
+              >
                 BOOK AN APPOINTMENT
               </button>
             </div>
