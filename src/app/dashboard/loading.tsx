@@ -3,7 +3,7 @@ import React from "react";
 
 const loading = () => {
   return (
-    <div className="w-full h-[calc(100vh-53px)]  flex justify-center items-center">
+    <div className="w-[80vw] mobile:max-sm:w-screen fixed h-[calc(100vh-53px)]  flex justify-center items-center">
       <SmoothLoader />
     </div>
   );
