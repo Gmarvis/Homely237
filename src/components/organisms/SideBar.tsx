@@ -80,10 +80,8 @@ const SideBar = () => {
             href={link.path}
             key={i}
             className={`flex flex-col items-center ${
-              pathname === link.path
-                ? "border-t-2 text-primarytheme"
-                : "text-slate-500"
-            } gap-2 hover:border-t-2 hover:text-primarytheme delay-100 transition-all border-t-primarytheme  px-1  `}
+              pathname === link.path ? " text-primarytheme" : "text-slate-500"
+            } gap-2  hover:text-primarytheme delay-100 transition-all  px-1  `}
           >
             <p>{link.icon}</p>
             <span className="text-xs">{link.name}</span>
