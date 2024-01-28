@@ -7,6 +7,9 @@ import SearchForm from "../molucles/SearchForm";
 import Avatar from "react-avatar";
 import BellBtn from "../atoms/BellBtn";
 
+import { motion } from "framer-motion";
+import DropDown from "../molucles/DropDown";
+
 const navLinks = [
   {
     name: "appointments",
@@ -28,8 +31,10 @@ const navLinks = [
 
 const NavBar = () => {
   const [user, setUser] = useState(null);
+  const [showNotifiaction, setShowNotification] = useState(false);
+
   return (
-    <div className="flex justify-between shadow-md px-24 py-2 items-center mobile:max-sm:px-5">
+    <div className="flex justify-between shadow-md px-24 py-2 items-center mobile:max-sm:px-5 relative">
       <div>
         <Link
           href={"/"}
@@ -52,8 +57,24 @@ const NavBar = () => {
           <Link className="text-xs" href={"dashboard"}>
             Dashboard
           </Link>
-          <BellBtn />
+          <BellBtn onClick={() => setShowNotification((prev) => !prev)} />
           <Avatar name="Foo Bar" size="30" round={true} />
+
+          {showNotifiaction && (
+            <motion.div
+              initial={{ opacity: 0, translateY: -20 }}
+              animate={{ opacity: 1, translateY: 0 }}
+              transition={{ duration: 0.3 }}
+              className="absolute top-[57px] right-2"
+            >
+              <DropDown
+                title={"Notifications"}
+                onBlur={() => setShowNotification((prev) => !prev)}
+              >
+                <h3>fist notification</h3>
+              </DropDown>
+            </motion.div>
+          )}
         </div>
       ) : (
         <div className="flex items-center gap-3">
