@@ -1,11 +1,14 @@
+import DashTopNavBar from "@/components/organisms/DashTopNavBar";
 import SideBar from "@/components/organisms/SideBar";
-import { ReactNode } from "react";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="flex bg-[#f1f1f1]">
+    <div className="flex bg-[#f3f7fd]">
       <SideBar />
-      <div>{children}</div>
+      <div className="w-full">
+        <DashTopNavBar />
+        <div>{children}</div>
+      </div>
     </div>
   );
 };

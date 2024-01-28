@@ -1,5 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+
+import { usePathname } from "next/navigation";
 
 // React icon imports
 import { MdDashboard } from "react-icons/md";
@@ -34,6 +38,10 @@ const links = [
 ];
 
 const SideBar = () => {
+  const pathname = usePathname();
+
+  console.log(pathname);
+
   return (
     <div className="w-[30vh] h-screen shadow-md bg-white">
       <Link
@@ -53,10 +61,14 @@ const SideBar = () => {
           <Link
             href={link.path}
             key={i}
-            className="flex items-center gap-2 hover:border-l-4 hover:text-primarytheme delay-100 transition-all border-l-primarytheme  px-4 py-2 text-slate-500"
+            className={`flex items-center ${
+              pathname === link.path
+                ? "border-l-4 text-primarytheme"
+                : "text-slate-500"
+            } gap-2 hover:border-l-4 hover:text-primarytheme delay-100 transition-all border-l-primarytheme  px-4 py-2 `}
           >
             <p>{link.icon}</p>
-            <span>{link.name}</span>
+            <span className="text-sm">{link.name}</span>
           </Link>
         ))}
       </div>
