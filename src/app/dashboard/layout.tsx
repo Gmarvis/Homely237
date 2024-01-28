@@ -1,11 +1,12 @@
+import SideBar from "@/components/organisms/SideBar";
 import { ReactNode } from "react";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <>
-      <h3>hello world</h3>
+    <div className="flex bg-[#f1f1f1]">
+      <SideBar />
       <div>{children}</div>
-    </>
+    </div>
   );
 };
 

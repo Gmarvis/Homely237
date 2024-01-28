@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import React, { useState } from "react";
 import SearchForm from "../molucles/SearchForm";
 import Avatar from "react-avatar";
@@ -30,9 +31,17 @@ const NavBar = () => {
   return (
     <div className="flex justify-between shadow-md px-24 py-2 items-center mobile:max-sm:px-5">
       <div>
-        <h3 className="font-bold text-[25px] mobile:max-sm:text-[12px] text-primarytheme">
-          HOMY<span className="text-secondrytheme">GIGS</span>
-        </h3>
+        <Link
+          href={"/"}
+          className="self-center w-full flex items-center justify-center"
+        >
+          <Image
+            src={"/logohomygig.png"}
+            alt="homygig logo"
+            width={110}
+            height={60}
+          />
+        </Link>
       </div>
       <div className="sear mobile:max-sm:hidden">
         <SearchForm />
