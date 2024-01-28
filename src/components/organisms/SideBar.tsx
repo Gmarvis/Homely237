@@ -43,36 +43,54 @@ const SideBar = () => {
   console.log(pathname);
 
   return (
-    <div className="w-[30vh] h-screen shadow-md bg-white">
-      <Link
-        href={"/"}
-        className="self-center w-full flex items-center justify-center"
-      >
-        <Image
-          src={"/logohomygig.png"}
-          alt="homygig logo"
-          width={110}
-          height={60}
-        />
-      </Link>
+    <>
+      <div className="w-[30vh] h-screen shadow-md bg-white mobile:max-sm:hidden">
+        <Link
+          href={"/"}
+          className="self-center w-full flex items-center justify-center"
+        >
+          <Image
+            src={"/logohomygig.png"}
+            alt="homygig logo"
+            width={110}
+            height={60}
+          />
+        </Link>
 
-      <div className="w-full mt-10 flex gap-5 flex-col">
+        <div className="w-full mt-10 flex gap-5 flex-col">
+          {links.map((link, i) => (
+            <Link
+              href={link.path}
+              key={i}
+              className={`flex items-center ${
+                pathname === link.path
+                  ? "border-l-4 text-primarytheme"
+                  : "text-slate-500"
+              } gap-2 hover:border-l-4 hover:text-primarytheme delay-100 transition-all border-l-primarytheme  px-4 py-2 `}
+            >
+              <p>{link.icon}</p>
+              <span className="text-sm">{link.name}</span>
+            </Link>
+          ))}
+        </div>
+      </div>
+      <div className="flex fixed bottom-0 w-screen justify-between sm:hidden">
         {links.map((link, i) => (
           <Link
             href={link.path}
             key={i}
-            className={`flex items-center ${
+            className={`flex flex-col items-center ${
               pathname === link.path
-                ? "border-l-4 text-primarytheme"
+                ? "border-t-2 text-primarytheme"
                 : "text-slate-500"
-            } gap-2 hover:border-l-4 hover:text-primarytheme delay-100 transition-all border-l-primarytheme  px-4 py-2 `}
+            } gap-2 hover:border-t-2 hover:text-primarytheme delay-100 transition-all border-t-primarytheme  px-1  `}
           >
             <p>{link.icon}</p>
-            <span className="text-sm">{link.name}</span>
+            <span className="text-xs">{link.name}</span>
           </Link>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 
