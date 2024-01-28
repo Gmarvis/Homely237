@@ -1,10 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import React, { useState } from "react";
 import SearchForm from "../molucles/SearchForm";
 import Avatar from "react-avatar";
 import BellBtn from "../atoms/BellBtn";
+
+import { motion } from "framer-motion";
+import DropDown from "../molucles/DropDown";
 
 const navLinks = [
   {
@@ -27,12 +31,22 @@ const navLinks = [
 
 const NavBar = () => {
   const [user, setUser] = useState(null);
+  const [showNotifiaction, setShowNotification] = useState(false);
+
   return (
-    <div className="flex justify-between shadow-md px-24 py-2 items-center mobile:max-sm:px-5">
+    <div className="flex justify-between shadow-md px-24 py-2 items-center mobile:max-sm:px-5 relative">
       <div>
-        <h3 className="font-bold text-[25px] mobile:max-sm:text-[12px] text-primarytheme">
-          HOMY<span className="text-secondrytheme">GIGS</span>
-        </h3>
+        <Link
+          href={"/"}
+          className="self-center w-full flex items-center justify-center"
+        >
+          <Image
+            src={"/logohomygig.png"}
+            alt="homygig logo"
+            width={110}
+            height={60}
+          />
+        </Link>
       </div>
       <div className="sear mobile:max-sm:hidden">
         <SearchForm />
@@ -43,8 +57,24 @@ const NavBar = () => {
           <Link className="text-xs" href={"dashboard"}>
             Dashboard
           </Link>
-          <BellBtn />
+          <BellBtn onClick={() => setShowNotification((prev) => !prev)} />
           <Avatar name="Foo Bar" size="30" round={true} />
+
+          {showNotifiaction && (
+            <motion.div
+              initial={{ opacity: 0, translateY: -20 }}
+              animate={{ opacity: 1, translateY: 0 }}
+              transition={{ duration: 0.3 }}
+              className="absolute top-[57px] right-2"
+            >
+              <DropDown
+                title={"Notifications"}
+                onBlur={() => setShowNotification((prev) => !prev)}
+              >
+                <h3>fist notification</h3>
+              </DropDown>
+            </motion.div>
+          )}
         </div>
       ) : (
         <div className="flex items-center gap-3">
