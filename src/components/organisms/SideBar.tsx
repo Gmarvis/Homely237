@@ -57,7 +57,7 @@ const SideBar = () => {
           />
         </Link>
 
-        <div className="w-full mt-10 flex gap-5 flex-col">
+        <div className="w-full mt-10 flex gap-5 flex-col ">
           {links.map((link, i) => (
             <Link
               href={link.path}
@@ -74,7 +74,7 @@ const SideBar = () => {
           ))}
         </div>
       </div>
-      <div className="flex fixed bottom-0 w-screen justify-between sm:hidden">
+      <div className="flex fixed bottom-0 w-screen justify-between bg-white shadow-md sm:hidden">
         {links.map((link, i) => (
           <Link
             href={link.path}
