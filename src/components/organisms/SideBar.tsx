@@ -74,7 +74,7 @@ const SideBar = () => {
           ))}
         </div>
       </div>
-      <div className="flex fixed bottom-0 w-screen justify-between bg-white shadow-md sm:hidden">
+      <div className="flex fixed bottom-0 w-screen justify-between bg-white shadow-md sm:hidden py-1">
         {links.map((link, i) => (
           <Link
             href={link.path}
