@@ -1,13 +1,14 @@
 "use client";
 import FormInput from "@/components/atoms/FormInput";
+import NavBar from "@/components/organisms/NavBar";
 import SignUp from "@/components/organisms/SignUp";
 import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center p-24">
-      <h1>Welcome to HomyGig</h1>
-      <SignUp />
+    <main className="flex flex-col">
+      <NavBar />
+      {/* <SignUp /> */}
     </main>
   );
 }
