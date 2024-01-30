@@ -74,7 +74,9 @@ const Page = () => {
               ref={inputRef}
             />
           </div>
-          <p className="py-1 text-slate-600">{base64Images.length}/4</p>
+          <p className="py-1 text-slate-600 self-end">
+            {base64Images.length}/4
+          </p>
 
           <div className="flex gap-3 justify-start pt-1">
             {!base64Images.length && (
