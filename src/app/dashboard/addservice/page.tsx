@@ -98,8 +98,18 @@ const Page = () => {
             )}
             {base64Images.map((image: any, i: React.Key | null | undefined) => (
               <ProductImageCard key={i} image={image}>
-                <button onClick={() => setmainImg(image)}>set as main</button>
-                <button onClick={() => handleDeleteImage(image)}>Delete</button>
+                <button
+                  className="text-sm hover:bg-slate-300  text-slate-600 p-1 duration-300"
+                  onClick={() => setmainImg(image)}
+                >
+                  set as main
+                </button>
+                <button
+                  className="text-sm hover:bg-slate-300  text-red-600 p-1 duration-300"
+                  onClick={() => handleDeleteImage(image)}
+                >
+                  Delete
+                </button>
               </ProductImageCard>
             ))}
           </div>
