@@ -1,14 +1,31 @@
 "use client";
 import React, { useRef, useState } from "react";
 
+import { motion } from "framer-motion";
+
 import { IoCloudUploadOutline } from "react-icons/io5";
+import { HiDotsHorizontal } from "react-icons/hi";
+import ProductImageCard from "@/components/molucles/ProductImageCard";
+import { toast } from "react-toastify";
+import FormInput from "@/components/atoms/FormInput";
+import CreateServiceForm from "@/components/organisms/CreateServiceForm";
 
 const Page = () => {
-  const [base64Image, setBase64Image] = useState<any>();
+  const [base64Images, setBase64Images] = useState<any>([]);
+  const [mainImage, setMainImage] = useState("");
+
   const inputRef: any = useRef();
 
   const handleImageUpload = async (e: any) => {
     // console.log(e.target.files);
+    if (base64Images.length === 4) {
+      toast.warning("You can only uplaod 4 images", {
+        position: "top-right",
+        hideProgressBar: true,
+        autoClose: 3000,
+      });
+      return;
+    }
 
     const file = e.target.files[0];
     convertImageToBase64(file);
@@ -25,41 +42,90 @@ const Page = () => {
       reader.readAsDataURL(file);
     });
     // console.log(base64Data);
-    setBase64Image(base64Data);
+    setBase64Images([...base64Images, base64Data]);
+  };
+
+  const setmainImg = (image: string) => {
+    setMainImage(image);
+  };
+
+  const handleDeleteImage = (image: string) => {
+    const updateImages = base64Images.filter((img: string) => img !== image);
+    if (mainImage === image) setMainImage("");
+    setBase64Images(updateImages);
   };
 
   return (
-    <div className=" w-full h-[calc(100vh-53px)] flex justify-center items-center mobile:max-sm:items-start ">
-      <div className="flex gap-5 mobile:max-sm:flex-col">
-        <div
-          style={{
-            backgroundImage: `url(${base64Image})`,
+    <div className=" w-full h-[calc(100vh-53px)] flex justify-center items-center mobile:max-sm:mb-[60px] mobile:max-sm:items-start ">
+      <div className="flex gap-5 mobile:max-sm:flex-col  mobile:max-sm:mt-5">
+        <div className="flex flex-col justify-between">
+          <div
+            style={{
+              backgroundImage: `url(${mainImage})`,
 
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            objectFit: "fill",
-          }}
-          className="w-[30vw] mobile:max-sm:w-[98vw] mobile:max-sm:h-[50vw] h-[30vw] border border-dashed flex justify-center items-center border-slate-800 shadow-md"
-        >
-          <button
-            onClick={() => inputRef.current.click()}
-            className="flex flex-col justify-center items-center text-slate-500"
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              objectFit: "fill",
+            }}
+            className="w-[32vw] mobile:max-sm:w-[98vw] mobile:max-sm:h-[50vw] h-[20vw] border border-dashed flex justify-center items-center border-slate-800 shadow-md"
           >
-            <IoCloudUploadOutline size={30} />
-            <span>Upload Image</span>
-          </button>
-          <input
-            type="file"
-            onChange={(e) => handleImageUpload(e)}
-            hidden
-            ref={inputRef}
-          />
+            <button
+              onClick={() => inputRef.current.click()}
+              className="flex flex-col justify-center items-center text-slate-500"
+            >
+              <IoCloudUploadOutline size={30} />
+              <span>Upload Image</span>
+            </button>
+
+            <input
+              type="file"
+              onChange={(e) => handleImageUpload(e)}
+              hidden
+              ref={inputRef}
+            />
+          </div>
+          <p className="py-1 text-slate-600 self-end">
+            {base64Images.length}/4
+          </p>
+
+          <div className="flex gap-3 mobile:max-sm:gap-2 justify-start pt-1">
+            {!base64Images.length && (
+              <div className="h-[100px] justify-center text-center items-center w-full">
+                <p className="text-sm text-slate-400">
+                  Upload 4 images of you you performing your service
+                </p>
+              </div>
+            )}
+            {base64Images.map((image: any, i: React.Key | null | undefined) => (
+              <ProductImageCard key={i} image={image}>
+                <button
+                  className="text-sm hover:bg-slate-300  text-slate-600 p-1 duration-300"
+                  onClick={() => setmainImg(image)}
+                >
+                  set as main
+                </button>
+                <button
+                  className="text-sm hover:bg-slate-300  text-red-600 p-1 duration-300"
+                  onClick={() => handleDeleteImage(image)}
+                >
+                  Delete
+                </button>
+              </ProductImageCard>
+            ))}
+          </div>
         </div>
-        <div className="w-[50vw] h-[30vw] bg-white mobile:max-sm:w-[98vw]"></div>
+
+        <div className="w-[50vw] h-[30vw] mobile:max-sm:h-full bg-white shadow-md mobile:max-sm:w-[98vw] p-2">
+          <div className="form w-full">
+            <h3 className="text-md font-bold text-primarytheme mb-2">
+              SERVICE DETIALS
+            </h3>
+            <CreateServiceForm />
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
 export default Page;
-<h3>addservice</h3>;

@@ -2,12 +2,13 @@ import React, { useEffect, useRef } from "react";
 import { MdOutlineClear } from "react-icons/md";
 
 type DropdownTypes = {
-  title: string;
+  title?: string;
   onBlur: () => void;
   children: React.ReactNode;
+  className: string;
 };
 
-const DropDown = ({ title, onBlur, children }: DropdownTypes) => {
+const DropDown = ({ title, onBlur, children, className }: DropdownTypes) => {
   const dropdownRef = useRef<HTMLDivElement>();
 
   useEffect(() => {
@@ -19,7 +20,7 @@ const DropDown = ({ title, onBlur, children }: DropdownTypes) => {
       ref={dropdownRef as any}
       tabIndex={1}
       onBlur={onBlur}
-      className="w-[20vw] mobile:max-sm:w-[40vh] bg-white shadow-md rounded-md"
+      className={` ${className} mobile:max-sm:w-[40vh] bg-white shadow-md rounded-md`}
     >
       <div className="flex w-full justify-between text-slate-600 p-2">
         <h3>{title}</h3>

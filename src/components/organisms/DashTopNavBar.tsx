@@ -38,6 +38,7 @@ const DashTopNavBar = () => {
           <DropDown
             title={"Notifications"}
             onBlur={() => setShowNotification((prev) => !prev)}
+            className="w-[20vw]"
           >
             <h3>fist notification</h3>
           </DropDown>
