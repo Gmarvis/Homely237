@@ -78,7 +78,7 @@ const Page = () => {
             {base64Images.length}/4
           </p>
 
-          <div className="flex gap-3 justify-start pt-1">
+          <div className="flex gap-3 mobile:max-sm:gap-2 justify-start pt-1">
             {!base64Images.length && (
               <div className="h-[100px] justify-center text-center items-center w-full">
                 <p className="text-sm text-slate-400">
