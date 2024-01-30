@@ -46,7 +46,7 @@ const Page = () => {
   };
 
   return (
-    <div className=" w-full h-[calc(100vh-53px)] flex justify-center items-center mobile:max-sm:mb-[60vh] mobile:max-sm:items-start ">
+    <div className=" w-full h-[calc(100vh-53px)] flex justify-center items-center mobile:max-sm:mb-[54px] mobile:max-sm:items-start ">
       <div className="flex gap-5 mobile:max-sm:flex-col  mobile:max-sm:mt-5">
         <div className="flex flex-col justify-between">
           <div
