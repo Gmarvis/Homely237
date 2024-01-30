@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { HiDotsHorizontal } from "react-icons/hi";
 import DropDown from "./DropDown";
+import Overlay from "../atoms/Overlay";
 
 type ImageCardProps = {
   image: string;
@@ -33,13 +34,14 @@ const ProductImageCard = ({ image, children }: ImageCardProps) => {
         <HiDotsHorizontal size={20} />
       </button>
       {showMenu && (
-        <div className="absolute top-6 shadow-md">
-          <DropDown
-            className="w-[100px] mobile:max-sm:w-[22vw]"
-            onBlur={() => setShowImageMenu((prev) => !prev)}
-          >
-            {children}
-          </DropDown>
+        <Overlay
+          transparent
+          onClick={() => setShowImageMenu((prev) => !prev)}
+        />
+      )}
+      {showMenu && (
+        <div className="absolute top-6 shadow-md bg-white p-2 w-full z-50">
+          {children}
         </div>
       )}
     </motion.div>

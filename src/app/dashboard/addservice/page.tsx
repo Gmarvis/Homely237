@@ -45,8 +45,14 @@ const Page = () => {
     setBase64Images([...base64Images, base64Data]);
   };
 
-  const setmainImg = () => {
-    console.log("image: ");
+  const setmainImg = (image: string) => {
+    setMainImage(image);
+  };
+
+  const handleDeleteImage = (image: string) => {
+    const updateImages = base64Images.filter((img: string) => img !== image);
+    if (mainImage === image) setMainImage("");
+    setBase64Images(updateImages);
   };
 
   return (
@@ -92,8 +98,8 @@ const Page = () => {
             )}
             {base64Images.map((image: any, i: React.Key | null | undefined) => (
               <ProductImageCard key={i} image={image}>
-                <button onClick={setmainImg}>set as main</button>
-                <button>Delete</button>
+                <button onClick={() => setmainImg(image)}>set as main</button>
+                <button onClick={() => handleDeleteImage(image)}>Delete</button>
               </ProductImageCard>
             ))}
           </div>
