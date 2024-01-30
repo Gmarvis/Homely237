@@ -45,6 +45,10 @@ const Page = () => {
     setBase64Images([...base64Images, base64Data]);
   };
 
+  const setmainImg = () => {
+    console.log("image: ");
+  };
+
   return (
     <div className=" w-full h-[calc(100vh-53px)] flex justify-center items-center mobile:max-sm:mb-[60px] mobile:max-sm:items-start ">
       <div className="flex gap-5 mobile:max-sm:flex-col  mobile:max-sm:mt-5">
@@ -87,13 +91,10 @@ const Page = () => {
               </div>
             )}
             {base64Images.map((image: any, i: React.Key | null | undefined) => (
-              <ProductImageCard
-                key={i}
-                image={image}
-                onClick={function (): void {
-                  throw new Error("Function not implemented.");
-                }}
-              />
+              <ProductImageCard key={i} image={image}>
+                <button onClick={setmainImg}>set as main</button>
+                <button>Delete</button>
+              </ProductImageCard>
             ))}
           </div>
         </div>
