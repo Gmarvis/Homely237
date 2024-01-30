@@ -7,6 +7,8 @@ import { IoCloudUploadOutline } from "react-icons/io5";
 import { HiDotsHorizontal } from "react-icons/hi";
 import ProductImageCard from "@/components/molucles/ProductImageCard";
 import { toast } from "react-toastify";
+import FormInput from "@/components/atoms/FormInput";
+import CreateServiceForm from "@/components/organisms/CreateServiceForm";
 
 const Page = () => {
   const [base64Images, setBase64Images] = useState<any>([]);
@@ -44,7 +46,7 @@ const Page = () => {
   };
 
   return (
-    <div className=" w-full h-[calc(100vh-53px)] flex justify-center items-center mobile:max-sm:items-start ">
+    <div className=" w-full h-[calc(100vh-53px)] flex justify-center items-center mobile:max-sm:mb-[60vh] mobile:max-sm:items-start ">
       <div className="flex gap-5 mobile:max-sm:flex-col  mobile:max-sm:mt-5">
         <div className="flex flex-col justify-between">
           <div
@@ -72,7 +74,16 @@ const Page = () => {
               ref={inputRef}
             />
           </div>
-          <div className="flex gap-3 justify-start ">
+          <p className="py-1 text-slate-600">{base64Images.length}/4</p>
+
+          <div className="flex gap-3 justify-start pt-1">
+            {!base64Images.length && (
+              <div className="h-[100px] justify-center text-center items-center w-full">
+                <p className="text-sm text-slate-400">
+                  Upload 4 images of you you performing your service
+                </p>
+              </div>
+            )}
             {base64Images.map((image: any, i: React.Key | null | undefined) => (
               <ProductImageCard
                 key={i}
@@ -85,11 +96,17 @@ const Page = () => {
           </div>
         </div>
 
-        <div className="w-[50vw] h-[30vw] bg-white mobile:max-sm:w-[98vw]"></div>
+        <div className="w-[50vw] h-[30vw] mobile:max-sm:h-full bg-white shadow-md mobile:max-sm:w-[98vw] p-2">
+          <div className="form w-full">
+            <h3 className="text-md font-bold text-primarytheme mb-2">
+              SERVICE DETIALS
+            </h3>
+            <CreateServiceForm />
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
 export default Page;
-<h3>addservice</h3>;
