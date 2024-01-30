@@ -20,7 +20,7 @@ const ProductImageCard = ({ image, onClick }: ImageCardProps) => {
         backgroundPosition: "center",
         objectFit: "fill",
       }}
-      className="w-[100px] mobile:max-sm:w-[80px] h-[100px] shadow-md flex items-end flex-col p-2"
+      className="w-[100px] mobile:max-sm:w-[22vw] mobile:max-sm:h-[22vw] h-[bg-white100px] shadow-md flex items-end flex-col p-2"
     >
       <button className="flex  self-end">
         <HiDotsHorizontal size={20} />
