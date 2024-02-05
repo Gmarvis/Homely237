@@ -4,7 +4,7 @@ import Login from "@/components/organisms/Login";
 import SignUp from "@/components/organisms/SignUp";
 import React, { useState } from "react";
 
-const Page = () => {
+const Auth = () => {
   const [onCreateAccount, setOnCreateAccount] = useState(true);
   return (
     <div className="flex justify-center items-center mobile:max-sm:bg-white bg-bgGray h-screen w-screen">
@@ -48,4 +48,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default Auth;

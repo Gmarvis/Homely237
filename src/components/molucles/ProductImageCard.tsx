@@ -28,7 +28,7 @@ const ProductImageCard = ({ image, children }: ImageCardProps) => {
       className="w-[100px] mobile:max-sm:w-[22vw]  h-[100px] mobile:max-sm:h-[22vw] bg-white shadow-md flex items-end flex-col p-2 relative bigScreen:w-[150px] bigScreen:h-[150px]"
     >
       <button
-        className="flex  self-end bg-white rounded-full"
+        className="flex  self-end bg-white rounded-full shadow-md"
         onClick={() => setShowImageMenu((prev) => !prev)}
       >
         <HiDotsHorizontal size={20} />
