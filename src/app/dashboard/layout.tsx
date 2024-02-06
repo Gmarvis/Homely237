@@ -1,7 +1,16 @@
+"use client";
 import DashTopNavBar from "@/components/organisms/DashTopNavBar";
 import SideBar from "@/components/organisms/SideBar";
+import Auth from "../auth/page";
+import { useState } from "react";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
+  const [user, setUser] = useState(true);
+
+  if (!user) {
+    return <Auth />;
+  }
+
   return (
     <div className="flex bg-[#f3f7fd] h-screen mobile:max-sm:h-full mobile:max-sm:overflow-y-scroll ">
       <SideBar />
