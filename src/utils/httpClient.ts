@@ -1,8 +1,8 @@
-// import { LOCAL_STORAGE } from "./storage";
+import { LOCAL_STORAGE } from "./storage";
 
 const Headers = {
   "Content-Type": "application/json",
-  Authorization: `Bearer ${localStorage.getItem("token")}`,
+  Authorization: `Bearer ${LOCAL_STORAGE.get("token")}`,
 };
 
 export default class ApiCall {

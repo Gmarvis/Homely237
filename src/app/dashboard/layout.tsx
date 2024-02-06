@@ -5,7 +5,7 @@ import Auth from "../auth/page";
 import { useState } from "react";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState(true);
+  const [user, setUser] = useState(false);
 
   if (!user) {
     return <Auth />;

@@ -60,7 +60,11 @@ const NavBar = () => {
             Dashboard
           </Link>
           <BellBtn onClick={() => setShowNotification((prev) => !prev)} />
-          <ToggleThemeBtn />
+          {/* {
+          >>>>>>>>>>>>>>THE APP THEME PROVIDER IS NO WORKING PROPERLY
+          >>>>>>>>>>>>>>CUSTOMIZED COLORS WON'T CHANGE AS THEME MODE CHANGE
+          } */}
+          {/* <ToggleThemeBtn /> */}
           <Avatar name="Foo Bar" size="30" round={true} />
 
           {showNotifiaction && (

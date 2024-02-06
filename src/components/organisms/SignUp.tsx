@@ -1,24 +1,88 @@
+"use client";
+import { useState } from "react";
 import FormInput from "../atoms/FormInput";
+import { SIGNUP } from "@/utils/queries";
+import Spinner from "../atoms/Spinner";
+import { IoWarningOutline } from "react-icons/io5";
 
 const SignUp = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassoword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSignUp = (e: any) => {
+    e.preventDefault();
+    setLoading(true);
+    if (!name || !email || !password) {
+      setError("pleace fill the form completely");
+      setLoading(false);
+      setTimeout(() => {
+        setError("");
+      }, 5000);
+      return;
+    }
+    SIGNUP({ name, email, password }).then((res: any) => {
+      if (res.token) {
+        localStorage.setItem("token", res.token);
+        setLoading(false);
+      } else {
+        setError(`${res.message} try to login`);
+        setLoading(false);
+        setTimeout(() => {
+          setError("");
+        }, 5000);
+        return;
+      }
+    });
+  };
+
   return (
     <div className="w-full h-full flex flex-col justify-center items-center">
       <h3 className="font-bold text-[24px]">Create Your Account</h3>
-      <form className="max-w-[25vw] w-[20vw] p-2 flex flex-col mobile:max-sm:w-[95vw] mobile:max-sm:max-w-[95vw] gap-3">
+      <form
+        onSubmit={handleSignUp}
+        className="max-w-[25vw] w-[20vw] p-2 flex flex-col mobile:max-sm:w-[95vw] mobile:max-sm:max-w-[95vw] gap-3"
+      >
         <FormInput
           label={"Name"}
-          onChange={(e: { target: { value: any } }) => {}}
+          onChange={(e: { target: { value: any } }) => setName(e.target.value)}
         />
         <FormInput
           label={"Email"}
-          onChange={(e: { target: { value: any } }) => {}}
+          onChange={(e: { target: { value: any } }) => setEmail(e.target.value)}
         />
 
         <FormInput
           label={"Password"}
-          onChange={(e: { target: { value: any } }) => {}}
+          onChange={(e: { target: { value: any } }) =>
+            setPassoword(e.target.value)
+          }
         />
-        <button className="bg-primarytheme text-white p-2 ">SignUp</button>
+        <button
+          className={` ${
+            loading
+              ? "bg-[#555c58] hover:cursor-wait disabled:cursor-wait"
+              : "bg-primarytheme"
+          } text-white p-2 justify-center items-center w-full`}
+        >
+          <span className="flex self-center justify-center">
+            {loading ? <Spinner /> : "SignUp"}
+          </span>
+        </button>
+        {error && (
+          <p className="bg-red-300 p-4 flex justify-center items-center text-xs gap-1 mobile:max-sm:mb-4">
+            <IoWarningOutline
+              style={{
+                color: "yellow",
+              }}
+              size={20}
+            />
+
+            {error}
+          </p>
+        )}
       </form>
     </div>
   );

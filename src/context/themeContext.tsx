@@ -19,9 +19,9 @@ const ThemeProviders = ({ children }: Childrentype) => {
   return (
     <ThemeProvider
       attribute="class"
-      defaultTheme="system"
-      enableSystem
-      enableColorScheme
+      // defaultTheme="system"
+      // enableSystem
+      // enableColorScheme
     >
       {children}
     </ThemeProvider>
