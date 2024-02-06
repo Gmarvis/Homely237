@@ -1,15 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
 
-First, run the development server:
+# **HOMYGIG**
+## *Best home service listing and Booking Application in Cameroon* 🇨🇲
+
+HOMYGIG is a home service provision listing web Application, that enables service providers such as (Babbers, Cooks, Cleaners, movers, etc) to list their services, and users can book services based on their location compared to that of the service providers and book for Appointments.
+
+[Visit HomyGig and see How cool it is](https://homygig.vercel.app/)
+
+## Why HomyGiG
+### For Service Provider
+1. Visibility and lead generation: Homygig can provide a platform for service providers to showcase their services, reach a wider audience, and generate more leads and bookings.
+2. Convenience and efficiency: Providers can manage their listings, bookings, and communication with clients through a centralized platform, streamlining their operations and saving time.
+3. Reputation management: User reviews and feedback on Homygig can help providers build trust and credibility, attracting more clients.
+Competitive pricing: By comparing rates and services on Homygig, providers can stay competitive and adjust their offerings to attract more clients.
+
+### For Users
+
+1. Convenience and time-saving: Homygig can save users time and effort by providing a one-stop shop for finding and booking various home services.
+2. Wider selection and price comparison: Users can compare rates and services from different providers in their area to find the best fit for their needs and budget.
+3. Quality assurance: Reviews and ratings on Homygig can help users choose reliable and trustworthy service providers.
+4. Trust and security: By using a reputable platform like Homygig, users can have more confidence in the quality and legitimacy of the services they book.
+
 
 ```bash
 npm run dev
 # or
 yarn dev
 # or
-pnpm dev
+npm dev
 # or
 bun dev
 ```
