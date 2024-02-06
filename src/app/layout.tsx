@@ -17,13 +17,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <ThemeProviders>
-        <body className="">
-          <ToastContainer />
+      {/* {
+          >>>>>>>>>>>>>>THE APP THEME PROVIDER IS NO WORKING PROPERLY
+          >>>>>>>>>>>>>>CUSTOMIZED COLORS WON'T CHANGE AS THEME MODE CHANGE
+          } */}
+      {/* <ThemeProviders> */}
+      <body className="">
+        <ToastContainer />
 
-          {children}
-        </body>
-      </ThemeProviders>
+        {children}
+      </body>
+      {/* </ThemeProviders> */}
     </html>
   );
 }
