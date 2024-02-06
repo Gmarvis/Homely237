@@ -2,13 +2,15 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SearchForm from "../molucles/SearchForm";
 import Avatar from "react-avatar";
 import BellBtn from "../atoms/BellBtn";
 
 import { motion } from "framer-motion";
 import DropDown from "../molucles/DropDown";
+import { useTheme } from "next-themes";
+import ToggleThemeBtn from "../atoms/ToggleThemeBtn";
 
 const navLinks = [
   {
@@ -58,6 +60,7 @@ const NavBar = () => {
             Dashboard
           </Link>
           <BellBtn onClick={() => setShowNotification((prev) => !prev)} />
+          <ToggleThemeBtn />
           <Avatar name="Foo Bar" size="30" round={true} />
 
           {showNotifiaction && (
