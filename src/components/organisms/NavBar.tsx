@@ -54,7 +54,7 @@ const NavBar = () => {
         <SearchForm />
       </div>
 
-      {!user ? (
+      {user ? (
         <div className="flex justify-center items-center gap-3">
           <Link className="text-xs" href={"dashboard"}>
             Dashboard

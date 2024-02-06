@@ -4,6 +4,7 @@ import FormInput from "../atoms/FormInput";
 import { SIGNUP } from "@/utils/queries";
 import Spinner from "../atoms/Spinner";
 import { IoWarningOutline } from "react-icons/io5";
+import { motion } from "framer-motion";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -72,7 +73,12 @@ const SignUp = () => {
           </span>
         </button>
         {error && (
-          <p className="bg-red-300 p-4 flex justify-center items-center text-xs gap-1 mobile:max-sm:mb-4">
+          <motion.p
+            initial={{ opacity: 0, translateY: -20 }}
+            animate={{ opacity: 1, translateY: 0 }}
+            transition={{ duration: 0.3 }}
+            className="bg-red-300 p-4 flex justify-center items-center text-xs gap-1 mobile:max-sm:mb-4"
+          >
             <IoWarningOutline
               style={{
                 color: "yellow",
@@ -81,7 +87,7 @@ const SignUp = () => {
             />
 
             {error}
-          </p>
+          </motion.p>
         )}
       </form>
     </div>
