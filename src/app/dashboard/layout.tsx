@@ -4,10 +4,13 @@ import SideBar from "@/components/organisms/SideBar";
 import Auth from "../auth/page";
 import { useState } from "react";
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState(false);
+// STORE IMPORT
+import useUserStore from "@/store/userStore";
 
-  if (!user) {
+const Layout = ({ children }: { children: React.ReactNode }) => {
+  const { user } = useUserStore();
+
+  if (!user.id) {
     return <Auth />;
   }
 

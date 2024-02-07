@@ -6,13 +6,21 @@ import Spinner from "../atoms/Spinner";
 import { IoWarningOutline } from "react-icons/io5";
 import { motion } from "framer-motion";
 
-import { jwtDecode } from "jwt-decode";
+import { useRouter } from "next/navigation";
+
+import { decodeToken } from "@/utils/jwtDecode";
+
+// STORE IMPORTS
+import useUserStore from "@/store/userStore";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassoword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  const { setUser } = useUserStore();
+  const router = useRouter();
 
   const handleLogin = (e: any) => {
     e.preventDefault();
@@ -27,12 +35,17 @@ const Login = () => {
     }
     LOGIN({ email: email, password: password }).then((res: any) => {
       if (res.token) {
+        // SAVE TOKEN TO LOCALSTORAGE SO I CAN BE DECODED LETTER AND USED
         localStorage.setItem("token", res.token);
-        const userData: any = jwtDecode(res.token);
-        console.log(userData.user.dataValues);
+
+        // DECODE TOKEN AND PASS USER DATE TO APP STORE
+        const userData = decodeToken(res.token);
+        setUser(userData);
+        console.log(userData);
+        router.push("/");
         setLoading(false);
       } else {
-        setError(`${res.message} try to login`);
+        setError(`${res.message}`);
         setLoading(false);
         setTimeout(() => {
           setError("");
@@ -40,6 +53,7 @@ const Login = () => {
         return;
       }
     });
+    // setLoading(false);
   };
 
   return (
