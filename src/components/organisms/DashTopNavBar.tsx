@@ -17,7 +17,7 @@ const DashTopNavBar = () => {
 
   const [showNotifiaction, setShowNotification] = useState(false);
   return (
-    <div className="w-full flex justify-between items-center bg-white shadow-md p-2 pr-5 relative">
+    <div className="w-full flex justify-between items-center bg-white shadow-md p-2 pr-5 mobile:max-sm:pr-2 relative">
       <h2 className="mobile:max-sm:hidden">Provider</h2>
       <Link href={"/"} className=" sm:hidden">
         <Image

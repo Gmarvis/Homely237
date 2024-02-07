@@ -4,6 +4,7 @@ import "./globals.css";
 import { ToastContainer } from "./nextToast";
 import "react-toastify/dist/ReactToastify.min.css";
 import ThemeProviders from "@/context/themeContext";
+import VerifyUser from "./auth/(verifications)/VerifyUser";
 
 export const metadata: Metadata = {
   title: "homygig",
@@ -22,11 +23,13 @@ export default function RootLayout({
           >>>>>>>>>>>>>>CUSTOMIZED COLORS WON'T CHANGE AS THEME MODE CHANGE
           } */}
       {/* <ThemeProviders> */}
-      <body className="">
-        <ToastContainer />
+      <VerifyUser>
+        <body className="">
+          <ToastContainer />
+          {children}
+        </body>
+      </VerifyUser>
 
-        {children}
-      </body>
       {/* </ThemeProviders> */}
     </html>
   );
