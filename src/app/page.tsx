@@ -8,7 +8,7 @@ import useUserStore from "@/store/userStore";
 export default function Home() {
   return (
     <main className="flex flex-col  ">
-      <NavBar />
+      <NavBar onDashBoard={false} />
       {/* <SignUp /> */}
     </main>
   );
