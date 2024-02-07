@@ -6,9 +6,10 @@ import React, { useEffect } from "react";
 
 const VerifyUser = ({ children }: { children: React.ReactNode }) => {
   const { user, setUser } = useUserStore();
-  const token = localStorage?.getItem("token");
 
   useEffect(() => {
+    const token = localStorage?.getItem("token");
+
     if (token) setUser(decodeToken(token));
   }, []);
 
