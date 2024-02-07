@@ -4,6 +4,12 @@ import FormInput from "../atoms/FormInput";
 import { SIGNUP } from "@/utils/queries";
 import Spinner from "../atoms/Spinner";
 import { IoWarningOutline } from "react-icons/io5";
+import { motion } from "framer-motion";
+import { decodeToken } from "@/utils/jwtDecode";
+
+// STORE IMPORTS
+import useUserStore from "@/store/userStore";
+import { useRouter } from "next/navigation";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -11,6 +17,9 @@ const SignUp = () => {
   const [password, setPassoword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  const { setUser } = useUserStore();
+  const router = useRouter();
 
   const handleSignUp = (e: any) => {
     e.preventDefault();
@@ -25,7 +34,13 @@ const SignUp = () => {
     }
     SIGNUP({ name, email, password }).then((res: any) => {
       if (res.token) {
+        // SAVE TOKEN TO LOCALSTORAGE SO I CAN BE DECODED LETTER AND USED
         localStorage.setItem("token", res.token);
+        // DECODE TOKEN AND PASS USER DATE TO APP STORE
+        const userData = decodeToken(res.token);
+        setUser(userData);
+        console.log(userData);
+        router.push("/");
         setLoading(false);
       } else {
         setError(`${res.message} try to login`);
@@ -72,7 +87,12 @@ const SignUp = () => {
           </span>
         </button>
         {error && (
-          <p className="bg-red-300 p-4 flex justify-center items-center text-xs gap-1 mobile:max-sm:mb-4">
+          <motion.p
+            initial={{ opacity: 0, translateY: -20 }}
+            animate={{ opacity: 1, translateY: 0 }}
+            transition={{ duration: 0.3 }}
+            className="bg-red-300 p-4 flex justify-center items-center text-xs gap-1 mobile:max-sm:mb-4"
+          >
             <IoWarningOutline
               style={{
                 color: "yellow",
@@ -81,7 +101,7 @@ const SignUp = () => {
             />
 
             {error}
-          </p>
+          </motion.p>
         )}
       </form>
     </div>

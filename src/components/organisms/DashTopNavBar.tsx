@@ -9,10 +9,15 @@ import DropDown from "../molucles/DropDown";
 
 import { motion } from "framer-motion";
 
+// STORE IMPORT
+import useUserStore from "@/store/userStore";
+
 const DashTopNavBar = () => {
+  const { user } = useUserStore();
+
   const [showNotifiaction, setShowNotification] = useState(false);
   return (
-    <div className="w-full flex justify-between items-center bg-white shadow-md p-2 relative">
+    <div className="w-full flex justify-between items-center bg-white shadow-md p-2 pr-5 relative">
       <h2 className="mobile:max-sm:hidden">Provider</h2>
       <Link href={"/"} className=" sm:hidden">
         <Image
@@ -25,7 +30,7 @@ const DashTopNavBar = () => {
 
       <div className="flex gap-3 items-center">
         <BellBtn onClick={() => setShowNotification((prev) => !prev)} />
-        <Avatar name="Foo Bar" size="30" round={true} />
+        <Avatar name={user.name} size="30" round={true} />
       </div>
       {/* <h1>hello</h1> */}
       {showNotifiaction && (

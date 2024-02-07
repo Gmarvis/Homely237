@@ -9,8 +9,11 @@ import BellBtn from "../atoms/BellBtn";
 
 import { motion } from "framer-motion";
 import DropDown from "../molucles/DropDown";
-import { useTheme } from "next-themes";
-import ToggleThemeBtn from "../atoms/ToggleThemeBtn";
+// import { useTheme } from "next-themes";
+// import ToggleThemeBtn from "../atoms/ToggleThemeBtn";
+
+// STORE IMPORTS
+import useUserStore from "@/store/userStore";
 
 const navLinks = [
   {
@@ -32,7 +35,7 @@ const navLinks = [
 ];
 
 const NavBar = () => {
-  const [user, setUser] = useState(null);
+  const { user } = useUserStore();
   const [showNotifiaction, setShowNotification] = useState(false);
 
   return (
@@ -54,7 +57,7 @@ const NavBar = () => {
         <SearchForm />
       </div>
 
-      {!user ? (
+      {user.id ? (
         <div className="flex justify-center items-center gap-3">
           <Link className="text-xs" href={"dashboard"}>
             Dashboard
@@ -65,7 +68,7 @@ const NavBar = () => {
           >>>>>>>>>>>>>>CUSTOMIZED COLORS WON'T CHANGE AS THEME MODE CHANGE
           } */}
           {/* <ToggleThemeBtn /> */}
-          <Avatar name="Foo Bar" size="30" round={true} />
+          <Avatar name={user.name} size="30" round={true} />
 
           {showNotifiaction && (
             <motion.div
