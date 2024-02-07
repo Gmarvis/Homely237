@@ -11,9 +11,12 @@ import { motion } from "framer-motion";
 
 // STORE IMPORT
 import useUserStore from "@/store/userStore";
+import ProfileAvatar from "../molucles/Avatar";
+import Overlay from "../atoms/Overlay";
 
 const DashTopNavBar = () => {
   const { user } = useUserStore();
+  const [showProfile, setShowProfile] = useState(false);
 
   const [showNotifiaction, setShowNotification] = useState(false);
   return (
@@ -30,15 +33,26 @@ const DashTopNavBar = () => {
 
       <div className="flex gap-3 items-center">
         <BellBtn onClick={() => setShowNotification((prev) => !prev)} />
-        <Avatar name={user.name} size="30" round={true} />
+        <ProfileAvatar
+          onClick={() => setShowProfile((prev) => !prev)}
+          user={user}
+          size={3}
+        />
       </div>
       {/* <h1>hello</h1> */}
+      {showNotifiaction && (
+        <Overlay
+          onClick={() => setShowNotification((prev) => !prev)}
+          transparent
+        />
+      )}
+
       {showNotifiaction && (
         <motion.div
           initial={{ opacity: 0, translateY: -20 }}
           animate={{ opacity: 1, translateY: 0 }}
           transition={{ duration: 0.3 }}
-          className="absolute top-[53px] right-2"
+          className="absolute top-[57px] right-2 z-40"
         >
           <DropDown
             title={"Notifications"}

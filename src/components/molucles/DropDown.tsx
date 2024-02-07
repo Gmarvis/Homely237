@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { MdOutlineClear } from "react-icons/md";
 
 type DropdownTypes = {
@@ -9,17 +9,8 @@ type DropdownTypes = {
 };
 
 const DropDown = ({ title, onBlur, children, className }: DropdownTypes) => {
-  const dropdownRef = useRef<HTMLDivElement>();
-
-  useEffect(() => {
-    dropdownRef.current?.focus();
-  }, []);
-
   return (
     <div
-      ref={dropdownRef as any}
-      tabIndex={1}
-      onBlur={onBlur}
       className={` ${className} mobile:max-sm:w-[40vh] bg-white shadow-md rounded-md`}
     >
       <div className="flex w-full justify-between text-slate-600 p-2">
