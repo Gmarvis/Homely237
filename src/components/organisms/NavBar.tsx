@@ -102,7 +102,7 @@ const NavBar = ({ onDashBoard }: NavTypes) => {
           )}
           {showProfile && (
             <motion.div
-              className="absolute top-[57px] right-2 w-[300px] z-40"
+              className="absolute top-[57px] right-4 w-[300px] z-40"
               initial={{ opacity: 0, translateY: -20 }}
               animate={{ opacity: 1, translateY: 0 }}
               transition={{ duration: 0.3 }}
