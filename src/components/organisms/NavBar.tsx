@@ -56,7 +56,7 @@ const NavBar = ({ onDashBoard }: NavTypes) => {
         <Link
           href={"/"}
           className={`self-center w-full ${
-            onDashBoard ? "hidden" : "visible"
+            onDashBoard ? "sm:hidden mobile:max-sm:visible" : ""
           }  flex items-center justify-center`}
         >
           <Image
