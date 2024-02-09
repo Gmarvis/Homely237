@@ -21,6 +21,8 @@ Competitive pricing: By comparing rates and services on Homygig, providers can s
 3. Quality assurance: Reviews and ratings on Homygig can help users choose reliable and trustworthy service providers.
 4. Trust and security: By using a reputable platform like Homygig, users can have more confidence in the quality and legitimacy of the services they book.
 
+![image](https://github.com/Gmarvis/homygig_frontend/assets/106551910/8ae901ef-7d2d-4798-9860-7e2af7bb46da)
+
 
 ```bash
 npm run dev
