@@ -62,7 +62,6 @@ const Page = () => {
           <div
             style={{
               backgroundImage: `url(${mainImage})`,
-
               backgroundSize: "cover",
               backgroundPosition: "center",
               objectFit: "fill",

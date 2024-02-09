@@ -1,8 +1,9 @@
+import CreateCategoryForm from "@/components/organisms/CreateCategoryForm";
+
 export default function page() {
   return (
     <main className="flex ">
-      <h1>Welcome to HomyGig</h1>
-      {/* <SignUp /> */}
+      <CreateCategoryForm />
     </main>
   );
 }

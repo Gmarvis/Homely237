@@ -1,15 +1,14 @@
-import FormInput from "@/components/atoms/FormInput";
 import NavBar from "@/components/organisms/NavBar";
-import SignUp from "@/components/organisms/SignUp";
-import Image from "next/image";
-
-import useUserStore from "@/store/userStore";
+import HeroSection from "@/components/organisms/HeroSection";
+import Footer from "@/components/organisms/Footer";
+import CategoryGrid from "@/components/organisms/CategoryGrid";
 
 export default function Home() {
   return (
     <main className="flex flex-col  ">
       <NavBar onDashBoard={false} />
-      {/* <SignUp /> */}
+      <HeroSection />
+      {/* <Footer /> */}
     </main>
   );
 }

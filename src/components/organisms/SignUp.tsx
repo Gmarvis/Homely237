@@ -10,6 +10,7 @@ import { decodeToken } from "@/utils/jwtDecode";
 // STORE IMPORTS
 import useUserStore from "@/store/userStore";
 import { useRouter } from "next/navigation";
+import FormBtn from "../atoms/FormBtn";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -75,17 +76,12 @@ const SignUp = () => {
             setPassoword(e.target.value)
           }
         />
-        <button
-          className={` ${
-            loading
-              ? "bg-[#555c58] hover:cursor-wait disabled:cursor-wait"
-              : "bg-primarytheme"
-          } text-white p-2 justify-center items-center w-full`}
-        >
-          <span className="flex self-center justify-center">
-            {loading ? <Spinner /> : "SignUp"}
-          </span>
-        </button>
+
+        <FormBtn
+          title="Signup"
+          onClick={() => handleSignUp}
+          isLoading={loading}
+        />
         {error && (
           <motion.p
             initial={{ opacity: 0, translateY: -20 }}
