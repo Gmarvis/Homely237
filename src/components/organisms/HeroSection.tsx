@@ -10,8 +10,8 @@ import CategoryGrid from "./CategoryGrid";
 const HeroSection = () => {
   const { user } = useUserStore();
   return (
-    <section className="bg-white mt-10 bigScreen:pt-10">
-      <div className="max-w-screen-xl mx-auto px-4 py-28 gap-12 text-gray-600 md:px-8">
+    <section className="bg-slate-100 mt-10 bigScreen:pt-10">
+      <div className="max-w-screen-xl mx-auto px-4 pt-28 gap-12 text-gray-600 md:px-8">
         <div className="space-y-5 max-w-4xl mx-auto text-center">
           <h1 className="text-sm text-primarytheme font-medium">
             Revolutionizing Home Services in Cameroon
@@ -34,7 +34,7 @@ const HeroSection = () => {
               {user.id ? "Appointments" : "Get Started"}
             </Link>
             <a
-              href="javascript:void(0)"
+              href=""
               className="block py-2 px-4 text-gray-700 hover:text-gray-500 font-medium duration-150 active:bg-gray-100 border rounded-lg"
             >
               At my area

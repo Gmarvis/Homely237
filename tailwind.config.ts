@@ -16,6 +16,7 @@ const config: Config = {
       colors: {
         primarytheme: "#3F968C",
         secondrytheme: "#F39B42",
+        mainText: "#0f1716",
         bgGray: "#f1f1f1",
       },
       screens: {

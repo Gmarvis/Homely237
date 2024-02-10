@@ -10,15 +10,25 @@ import { toast } from "react-toastify";
 import FormInput from "@/components/atoms/FormInput";
 import CreateServiceForm from "@/components/organisms/CreateServiceForm";
 
+// EdgeStoreImports
+import { useEdgeStore } from "@/lib/edgestore";
+import { SingleImageDropzone } from "@/components/molucles/SingleImageDropZone";
+import { ImagePlus } from "lucide-react";
+
 const Page = () => {
-  const [base64Images, setBase64Images] = useState<any>([]);
+  // store upload
+  const [file, setFile] = React.useState<File>();
+  const { edgestore } = useEdgeStore();
+  const [progress, setProgress] = useState(0);
+
+  const [images, setImages] = useState<any>([]);
   const [mainImage, setMainImage] = useState("");
 
   const inputRef: any = useRef();
 
   const handleImageUpload = async (e: any) => {
     // console.log(e.target.files);
-    if (base64Images.length === 4) {
+    if (images.length === 4) {
       toast.warning("You can only uplaod 4 images", {
         position: "top-right",
         hideProgressBar: true,
@@ -42,7 +52,7 @@ const Page = () => {
       reader.readAsDataURL(file);
     });
     // console.log(base64Data);
-    setBase64Images([...base64Images, base64Data]);
+    setImages([...images, base64Data]);
   };
 
   const setmainImg = (image: string) => {
@@ -50,53 +60,72 @@ const Page = () => {
   };
 
   const handleDeleteImage = (image: string) => {
-    const updateImages = base64Images.filter((img: string) => img !== image);
+    const updateImages = images.filter((img: string) => img !== image);
     if (mainImage === image) setMainImage("");
-    setBase64Images(updateImages);
+    setImages(updateImages);
+  };
+
+  const uplaodImage = async () => {
+    if (file) {
+      setProgress(0);
+      const res = await edgestore.publicFiles.upload({
+        file,
+        onProgressChange: (preg) => setProgress(preg),
+      });
+
+      setImages([...images, res.url]);
+
+      console.log("upload", res);
+    }
   };
 
   return (
     <div className=" w-full h-[calc(100vh-53px)] flex justify-center items-center mobile:max-sm:mb-[60px] mobile:max-sm:items-start ">
       <div className="flex gap-5 mobile:max-sm:flex-col  mobile:max-sm:mt-5">
         <div className="flex flex-col justify-between">
-          <div
-            style={{
-              backgroundImage: `url(${mainImage})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              objectFit: "fill",
-            }}
-            className="w-[32vw] mobile:max-sm:w-[98vw] mobile:max-sm:h-[50vw] h-[20vw] border border-dashed flex justify-center items-center border-slate-800 shadow-md"
-          >
-            <button
-              onClick={() => inputRef.current.click()}
-              className="flex flex-col justify-center items-center text-slate-500"
-            >
-              <IoCloudUploadOutline size={30} />
-              <span>Upload Image</span>
-            </button>
-
-            <input
-              type="file"
-              onChange={(e) => handleImageUpload(e)}
-              hidden
-              ref={inputRef}
+          <div>
+            {/* edge upload component */}
+            <p>{progress}</p>
+            <SingleImageDropzone
+              width={330}
+              height={200}
+              value={file}
+              dropzoneOptions={{
+                maxSize: 1024 * 1024 * 1,
+                onFileDialogCancel: () => setProgress(0),
+              }}
+              onChange={(file) => {
+                setFile(file);
+              }}
             />
+            <div className="progress w-full border h-2 my-2">
+              <div
+                style={{
+                  width: `${progress}%`,
+                }}
+                className="h-full w-[50%] transition-all duration-150 bg-green-600"
+              ></div>
+            </div>
+            <button className="bg-primarytheme w-full" onClick={uplaodImage}>
+              upload
+            </button>
           </div>
-          <p className="py-1 text-slate-600 self-end">
-            {base64Images.length}/4
-          </p>
+          <p className="py-1 text-slate-600 self-end">{images.length}/4</p>
 
           <div className="flex gap-3 mobile:max-sm:gap-2 justify-start pt-1">
-            {!base64Images.length && (
+            {!images.length && (
               <div className="h-[100px] justify-center text-center items-center w-full">
                 <p className="text-sm text-slate-400">
                   Upload 4 images of you you performing your service
                 </p>
               </div>
             )}
-            {base64Images.map((image: any, i: React.Key | null | undefined) => (
-              <ProductImageCard key={i} image={image}>
+            {images.map((image: any, i: React.Key | null | undefined) => (
+              <ProductImageCard
+                key={i}
+                image={image}
+                showBadge={image === mainImage}
+              >
                 <button
                   className="text-sm hover:bg-slate-300  text-slate-600 p-1 duration-300"
                   onClick={() => setmainImg(image)}
