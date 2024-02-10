@@ -1,65 +1,45 @@
 "use client";
-import React, { useRef, useState } from "react";
-
-import { motion } from "framer-motion";
-
-import { IoCloudUploadOutline } from "react-icons/io5";
-import { HiDotsHorizontal } from "react-icons/hi";
+import React, { useEffect, useRef, useState } from "react";
 import ProductImageCard from "@/components/molucles/ProductImageCard";
-import { toast } from "react-toastify";
-import FormInput from "@/components/atoms/FormInput";
 import CreateServiceForm from "@/components/organisms/CreateServiceForm";
 
 // EdgeStoreImports
 import { useEdgeStore } from "@/lib/edgestore";
 import { SingleImageDropzone } from "@/components/molucles/SingleImageDropZone";
+// import { deleteObject } from '@edgestore/client';
+
 import { ImagePlus } from "lucide-react";
+import { LOCAL_STORAGE } from "@/utils/storage";
+import { toast } from "react-toastify";
 
 const Page = () => {
   // store upload
   const [file, setFile] = React.useState<File>();
   const { edgestore } = useEdgeStore();
   const [progress, setProgress] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const [images, setImages] = useState<any>([]);
+  const [images, setImages] = useState<string[]>([]);
   const [mainImage, setMainImage] = useState("");
 
-  const inputRef: any = useRef();
+  useEffect(() => {
+    const savedImages = JSON.parse(
+      localStorage.getItem("service_images") || "[]"
+    );
+    if (savedImages) setImages(savedImages);
 
-  const handleImageUpload = async (e: any) => {
-    // console.log(e.target.files);
-    if (images.length === 4) {
-      toast.warning("You can only uplaod 4 images", {
-        position: "top-right",
-        hideProgressBar: true,
-        autoClose: 3000,
-      });
-      return;
-    }
-
-    const file = e.target.files[0];
-    convertImageToBase64(file);
-  };
-
-  // convert image to base64
-  const convertImageToBase64 = async (file: Blob) => {
-    const reader = new FileReader();
-    const base64Data = await new Promise((resolve, reject) => {
-      reader.onload = () => {
-        resolve(reader.result);
-      };
-      reader.onerror = reject;
-      reader.readAsDataURL(file);
-    });
-    // console.log(base64Data);
-    setImages([...images, base64Data]);
-  };
+    setMainImage(localStorage.getItem("main_image") || "");
+  }, []);
 
   const setmainImg = (image: string) => {
     setMainImage(image);
+    localStorage.setItem("main_image", image);
   };
 
-  const handleDeleteImage = (image: string) => {
+  const handleDeleteImage = async (image: string) => {
+    /*>>>>>>>>>> TODO<<<<<<<<<<*/
+    /*>>>>>>>>>> ADD A FUCTION THAT DELETES IMAGE FROM EDGESTORE <<<<<<<<<<*/
+
     const updateImages = images.filter((img: string) => img !== image);
     if (mainImage === image) setMainImage("");
     setImages(updateImages);
@@ -67,14 +47,23 @@ const Page = () => {
 
   const uplaodImage = async () => {
     if (file) {
+      if (images.length === 4) {
+        toast.warning("You can only uplaod 4 images", {
+          position: "top-right",
+          hideProgressBar: true,
+          autoClose: 3000,
+        });
+        return;
+      }
       setProgress(0);
+      setIsLoading(true);
       const res = await edgestore.publicFiles.upload({
         file,
         onProgressChange: (preg) => setProgress(preg),
       });
-
       setImages([...images, res.url]);
-
+      LOCAL_STORAGE.save("service_images", [...images, res.url]);
+      setIsLoading(false);
       console.log("upload", res);
     }
   };
@@ -85,9 +74,9 @@ const Page = () => {
         <div className="flex flex-col justify-between">
           <div>
             {/* edge upload component */}
-            <p>{progress}</p>
+            {/* <p>{progress}</p> */}
             <SingleImageDropzone
-              width={330}
+              width={435}
               height={200}
               value={file}
               dropzoneOptions={{
@@ -97,7 +86,24 @@ const Page = () => {
               onChange={(file) => {
                 setFile(file);
               }}
+              className="mobile:max-sm:hidden"
             />
+            <div className="w-full flex justify-center items-center sm:hidden ">
+              <SingleImageDropzone
+                width={200}
+                height={200}
+                value={file}
+                dropzoneOptions={{
+                  maxSize: 1024 * 1024 * 1,
+                  onFileDialogCancel: () => setProgress(0),
+                }}
+                onChange={(file) => {
+                  setFile(file);
+                }}
+                className="sm:hidden self-center justify-self-center"
+              />
+            </div>
+
             <div className="progress w-full border h-2 my-2">
               <div
                 style={{
@@ -106,8 +112,12 @@ const Page = () => {
                 className="h-full w-[50%] transition-all duration-150 bg-green-600"
               ></div>
             </div>
-            <button className="bg-primarytheme w-full" onClick={uplaodImage}>
-              upload
+            <button
+              className="bg-primarytheme w-full py-1 disabled:cursor-wait disabled:bg-primaryDark text-white"
+              onClick={uplaodImage}
+              disabled={isLoading}
+            >
+              {isLoading ? "Upload..." : "Upload"}
             </button>
           </div>
           <p className="py-1 text-slate-600 self-end">{images.length}/4</p>
@@ -157,3 +167,5 @@ const Page = () => {
 };
 
 export default Page;
+
+// PESIST IMAGES SAVING THEM TO THE LOCAL STORAGE
