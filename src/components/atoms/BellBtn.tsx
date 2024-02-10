@@ -17,3 +17,5 @@ const BellBtn = ({ onClick }: BellBtnTypes) => {
 };
 
 export default BellBtn;
+
+// THIS COMPONEST IS USED AND A NOTIFICATION BELL INDICATOR

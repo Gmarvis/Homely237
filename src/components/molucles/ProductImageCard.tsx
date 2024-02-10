@@ -4,13 +4,17 @@ import { HiDotsHorizontal } from "react-icons/hi";
 import DropDown from "./DropDown";
 import Overlay from "../atoms/Overlay";
 
+//react icons
+import { RiVerifiedBadgeFill } from "react-icons/ri";
+
 type ImageCardProps = {
   image: string;
   // onClick: () => void;
   children: React.ReactNode;
+  showBadge: boolean;
 };
 
-const ProductImageCard = ({ image, children }: ImageCardProps) => {
+const ProductImageCard = ({ image, children, showBadge }: ImageCardProps) => {
   const [showMenu, setShowImageMenu] = useState(false);
 
   return (
@@ -25,7 +29,7 @@ const ProductImageCard = ({ image, children }: ImageCardProps) => {
         backgroundPosition: "center",
         objectFit: "fill",
       }}
-      className="w-[100px] mobile:max-sm:w-[22vw]  h-[100px] mobile:max-sm:h-[22vw] bg-white shadow-md flex items-end flex-col p-2 relative bigScreen:w-[150px] bigScreen:h-[150px]"
+      className="w-[100px] mobile:max-sm:w-[22vw]  h-[100px] mobile:max-sm:h-[22vw] bg-white shadow-md flex items-end flex-col p-2 relative bigScreen:w-[150px] bigScreen:h-[150px] "
     >
       <button
         className="flex  self-end bg-white rounded-full shadow-md"
@@ -48,6 +52,11 @@ const ProductImageCard = ({ image, children }: ImageCardProps) => {
         >
           {children}
         </motion.div>
+      )}
+      {showBadge && (
+        <span className="absolute left-2 top-2 text-secondrytheme shadow-xl">
+          <RiVerifiedBadgeFill size={20} />
+        </span>
       )}
     </motion.div>
   );

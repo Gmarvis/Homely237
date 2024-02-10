@@ -37,7 +37,7 @@ const CategoryGrid = () => {
         <Link
           key={i}
           href=""
-          className=" py-2 shadow-lg text-slate-700 hover:scale-125 hover:bg-primarytheme hover:text-white duration-300 px-4 rounded-full"
+          className=" py-2 shadow-lg bg-white text-slate-700 hover:scale-125 hover:bg-primarytheme hover:text-white duration-300 px-4 rounded-full"
         >
           <span>{category.name}</span>
         </Link>
