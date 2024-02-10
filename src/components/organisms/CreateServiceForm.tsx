@@ -2,6 +2,7 @@ import React from "react";
 import FormInput from "../atoms/FormInput";
 import Link from "next/link";
 import { IoBookOutline } from "react-icons/io5";
+import FormBtn from "../atoms/FormBtn";
 
 const Categories = [
   {
@@ -76,9 +77,13 @@ const CreateServiceForm = () => {
         className="h-[100px] outline-none border border-primarytheme p-2 text-sm rounded-md"
         placeholder="Give clear description of the sercive your are provide, this will make your sercive stand out and atract more custumers"
       ></textarea>
-      <button className="w-full bg-primarytheme p-1 text-white">
-        Add Service
-      </button>
+      <FormBtn
+        isLoading={false}
+        title={"Add Service"}
+        onClick={function (): void {
+          throw new Error("Function not implemented.");
+        }}
+      />
       <Link
         href={""}
         className="text-secondrytheme text-center flex items-center w-full justify-center gap-3"

@@ -49,8 +49,8 @@ const NavBar = ({ onDashBoard }: NavTypes) => {
   return (
     <div
       className={`flex justify-between shadow-md ${
-        onDashBoard ? " px-5" : "px-24"
-      }  py-2 items-center mobile:max-sm:px-5 relative`}
+        onDashBoard ? " px-5 relative" : "px-24 fixed "
+      }  py-2 items-center mobile:max-sm:px-5  w-full bg-white`}
     >
       <div>
         <Link
@@ -102,7 +102,7 @@ const NavBar = ({ onDashBoard }: NavTypes) => {
           )}
           {showProfile && (
             <motion.div
-              className="absolute top-[57px] right-4 w-[300px] z-40"
+              className="absolute top-[57px] right-4 w-[300px] mobile:max-sm:w-[80vw]  mobile:max-sm:right-10 z-40"
               initial={{ opacity: 0, translateY: -20 }}
               animate={{ opacity: 1, translateY: 0 }}
               transition={{ duration: 0.3 }}

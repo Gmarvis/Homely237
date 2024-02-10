@@ -12,6 +12,7 @@ import { decodeToken } from "@/utils/jwtDecode";
 
 // STORE IMPORTS
 import useUserStore from "@/store/userStore";
+import FormBtn from "../atoms/FormBtn";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -74,17 +75,12 @@ const Login = () => {
             setPassoword(e.target.value)
           }
         />
-        <button
-          className={` ${
-            loading
-              ? "bg-[#555c58] hover:cursor-wait disabled:cursor-wait"
-              : "bg-primarytheme"
-          } text-white p-2 justify-center items-center w-full`}
-        >
-          <span className="flex self-center justify-center">
-            {loading ? <Spinner /> : "Login"}
-          </span>
-        </button>
+
+        <FormBtn
+          title="Login"
+          isLoading={loading}
+          onClick={() => handleLogin}
+        />
         {error && (
           <motion.p
             initial={{ opacity: 0, translateY: -20 }}

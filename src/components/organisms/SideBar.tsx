@@ -45,15 +45,12 @@ const SideBar = () => {
   return (
     <>
       <div className="w-[30vh] h-screen shadow-md bg-white mobile:max-sm:hidden">
-        <Link
-          href={"/"}
-          className="self-center w-full flex items-center justify-center"
-        >
+        <Link href={"/"} className="self-center w-full flex pl-5">
           <Image
             src={"/logohomygig.png"}
             alt="homygig logo"
-            width={110}
-            height={60}
+            width={130}
+            height={80}
           />
         </Link>
 
