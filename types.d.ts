@@ -15,3 +15,11 @@ interface User {
   service_title?: string;
   updatedAt: string;
 }
+
+interface Category {
+  id: string;
+  name: string;
+  image: string;
+  createdAt: string;
+  updatedAt: string;
+}

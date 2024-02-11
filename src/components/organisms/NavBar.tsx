@@ -12,11 +12,14 @@ import DropDown from "../molucles/DropDown";
 // import { useTheme } from "next-themes";
 // import ToggleThemeBtn from "../atoms/ToggleThemeBtn";
 
-// STORE IMPORTS
-import useUserStore from "@/store/userStore";
 import ProfileAvatar from "../molucles/Avatar";
 import ProfileCard from "../molucles/ProfileCard";
 import Overlay from "../atoms/Overlay";
+import { getAllCategories } from "@/utils/queries";
+
+// STORE IMPORTS
+import useUserStore from "@/store/userStore";
+import useCategoryStore from "@/store/categoryStore";
 
 const navLinks = [
   {
@@ -43,8 +46,18 @@ type NavTypes = {
 
 const NavBar = ({ onDashBoard }: NavTypes) => {
   const { user } = useUserStore();
+  const { setCategories } = useCategoryStore();
   const [showNotifiaction, setShowNotification] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
+
+  const update = async () => {
+    const allCategories = await getAllCategories();
+    setCategories(allCategories);
+  };
+
+  useEffect(() => {
+    update();
+  }, []);
 
   return (
     <div

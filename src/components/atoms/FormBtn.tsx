@@ -4,7 +4,7 @@ import Spinner from "./Spinner";
 type BtnType = {
   isLoading: boolean;
   title: string;
-  onClick: () => void;
+  onClick?: () => void;
 };
 
 const FormBtn = ({ isLoading, title, onClick }: BtnType) => {

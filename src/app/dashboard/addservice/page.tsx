@@ -64,7 +64,7 @@ const Page = () => {
       setImages([...images, res.url]);
       LOCAL_STORAGE.save("service_images", [...images, res.url]);
       setIsLoading(false);
-      console.log("upload", res);
+      // console.log("upload", res);
     }
   };
 
@@ -117,7 +117,7 @@ const Page = () => {
               onClick={uplaodImage}
               disabled={isLoading}
             >
-              {isLoading ? "Upload..." : "Upload"}
+              {isLoading ? "Uploading..." : "Upload"}
             </button>
           </div>
           <p className="py-1 text-slate-600 self-end">{images.length}/4</p>
