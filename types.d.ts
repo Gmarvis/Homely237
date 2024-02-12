@@ -23,3 +23,19 @@ interface Category {
   createdAt: string;
   updatedAt: string;
 }
+
+interface Service {
+  id: string;
+  user_id: string;
+  category_id: string;
+  category_name: string;
+  name: string;
+  images: string[];
+  product_image: string;
+  rating?: string;
+  price: string;
+  description: string;
+  createdAt: string;
+  updatedAt: string;
+  user: User;
+}

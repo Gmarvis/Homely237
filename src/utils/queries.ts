@@ -40,5 +40,5 @@ type SevType = {
   description: string;
 };
 export const createService = (serviceDetails: SevType) => {
-  return apiCall.POST(SERVER_URL + "/categories", serviceDetails);
+  return apiCall.POST(SERVER_URL + "/products", serviceDetails);
 };

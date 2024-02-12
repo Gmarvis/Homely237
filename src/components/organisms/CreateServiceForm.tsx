@@ -5,10 +5,12 @@ import Link from "next/link";
 import { IoBookOutline } from "react-icons/io5";
 import FormBtn from "../atoms/FormBtn";
 import { toast } from "react-toastify";
-
+import { useRouter } from "next/navigation";
 // STORE IMPORTS
 import useCategoryStore from "@/store/categoryStore";
 import useUserStore from "@/store/userStore";
+import { createService } from "@/utils/queries";
+import DailogBox from "../atoms/DailogBox";
 
 const CreateServiceForm = () => {
   const { categories } = useCategoryStore();
@@ -18,9 +20,10 @@ const CreateServiceForm = () => {
   const [category_id, setCategory_id] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
-  // error messages
+  const [isLoading, setIsLoading] = useState(false);
 
-  // ERROR HANDLERS
+  // router
+  const router = useRouter();
 
   const handleAddService = (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -47,7 +50,7 @@ const CreateServiceForm = () => {
       });
       return;
     }
-
+    setIsLoading(true);
     const serviceDetails = {
       user_id: user.id,
       name: serviceName,
@@ -59,6 +62,24 @@ const CreateServiceForm = () => {
       description,
     };
     console.log("serviceDetails", serviceDetails);
+    // create service by making a post request to the backend server
+    createService(serviceDetails).then((res) => {
+      if (res.error) {
+        console.log("failded to create service", res.message);
+        return;
+      }
+      toast.success("Service Added successfuly", {
+        position: "top-right",
+        hideProgressBar: true,
+        autoClose: 3000,
+      });
+      console.log("responce", res);
+      localStorage.removeItem("main_image");
+      localStorage.removeItem("service_images");
+
+      setIsLoading(false);
+      router.push("/dashboard/myservices");
+    });
   };
 
   return (
@@ -122,7 +143,7 @@ const CreateServiceForm = () => {
       ></textarea>
 
       <FormBtn
-        isLoading={false}
+        isLoading={isLoading}
         title={"Add Service"}
         // onClick={handleAddService}
       />
