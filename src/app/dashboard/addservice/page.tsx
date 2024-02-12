@@ -64,13 +64,13 @@ const Page = () => {
       setImages([...images, res.url]);
       LOCAL_STORAGE.save("service_images", [...images, res.url]);
       setIsLoading(false);
-      console.log("upload", res);
+      // console.log("upload", res);
     }
   };
 
   return (
     <div className=" w-full h-[calc(100vh-53px)] flex justify-center items-center mobile:max-sm:mb-[60px] mobile:max-sm:items-start ">
-      <div className="flex gap-5 mobile:max-sm:flex-col  mobile:max-sm:mt-5">
+      <div className="flex gap-5 mobile:max-sm:flex-col   mobile:max-sm:mt-5">
         <div className="flex flex-col justify-between">
           <div>
             {/* edge upload component */}
@@ -117,7 +117,7 @@ const Page = () => {
               onClick={uplaodImage}
               disabled={isLoading}
             >
-              {isLoading ? "Upload..." : "Upload"}
+              {isLoading ? "Uploading..." : "Upload"}
             </button>
           </div>
           <p className="py-1 text-slate-600 self-end">{images.length}/4</p>
