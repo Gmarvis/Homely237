@@ -7,7 +7,7 @@ HOMYGIG is a home service provision listing web Application, that enables servic
 
 [Visit HomyGig and see How cool it is](https://homygig.vercel.app/)
 
-## Why HomyGiG
+## Why HomyGiG? 
 ### For Service Provider
 1. Visibility and lead generation: Homygig can provide a platform for service providers to showcase their services, reach a wider audience, and generate more leads and bookings.
 2. Convenience and efficiency: Providers can manage their listings, bookings, and communication with clients through a centralized platform, streamlining their operations and saving time.
