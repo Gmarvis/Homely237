@@ -42,3 +42,12 @@ type SevType = {
 export const createService = (serviceDetails: SevType) => {
   return apiCall.POST(SERVER_URL + "/products", serviceDetails);
 };
+
+// GET SERVICE(PRODUCT) BY THE USER_ID
+export const getServiceByUserID = (user_id: string) => {
+  return apiCall.GET(SERVER_URL + `/products/user/${user_id}`);
+};
+
+/* >>>>>>>>>>>TODO<<<<<<<<< */
+/* Use the get getservices by user_id to get and display providers services on the MyServices page */
+/* >>>>>>>>>>>TODO<<<<<<<<< */

@@ -19,6 +19,7 @@ const HeroSection = () => {
           <h2 className="text-4xl text-gray-800 font-extrabold mx-auto md:text-5xl">
             Your One-Stop Shop for Reliable
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primarytheme to-secondrytheme">
+              {" "}
               Home Services
             </span>
           </h2>

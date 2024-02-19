@@ -5,6 +5,9 @@ type StoreType = {
   setService: (service: Service) => void;
   services: Service[];
   setServices: (services: Service[]) => void;
+
+  ProviderServices: Service[];
+  setProviderServices: (services: Service[]) => void;
 };
 
 const useServiceStore = create<StoreType>((set) => ({
@@ -31,6 +34,8 @@ const useServiceStore = create<StoreType>((set) => ({
     },
   },
   services: [],
+  ProviderServices: [],
   setService: (service) => set(() => ({ service: service })),
   setServices: (services) => set(() => ({ services: services })),
+  setProviderServices: (services) => set(() => ({ services: services })),
 }));

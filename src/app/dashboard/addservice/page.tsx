@@ -40,9 +40,13 @@ const Page = () => {
     /*>>>>>>>>>> TODO<<<<<<<<<<*/
     /*>>>>>>>>>> ADD A FUCTION THAT DELETES IMAGE FROM EDGESTORE <<<<<<<<<<*/
 
-    const updateImages = images.filter((img: string) => img !== image);
-    if (mainImage === image) setMainImage("");
+    const updateImages: any = images.filter((img: string) => img !== image);
+    if (mainImage === image) {
+      setMainImage("");
+      localStorage.removeItem("main_image");
+    }
     setImages(updateImages);
+    localStorage.setItem("service_images", updateImages);
   };
 
   const uplaodImage = async () => {

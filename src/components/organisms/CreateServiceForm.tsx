@@ -123,7 +123,7 @@ const CreateServiceForm = () => {
             }}
             className="bg-transparent text-sm w-[8rem] outline-none border border-primarytheme p-2 rounded-md"
           >
-            {categories.map((category, i) => (
+            {categories?.map((category, i) => (
               <option key={i} value={category.id}>
                 {category.name}
               </option>
