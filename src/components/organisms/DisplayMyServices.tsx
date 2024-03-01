@@ -2,6 +2,7 @@
 import { getServiceByUserID } from "@/utils/queries";
 import useUserStore from "@/store/userStore";
 import React, { useEffect, useState } from "react";
+import ServiceCard from "./ServiceCard";
 
 /*>>>>>>>>>>>>>>THIS COMPONENT DISPLAYS ALL THE SERVICE PROVIDER'S SERVICE<<<<<<<<<<<<<*/
 const DisplayMyServices = () => {
@@ -10,7 +11,7 @@ const DisplayMyServices = () => {
 
   const getServices = async () => {
     getServiceByUserID(user.id).then((res: any) => {
-      console.log(res);
+      console.log("res", res);
       setMyServices(res);
     });
   };
@@ -20,13 +21,18 @@ const DisplayMyServices = () => {
   }, []);
   return (
     <div>
-      <h2>display sercives component</h2>
       <div>
-        {myService?.map((service) => (
-          <div key={service.id}>
-            <h3>{service.name}</h3>
-          </div>
-        ))}
+        <div className="flex gap-5 flex-wrap items-center">
+          {myService.map((service, i) => (
+            <ServiceCard
+              key={i}
+              service={service}
+              onClick={function (): void {
+                throw new Error("Function not implemented.");
+              }}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
