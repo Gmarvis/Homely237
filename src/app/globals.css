@@ -4,6 +4,17 @@
 
 /* Smooth loader  */
 
+.subText {
+  @apply text-gray-800 text-[12px] font-bold;
+}
+
+.badge {
+  @apply bg-[#F39B42] px-1 text-white;
+}
+
+.smallText {
+  @apply text-[12px] text-gray-600;
+}
 .load-row {
   width: 100px;
   height: 50px;
@@ -15,7 +26,7 @@
   display: inline-block;
   width: 10px;
   height: 10px;
-  background: #f76002;
+  background: #f39b42;
   border-radius: 50px;
   animation: up-down6 0.5s ease-in infinite alternate;
 }
