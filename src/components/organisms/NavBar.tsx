@@ -15,11 +15,12 @@ import DropDown from "../molucles/DropDown";
 import ProfileAvatar from "../molucles/Avatar";
 import ProfileCard from "../molucles/ProfileCard";
 import Overlay from "../atoms/Overlay";
-import { getAllCategories } from "@/utils/queries";
+import { getAllCategories, getAllServices } from "@/utils/queries";
 
 // STORE IMPORTS
 import useUserStore from "@/store/userStore";
 import useCategoryStore from "@/store/categoryStore";
+import useServiceStore from "@/store/serviceStore";
 
 const navLinks = [
   {
@@ -46,13 +47,18 @@ type NavTypes = {
 
 const NavBar = ({ onDashBoard }: NavTypes) => {
   const { user } = useUserStore();
+  const { setServices } = useServiceStore();
   const { setCategories } = useCategoryStore();
   const [showNotifiaction, setShowNotification] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
 
   const update = async () => {
+    //Fetch all Categories from DB
     const allCategories = await getAllCategories();
     setCategories(allCategories);
+    //Fetch all Services from DB
+    const allServices = await getAllServices();
+    setServices(allServices);
   };
 
   useEffect(() => {

@@ -22,11 +22,10 @@ const Page = () => {
   const [images, setImages] = useState<string[]>([]);
   const [mainImage, setMainImage] = useState("");
 
+  const savedImages = localStorage.getItem("service_images") || "[]";
+
   useEffect(() => {
-    const savedImages = JSON.parse(
-      localStorage.getItem("service_images") || "[]"
-    );
-    if (savedImages) setImages(savedImages);
+    if (savedImages) setImages(JSON.parse(savedImages));
 
     setMainImage(localStorage.getItem("main_image") || "");
   }, []);

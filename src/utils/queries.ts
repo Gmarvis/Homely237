@@ -48,6 +48,7 @@ export const getServiceByUserID = (user_id: string) => {
   return apiCall.GET(SERVER_URL + `/products/user/${user_id}`);
 };
 
-/* >>>>>>>>>>>TODO<<<<<<<<< */
-/* Use the get getservices by user_id to get and display providers services on the MyServices page */
-/* >>>>>>>>>>>TODO<<<<<<<<< */
+// GET ALL SERVICES
+export const getAllServices = () => {
+  return apiCall.GET(SERVER_URL + "/products");
+};
