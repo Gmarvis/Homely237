@@ -21,18 +21,16 @@ const DisplayMyServices = () => {
   }, []);
   return (
     <div>
-      <div>
-        <div className="flex gap-5 flex-wrap items-center">
-          {myService.map((service, i) => (
-            <ServiceCard
-              key={i}
-              service={service}
-              onClick={function (): void {
-                throw new Error("Function not implemented.");
-              }}
-            />
-          ))}
-        </div>
+      <div className="flex gap-5 flex-wrap items-center py-10">
+        {myService.map((service, i) => (
+          <ServiceCard
+            key={i}
+            service={service}
+            onClick={function (): void {
+              throw new Error("Function not implemented.");
+            }}
+          />
+        ))}
       </div>
     </div>
   );

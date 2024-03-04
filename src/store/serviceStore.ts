@@ -39,3 +39,5 @@ const useServiceStore = create<StoreType>((set) => ({
   setServices: (services) => set(() => ({ services: services })),
   setProviderServices: (services) => set(() => ({ services: services })),
 }));
+
+export default useServiceStore;
