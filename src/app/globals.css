@@ -4,8 +4,12 @@
 
 /* Smooth loader  */
 
+.subTitle {
+  @apply text-gray-700 text-[16px] font-bold;
+}
+
 .subText {
-  @apply text-gray-800 text-[12px] font-bold;
+  @apply text-gray-700 text-[12px] font-bold;
 }
 
 .badge {
