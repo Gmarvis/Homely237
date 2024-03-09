@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import ProfileAvatar from "../molucles/Avatar";
 import { useCaps } from "@/utils/service/helperFuntions";
+import { motion } from "framer-motion";
 
 type CardTypes = {
   service: Service;
@@ -10,12 +11,12 @@ type CardTypes = {
 
 const ServiceCard = ({ service, onClick }: CardTypes) => {
   return (
-    <div className="shadow-md w-[250px] p-2 mobile:max-sm:w-[100%] self-center items-center bg-white">
-      <div
-        style={{
-          backgroundImage: `u`,
-        }}
-      ></div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="shadow-lg border border-gray-100 rounded-md w-[250px] p-2 mobile:max-sm:w-[100%] self-center items-center bg-white"
+    >
       <Image
         src={service.product_image}
         alt=""
@@ -36,7 +37,7 @@ const ServiceCard = ({ service, onClick }: CardTypes) => {
         </div>
         <span className="smallText">{service.price}CFA/hour</span>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
