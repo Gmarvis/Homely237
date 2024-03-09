@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import H3 from "../atoms/H3";
 
 // STORE IMPORTS
@@ -15,26 +16,30 @@ import ServiceCardSkeleton from "./SkeletonLoaders/ServiceCardSkeleton";
 const ServicesSection = () => {
   const { services } = useServiceStore();
   const [currentPage, setCurrentPage] = useState(0);
-  const [pageIndex, setPageIndex] = useState(4);
+  const [pageIndex, setPageIndex] = useState(8);
   // console.log("services", services);
 
+  const router = useRouter();
+
   return (
-    <div className="px-24 py-5 mobile:max-sm:px-5">
+    <div className="px-24  bigScreen:px-80 py-5 mobile:max-sm:px-5 flex flex-col justify-center items-center">
       <CategoryGrid />
 
-      <H3 text={"Plumbing Services"} />
+      <h3 className="font-bold text-start flex self-start text-primarytheme">
+        SERVICES
+      </h3>
 
       {!services.length && (
         <div className=" grid-cols-4 mobile:max-sm:grid-cols-2 mobile:max-sm:gap-2 mb-5 2xl:px-24 items-center justify-center mobile:max-sm:grid hidden z-0 w-full">
-          {[1, 2, 3, 4].map((item, i) => (
+          {[1, 2, 3, 4, 5, 6, 7, 8].map((item, i) => (
             <ServiceCardSkeleton key={i} />
           ))}
         </div>
       )}
 
       {!services.length && (
-        <div className="flex gap-10 pl-3 flex-wrap items-center py-10 mobile:max-sm:hidden z-0 w-full">
-          {[1, 2, 3, 4].map((item, i) => (
+        <div className="flex gap-10 pl-3 flex-wrap items-center py-10 mobile:max-sm:hidden z-0 w-full justify-center">
+          {[1, 2, 3, 4, 5, 6, 7, 8].map((item, i) => (
             <ServiceCardSkeleton key={i} />
           ))}
         </div>
@@ -47,23 +52,19 @@ const ServicesSection = () => {
             <ServiceCard
               key={i}
               service={service}
-              onClick={function (): void {
-                throw new Error("Function not implemented.");
-              }}
+              onClick={() => router.push(`/${service.id}`)}
             />
           ))}
       </div>
 
-      <div className="flex gap-10 pl-3 flex-wrap items-center py-10 mobile:max-sm:hidden w-full">
+      <div className="flex gap-10 pl-3 flex-wrap mx-auto items-center py-10 mobile:max-sm:hidden justify-center  ">
         {services
           ?.slice(currentPage, currentPage + pageIndex)
           .map((service, i) => (
             <ServiceCard
               key={i}
               service={service}
-              onClick={function (): void {
-                throw new Error("Function not implemented.");
-              }}
+              onClick={() => router.push(`/${service.id}`)}
             />
           ))}
       </div>
@@ -93,6 +94,3 @@ const ServicesSection = () => {
 };
 
 export default ServicesSection;
-
-// >>>>>>>TODO<<<<<<<
-// >>>>hande pagination on displaying services <<<<<<<
