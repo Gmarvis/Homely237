@@ -180,6 +180,11 @@ const Footer = () => {
           </form>
         </div>
       </div>
+      <div className="copyrights  p-4">
+        <p className="text-center text-[12px] text-slate-300 ">
+          copyrights @2024 homygig
+        </p>
+      </div>
     </footer>
   );
 };
