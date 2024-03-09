@@ -16,6 +16,7 @@ const ServiceCard = ({ service, onClick }: CardTypes) => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
       className="shadow-lg border border-gray-100 rounded-md w-[250px] p-2 mobile:max-sm:w-[100%] self-center items-center bg-white"
+      onClick={onClick}
     >
       <Image
         src={service.product_image}

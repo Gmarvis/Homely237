@@ -6,7 +6,7 @@ import ServicesSection from "@/components/organisms/ServicesSection";
 
 export default function Home() {
   return (
-    <main className="flex flex-col  ">
+    <main className="flex flex-col min-h-full">
       <NavBar onDashBoard={false} />
       <HeroSection />
       <ServicesSection />
