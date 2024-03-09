@@ -10,6 +10,7 @@ import CategoryGrid from "./CategoryGrid";
 // REACT ICONS
 import { MdOutlineNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
+import ServiceCardSkeleton from "./SkeletonLoaders/ServiceCardSkeleton";
 
 const ServicesSection = () => {
   const { services } = useServiceStore();
@@ -22,10 +23,38 @@ const ServicesSection = () => {
       <CategoryGrid />
 
       <H3 text={"Plumbing Services"} />
-      <div
-        // className="flex gap-10 pl-3 flex-wrap items-center py-10"
-        className="grid grid-cols-4 mobile:max-sm:grid-cols-2 mobile:max-sm:gap-2 mb-5 2xl:px-24 items-center justify-center "
-      >
+
+      {!services.length && (
+        <div className=" grid-cols-4 mobile:max-sm:grid-cols-2 mobile:max-sm:gap-2 mb-5 2xl:px-24 items-center justify-center mobile:max-sm:grid hidden z-0 w-full">
+          {[1, 2, 3, 4].map((item, i) => (
+            <ServiceCardSkeleton key={i} />
+          ))}
+        </div>
+      )}
+
+      {!services.length && (
+        <div className="flex gap-10 pl-3 flex-wrap items-center py-10 mobile:max-sm:hidden z-0 w-full">
+          {[1, 2, 3, 4].map((item, i) => (
+            <ServiceCardSkeleton key={i} />
+          ))}
+        </div>
+      )}
+
+      <div className=" grid-cols-4 mobile:max-sm:grid-cols-2 mobile:max-sm:gap-2 mb-5 2xl:px-24 items-center justify-center mobile:max-sm:grid hidden w-full">
+        {services
+          ?.slice(currentPage, currentPage + pageIndex)
+          .map((service, i) => (
+            <ServiceCard
+              key={i}
+              service={service}
+              onClick={function (): void {
+                throw new Error("Function not implemented.");
+              }}
+            />
+          ))}
+      </div>
+
+      <div className="flex gap-10 pl-3 flex-wrap items-center py-10 mobile:max-sm:hidden w-full">
         {services
           ?.slice(currentPage, currentPage + pageIndex)
           .map((service, i) => (
