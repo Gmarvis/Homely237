@@ -67,7 +67,7 @@ const NavBar = ({ onDashBoard }: NavTypes) => {
 
   return (
     <div
-      className={`flex justify-between z-50 shadow-md ${
+      className={`flex bigScreen:px-80 justify-between z-50 shadow-md ${
         onDashBoard ? " px-5 relative" : "px-24 fixed "
       }  py-2 items-center mobile:max-sm:px-5  w-full bg-white`}
     >
