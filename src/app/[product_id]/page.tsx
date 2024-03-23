@@ -6,14 +6,14 @@ import ServiceDetails from "./_components/ServiceDetails";
 
 const Page = () => {
   return (
-    <main>
+    <div className="">
       <Head>
         <title>servives profile</title>
       </Head>
       <NavBar onDashBoard={false} />
       <ServiceDetails />
       <Footer className="" />
-    </main>
+    </div>
   );
 };
 
