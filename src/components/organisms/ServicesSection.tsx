@@ -20,7 +20,7 @@ const ServicesSection = () => {
   // console.log("services", services);
 
   const router = useRouter();
-  console.log("TEST");
+  // console.log("TEST");
 
   return (
     <div className="px-24  bigScreen:px-80 py-5 mobile:max-sm:px-5 flex flex-col justify-center items-center">

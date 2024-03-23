@@ -107,7 +107,7 @@ const Footer = ({ className }: { className?: string }) => {
 
   return (
     <footer
-      className={`text-gray-500 ${className} bottom-0 px-24 py-5 mobile:max-sm:px-5 bg-primarytheme`}
+      className={`text-gray-500 ${className} bottom-0 px-24 py-5 mobile:max-sm:px-5 bg-primarytheme bigScreen:px-80`}
     >
       <div className="grid grid-cols-5 sm:max-md:grid-cols-2 mobile:max-sm:grid-cols-1 mobile:max-sm:gap-3">
         <div className="logo-footer-section flex flex-col gap-2">

@@ -61,3 +61,12 @@ export const getServiceByServiceID = (product_id: string): Promise<any> => {
     return error;
   }
 };
+
+// GET SINGLE PRODUCT BY CATEGORY ID
+export const getServiceByCategoryID = (category_id: string): Promise<any> => {
+  try {
+    return apiCall.GET(`${SERVER_URL}/products/category/${category_id}`);
+  } catch (error: any) {
+    return error;
+  }
+};

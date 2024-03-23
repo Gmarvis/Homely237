@@ -12,13 +12,9 @@ const Page = () => {
       </Head>
       <NavBar onDashBoard={false} />
       <ServiceDetails />
-      {/* <Footer className="" /> */}
+      <Footer className="" />
     </main>
   );
 };
 
 export default Page;
-
-// >>>>>>TODO<<<<<<
-// >>>>>>Design the details page
-// >>>>>>make api call to the backend to get product/service by product ID

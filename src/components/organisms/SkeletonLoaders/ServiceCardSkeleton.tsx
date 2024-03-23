@@ -8,12 +8,12 @@ const ServiceCardSkeleton = () => {
       <div className="bg-gray-300 w-full h-full  rounded-sm z-10"></div>
 
       <div className="w-full flex justify-between gap-10 z-10">
-        <TextSkeleton width="w-full z-10" />
-        <TextSkeleton width={"w-full z-10"} />
+        <TextSkeleton styles="w-full z-10" />
+        <TextSkeleton styles={"w-full z-10"} />
       </div>
       <div className="flex justify-between gap-5 items-center z-10">
         <AvatarSkeleton />
-        <TextSkeleton width="w-[96px] z-10" />
+        <TextSkeleton styles="w-[96px] z-10" />
       </div>
     </div>
   );
