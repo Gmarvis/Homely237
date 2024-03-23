@@ -6,7 +6,7 @@ import ServiceDetails from "./_components/ServiceDetails";
 
 const Page = () => {
   return (
-    <div>
+    <div className="">
       <Head>
         <title>servives profile</title>
       </Head>

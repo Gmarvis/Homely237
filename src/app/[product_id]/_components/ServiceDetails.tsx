@@ -35,12 +35,15 @@ const ServiceDetails = () => {
   <h2>{service?.name}</h2>;
 
   return (
-    <div className="pt-[55px] mobile:max-sm:px-2 px-24 bigScreen:px-80 gap-5 mobile:max-sm:gap-1">
+    <div className="pt-[55px] mobile:max-sm:pt-[60px] mobile:max-sm:px-2 px-24 bigScreen:px-80 gap-5 mobile:max-sm:gap-1">
       <div className="flex flex-col gap-2">
-        <div className="flex pt-4 mobile:max-sm:flex-col justify-between gap-10 ">
-          <div className="iamges mobile:max-sm:w-[100%] mobile:max-sm:h-[200px] w-[700px] h-[330px]  bg-gray-200">
+        <div className="flex pt-4 mobile:max-sm:flex-col justify-between gap-10 shadow-sm p-2 mobile:max-sm:p-0">
+          <div className="iamges mobile:max-sm:w-[100%] mobile:max-sm:h-[200px] w-[700px] h-[333px]  bg-gray-200">
             <Image
-              src={view}
+              src={
+                view ||
+                "https://i.pinimg.com/564x/9d/90/33/9d903364960a75dcb7f5ea8af91fa44f.jpg"
+              }
               alt=""
               bg-red-600
               width={400}
@@ -48,14 +51,16 @@ const ServiceDetails = () => {
               className="w-full h-full object-cover"
             />
           </div>
-          <div className="detials w-[100%] h-[300px] flex flex-col gap-5 ">
+          <div className="detials w-[100%] flex flex-col gap-5 p-2 ">
             <div>
               <h3 className="font-bold text-2xl">
                 {`${service?.name.charAt(0).toUpperCase()}${service?.name.slice(
                   1
                 )}`}
               </h3>
-              <p>{service?.category_name} services</p>
+              <p className="text-slate-600 text-sm">
+                {service?.category_name} services
+              </p>
             </div>
             <div className="">
               <span className="bg-secondrytheme p-1 px-3  text-white">
@@ -90,16 +95,16 @@ const ServiceDetails = () => {
               ))}
             </div>
 
-            <button className="bg-primarytheme text-white py-2">
+            <button className=" border border-primarytheme text-primarytheme py-2">
               BOOK AN APPOINTMENT
             </button>
           </div>
         </div>
       </div>
 
-      <div className="mobile:max-sm:pt-24">
+      <div className="pt-10">
         <h3 className="text-lg font-semibold text-gray-700">
-          Services you might need
+          Related Services
         </h3>
 
         {!relatedProducts && (
