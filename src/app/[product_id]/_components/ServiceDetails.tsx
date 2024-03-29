@@ -12,7 +12,9 @@ import DetailsSkeleton from "./DetailsSkeleton";
 
 const ServiceDetails = () => {
   const [service, setService] = useState<Service | null>(null);
-  const [relatedProducts, SetRelatedProducts] = useState<Service[] | null>();
+  const [relatedProducts, SetRelatedProducts] = useState<Service[] | null>(
+    null
+  );
   const [view, setView] = useState("");
 
   const router = useRouter();
