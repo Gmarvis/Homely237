@@ -97,7 +97,7 @@ const ServiceDetails = () => {
               </div>
 
               <button
-                onClick={() => router.push("/booking")}
+                onClick={() => router.push(`/booking/${service.id}`)}
                 className=" border border-primarytheme text-primarytheme py-2"
               >
                 BOOK AN APPOINTMENT

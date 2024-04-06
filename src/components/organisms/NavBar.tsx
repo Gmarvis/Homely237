@@ -43,9 +43,10 @@ const navLinks = [
 
 type NavTypes = {
   onDashBoard: Boolean;
+  hideSearchBar?: Boolean;
 };
 
-const NavBar = ({ onDashBoard }: NavTypes) => {
+const NavBar = ({ onDashBoard, hideSearchBar = false }: NavTypes) => {
   const { user } = useUserStore();
   const { setServices } = useServiceStore();
   const { setCategories } = useCategoryStore();
@@ -91,7 +92,7 @@ const NavBar = ({ onDashBoard }: NavTypes) => {
           onDashBoard ? "hidden" : "visible"
         }`}
       >
-        <SearchForm />
+        {!hideSearchBar && <SearchForm />}
       </div>
 
       {user.id ? (
