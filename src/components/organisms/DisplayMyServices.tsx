@@ -31,6 +31,7 @@ const DisplayMyServices = () => {
               onClick={function (): void {
                 throw new Error("Function not implemented.");
               }}
+              hideAuthor
             />
           ))}
         </Suspense>

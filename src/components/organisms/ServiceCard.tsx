@@ -7,9 +7,10 @@ import { motion } from "framer-motion";
 type CardTypes = {
   service: Service;
   onClick: () => void;
+  hideAuthor?: boolean;
 };
 
-const ServiceCard = ({ service, onClick }: CardTypes) => {
+const ServiceCard = ({ service, onClick, hideAuthor }: CardTypes) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -33,11 +34,14 @@ const ServiceCard = ({ service, onClick }: CardTypes) => {
       </div>
       <div className="flex w-full justify-between items-center">
         <div className="flex items-center justify-center gap-1">
-          <ProfileAvatar user={service.user} size={2} />
-          <p className="smallText">{service.user.name}</p>
+          {!hideAuthor && <ProfileAvatar user={service.user} size={2} />}
+          {!hideAuthor && <p className="smallText">{service.user.name}</p>}
         </div>
-        <span className="smallText">{service.price}CFA/hour</span>
+        {!hideAuthor && (
+          <span className="smallText">{service.price}CFA/hour</span>
+        )}
       </div>
+      {hideAuthor && <span className="smallText">{service.price}CFA/hour</span>}
     </motion.div>
   );
 };
