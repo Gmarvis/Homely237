@@ -1,7 +1,7 @@
 
 
 # **HOMYGIG**
-## *Best home service listing and Booking Application in Cameroon* 🇨🇲🇨🇲🇨🇲
+## *Best home service listing and Booking Application in Cameroon* 🇨🇲
 
 HOMYGIG is a home service provision listing web Application, that enables service providers such as (Babbers, Cooks, Cleaners, movers, etc) to list their services, and users can book services based on their location compared to that of the service providers and book for Appointments.
 
