@@ -1,4 +1,4 @@
-export default () => {
+const Testimonils = () => {
   const testimonials = [
     {
       avatar: "https://api.uifaces.co/our-content/donated/xZ4wg2Xj.jpg",
@@ -89,3 +89,5 @@ export default () => {
     </section>
   );
 };
+
+export default Testimonils;
