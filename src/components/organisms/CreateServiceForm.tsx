@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import FormInput from "../atoms/FormInput";
 import Link from "next/link";
 import { IoBookOutline } from "react-icons/io5";
-import FormBtn from "../atoms/FormBtn";
+import FormBtn from "../atoms/buttons/FormBtn";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 // STORE IMPORTS

@@ -30,7 +30,7 @@ const ServicesSection = () => {
         SERVICES
       </h3>
 
-      {!services.length && (
+      {!services?.length && (
         <div className=" grid-cols-4 mobile:max-sm:grid-cols-2 mobile:max-sm:gap-2 mb-5 2xl:px-24 items-center justify-center mobile:max-sm:grid hidden z-0 w-full">
           {[1, 2, 3, 4, 5, 6, 7, 8].map((item, i) => (
             <ServiceCardSkeleton key={i} />

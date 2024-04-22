@@ -10,7 +10,7 @@ import { decodeToken } from "@/utils/jwtDecode";
 // STORE IMPORTS
 import useUserStore from "@/store/userStore";
 import { useRouter } from "next/navigation";
-import FormBtn from "../atoms/FormBtn";
+import FormBtn from "../atoms/buttons/FormBtn";
 
 const SignUp = () => {
   const [name, setName] = useState("");

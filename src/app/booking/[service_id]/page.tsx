@@ -5,12 +5,14 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import * as Queries from "@/utils/queries";
 import Steps from "./_components/Steps";
-
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 // react icons
 import { MdNavigateNext } from "react-icons/md";
 
 const Page = () => {
   const [service, setService] = useState<Service | null>();
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [currentStep, setCurrentStep] = useState(1);
   const router = useRouter();
 
@@ -21,9 +23,10 @@ const Page = () => {
     Queries.getServiceByServiceID(serviceId).then((res) => {
       if (res.id) {
         setService(res);
+        console.log("service", service);
       }
     });
-  });
+  }, []);
 
   const handleBooking = () => {
     setCurrentStep((prev) => (prev += 1));
@@ -42,6 +45,9 @@ const Page = () => {
           />
 
           <h3 className="border border-primarytheme p-2">{service?.name}</h3>
+          <div className="w-full  flex flex-col justify-center items-center pt-10">
+            <DatePicker onChange={() => {}} />
+          </div>
 
           <button
             onClick={handleBooking}

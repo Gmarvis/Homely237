@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import BellBtn from "../atoms/BellBtn";
+import BellBtn from "../atoms/buttons/BellBtn";
 import Avatar from "react-avatar";
 import Link from "next/link";
 import Image from "next/image";

@@ -1,5 +1,5 @@
 "use client";
-import RoundedBTN from "@/components/atoms/RoundedBTN";
+import RoundedBTN from "@/components/atoms/buttons/RoundedBTN";
 import Login from "@/components/organisms/Login";
 import SignUp from "@/components/organisms/SignUp";
 import React, { useState } from "react";
