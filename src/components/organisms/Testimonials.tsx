@@ -19,7 +19,7 @@ const Testimonils = () => {
       name: "Micheal worin",
       title: "Product designer",
       quote:
-        "There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain.",
+        "There is no one who loves pain itself, who seeks after it and wants to have it, simply because.",
     },
   ];
 
@@ -62,7 +62,7 @@ const Testimonils = () => {
                   <div className="flex items-center gap-x-4 p-4 mt-6 bg-indigo-50">
                     <img
                       src={item.avatar}
-                      className="w-16 h-16 rounded-full border-2 border-indigo-500"
+                      className="w-16 h-16 rounded-full border-2 shadow-md"
                     />
                     <div>
                       <span className="block text-gray-800 font-semibold">
@@ -79,13 +79,7 @@ const Testimonils = () => {
           </ul>
         </div>
       </div>
-      <div
-        className="absolute top-0 w-full h-[350px]"
-        style={{
-          background:
-            "linear-gradient(152.92deg, rgba(192, 132, 252, 0.2) 4.54%, rgba(232, 121, 249, 0.17) 34.2%, rgba(192, 132, 252, 0.1) 77.55%)",
-        }}
-      ></div>
+      <div className="absolute top-0 w-full h-[350px]"></div>
     </section>
   );
 };
