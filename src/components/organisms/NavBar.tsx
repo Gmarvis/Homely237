@@ -5,7 +5,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import SearchForm from "../molucles/SearchForm";
 import Avatar from "react-avatar";
-import BellBtn from "../atoms/BellBtn";
+import BellBtn from "../atoms/buttons/BellBtn";
 
 import { motion } from "framer-motion";
 import DropDown from "../molucles/DropDown";
@@ -21,6 +21,7 @@ import { getAllCategories, getAllServices } from "@/utils/queries";
 import useUserStore from "@/store/userStore";
 import useCategoryStore from "@/store/categoryStore";
 import useServiceStore from "@/store/serviceStore";
+import { LinkBtn, LinkBtnTheme } from "../atoms/buttons/LinkBtn";
 
 const navLinks = [
   {
@@ -163,9 +164,11 @@ const NavBar = ({ onDashBoard, hideSearchBar = false }: NavTypes) => {
         </div>
       ) : (
         <div className="flex items-center gap-3">
-          <Link href={"/auth"} className="bg-primarytheme text-white px-5 py-1">
-            Get Started
-          </Link>
+          <LinkBtn
+            title="Get Started"
+            path="/auth"
+            theme={LinkBtnTheme.themeColor}
+          />
         </div>
       )}
     </div>

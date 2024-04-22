@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef, useState } from "react";
 import { IoCloudUploadOutline } from "react-icons/io5";
-import FormBtn from "../atoms/FormBtn";
+import FormBtn from "../atoms/buttons/FormBtn";
 
 const CreateCategoryForm = () => {
   const [categoryImage, setCategoryImage] = useState("");

@@ -12,7 +12,7 @@ import { decodeToken } from "@/utils/jwtDecode";
 
 // STORE IMPORTS
 import useUserStore from "@/store/userStore";
-import FormBtn from "../atoms/FormBtn";
+import FormBtn from "../atoms/buttons/FormBtn";
 
 const Login = () => {
   const [email, setEmail] = useState("");
