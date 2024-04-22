@@ -24,9 +24,9 @@ const Testimonils = () => {
   ];
 
   return (
-    <section className="relative py-14">
-      <div className="relative z-10 max-w-screen-xl mx-auto px-24 md:px-16 mobile:max-sm:px-0">
-        <div className="max-w-xl sm:text-center md:mx-auto mobile:max-sm:text-center">
+    <section className="relative bg-slate-100 py-14">
+      <div className="relative  z-10 max-w-screen-xl mx-auto px-24 md:px-16 mobile:max-sm:px-0">
+        <div className="max-w-xl sm:text-center  md:mx-auto mobile:max-sm:text-center">
           <h3 className="text-gray-800 text-3xl font-semibold sm:text-4xl">
             Hear from our customers
           </h3>
