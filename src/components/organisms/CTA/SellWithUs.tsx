@@ -11,7 +11,7 @@ const SellWithUs = () => {
     >
       <div className="max-w-screen-xl mx-auto px-4 md:text-center md:px-8">
         <div className="max-w-xl space-y-3 md:mx-auto">
-          <h3 className="text-indigo-600 font-semibold">
+          <h3 className="text-primarytheme font-semibold">
             Professional services
           </h3>
           <p className="text-gray-800 text-3xl font-semibold sm:text-4xl">
@@ -24,11 +24,7 @@ const SellWithUs = () => {
           </p>
         </div>
         <div className="mt-4">
-          <LinkBtn
-            theme={LinkBtnTheme.dark}
-            title={"sell your service"}
-            path={""}
-          />
+          <LinkBtn title={"sell your service"} path={""} />
         </div>
       </div>
     </section>
