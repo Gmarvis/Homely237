@@ -1,21 +1,24 @@
 const Testimonils = () => {
   const testimonials = [
     {
-      avatar: "https://api.uifaces.co/our-content/donated/xZ4wg2Xj.jpg",
+      avatar:
+        "https://i.pinimg.com/236x/54/15/2d/54152d5a198768bae10db95d59887008.jpg",
       name: "Sarah K",
       title: "high school teacher",
       quote:
         "I used to spend hours calling around and comparing prices for simple things like appliance repair.With Homygig, I can find qualified professionals in minutes and book appointments easily",
     },
     {
-      avatar: "https://randomuser.me/api/portraits/men/46.jpg",
+      avatar:
+        "https://i.pinimg.com/236x/ff/4e/63/ff4e634f1fc5dfe0c573fc6e131957d3.jpg",
       name: "David",
       title: "Software engineer",
       quote:
         "The technicians I've booked have all been professional, reliable, and trustworthy.  They fixed my plumbing issue quickly and efficiently, and the pricing was fair.  I highly recommend Homygig!",
     },
     {
-      avatar: "https://randomuser.me/api/portraits/men/86.jpg",
+      avatar:
+        "https://i.pinimg.com/236x/c1/59/f4/c159f47aea63fd7f76436684fd9c62d8.jpg",
       name: "Jean Perez N",
       title: "Banker",
       quote:
@@ -62,7 +65,7 @@ const Testimonils = () => {
                   <div className="flex items-center gap-x-4 p-4 mt-6 ">
                     <img
                       src={item.avatar}
-                      className="w-16 h-16 rounded-full border-2 shadow-md"
+                      className="w-16 h-16 rounded-full border-2 shadow-md object-cover"
                     />
                     <div>
                       <span className="block text-gray-800 font-semibold">
