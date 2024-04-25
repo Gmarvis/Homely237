@@ -34,9 +34,8 @@ const Testimonils = () => {
             Hear from our customers
           </h3>
           <p className="mt-3 text-gray-600">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc et est
-            hendrerit, porta nunc vitae, gravida justo. Nunc fermentum magna
-            lorem, euismod volutpat arcu volutpat et.
+            Ready to experience the homygig difference for yourself? Join the
+            many satisfied customers who have enjoyed a seamless experience!
           </p>
         </div>
         <div className="mt-12">
