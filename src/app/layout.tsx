@@ -10,7 +10,9 @@ import { Head } from "next/document";
 
 export const metadata: Metadata = {
     title: "homygig",
-    description: "the best home service provission listing application",
+    description: "Cameroon's best home service provision platform",
+    manifest: "/manifest.json",
+    icons: { apple: "/public/icon-512x512.png" },
 };
 
 export default function RootLayout({
@@ -20,11 +22,6 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
-            <Head>
-                <link rel="manifest" href="/manifest.json" />
-                <link rel="apple-touch-icon" href="/icon.png"></link>
-                <meta name="theme-color" content="#fff" />
-            </Head>
             {/* {
           >>>>>>>>>>>>>>THE APP THEME PROVIDER IS NO WORKING PROPERLY
           >>>>>>>>>>>>>>CUSTOMIZED COLORS WON'T CHANGE AS THEME MODE CHANGE
