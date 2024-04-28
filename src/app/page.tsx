@@ -7,14 +7,14 @@ import Testimonials from "@/components/organisms/Testimonials";
 import SellWithUs from "@/components/organisms/CTA/SellWithUs";
 
 export default function Home() {
-  return (
-    <main className="flex flex-col min-h-full">
-      <NavBar onDashBoard={false} />
-      <HeroSection />
-      <ServicesSection />
-      <Testimonials />
-      <SellWithUs />
-      <Footer />
-    </main>
-  );
+    return (
+        <main className="flex flex-col min-h-full">
+            <NavBar onDashBoard={false} />
+            <HeroSection />
+            <ServicesSection />
+            <Testimonials />
+            <SellWithUs />
+            <Footer />
+        </main>
+    );
 }

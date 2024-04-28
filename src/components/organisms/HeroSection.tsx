@@ -10,7 +10,7 @@ import CategoryGrid from "./CategoryGrid";
 const HeroSection = () => {
   const { user } = useUserStore();
   return (
-    <section className="bg-slate-100 mt-10 bigScreen:pt-10 pb-10">
+    <section className="bg-slate-200 mt-10 bigScreen:pt-10 pb-10">
       <div className="max-w-screen-xl mx-auto px-4 pt-28 gap-12 text-gray-600 md:px-8">
         <div className="space-y-5 max-w-4xl mx-auto text-center">
           <h1 className="text-sm text-primarytheme font-medium">
