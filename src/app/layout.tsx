@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { ToastContainer } from "./nextToast";
 import "react-toastify/dist/ReactToastify.min.css";
-import ThemeProviders from "@/context/themeContext";
 import VerifyUser from "./auth/(verifications)/VerifyUser";
 import { EdgeStoreProvider } from "@/lib/edgestore";
-import { Head } from "next/document";
 
 export const metadata: Metadata = {
     title: "homygig",
