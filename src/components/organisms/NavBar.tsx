@@ -68,8 +68,8 @@ const NavBar = ({ onDashBoard, hideSearchBar = false }: NavTypes) => {
 
     return (
         <div
-            className={`flex bigScreen:px-80 justify-between z-50 shadow-md ${
-                onDashBoard ? " px-5 relative" : "px-24 fixed "
+            className={`flex bigScreen:px-80 w-full justify-between z-50 shadow-md ${
+                onDashBoard ? " px-5 relative " : "px-24 fixed "
             }  py-2 items-center mobile:max-sm:px-5  w-full bg-white`}
         >
             <div>
@@ -87,6 +87,7 @@ const NavBar = ({ onDashBoard, hideSearchBar = false }: NavTypes) => {
                     />
                 </Link>
             </div>
+
             <div
                 className={`sear mobile:max-sm:hidden  ${
                     onDashBoard ? "hidden" : "visible"
@@ -106,11 +107,7 @@ const NavBar = ({ onDashBoard, hideSearchBar = false }: NavTypes) => {
                     <BellBtn
                         onClick={() => setShowNotification((prev) => !prev)}
                     />
-                    {/* {
-          >>>>>>>>>>>>>>THE APP THEME PROVIDER IS NO WORKING PROPERLY
-          >>>>>>>>>>>>>>CUSTOMIZED COLORS WON'T CHANGE AS THEME MODE CHANGE
-          } */}
-                    {/* <ToggleThemeBtn /> */}
+
                     <ProfileAvatar
                         onClick={() => setShowProfile((prev) => !prev)}
                         user={user}
