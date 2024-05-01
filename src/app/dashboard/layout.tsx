@@ -9,21 +9,21 @@ import React from "react";
 import Auth from "../auth/page";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  const { user } = useUserStore();
+    const { user } = useUserStore();
 
-  if (!user.id) {
-    return <Auth />;
-  }
+    if (!user.id) {
+        return <Auth />;
+    }
 
-  return (
-    <div className="flex bg-[#f3f7fd] h-screen mobile:max-sm:h-full mobile:max-sm:overflow-y-scroll ">
-      <SideBar />
-      <div className="w-full">
-        <NavBar onDashBoard />
-        <div>{children}</div>
-      </div>
-    </div>
-  );
+    return (
+        <div className="flex justify-between  fixed h-screen w-screen mobile:max-sm:h-full mobile:max-sm:overflow-y-scroll ">
+            <SideBar />
+            <div className="w-[85vw] ">
+                <NavBar onDashBoard />
+                <div className="px-2">{children}</div>
+            </div>
+        </div>
+    );
 };
 
 export default Layout;
