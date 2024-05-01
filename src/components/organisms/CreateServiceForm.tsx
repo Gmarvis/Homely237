@@ -129,7 +129,7 @@ const CreateServiceForm = () => {
                     }}
                     className="bg-transparent text-sm w-full outline-none border border-gray-400 py-2 px-1"
                 >
-                    <option> select a</option>
+                    <option> select a category</option>
                     {categories?.map((category, i) => (
                         <option key={i} value={category.id}>
                             {category.name}

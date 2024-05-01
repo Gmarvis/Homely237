@@ -18,7 +18,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     return (
         <div className="flex justify-between  fixed h-screen w-screen mobile:max-sm:h-full mobile:max-sm:overflow-y-scroll ">
             <SideBar />
-            <div className="w-[85vw] ">
+            <div className="w-screen ">
                 <NavBar onDashBoard />
                 <div className="px-2">{children}</div>
             </div>
