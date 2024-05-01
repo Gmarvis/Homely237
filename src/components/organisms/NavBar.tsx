@@ -5,6 +5,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import SearchForm from "../molucles/SearchForm";
 import BellBtn from "../atoms/buttons/BellBtn";
+import { HiMenuAlt3 } from "react-icons/hi";
 
 import { motion } from "framer-motion";
 import DropDown from "../molucles/DropDown";
@@ -69,7 +70,9 @@ const NavBar = ({ onDashBoard, hideSearchBar = false }: NavTypes) => {
     return (
         <div
             className={`flex bigScreen:px-80 w-full justify-between z-50 shadow-md ${
-                onDashBoard ? " px-5 relative " : "px-24 fixed "
+                onDashBoard
+                    ? " px-5 relative mobile:max-sm:fixed "
+                    : "px-24 fixed "
             }  py-2 items-center mobile:max-sm:px-5  w-full bg-white`}
         >
             <div>
@@ -161,6 +164,9 @@ const NavBar = ({ onDashBoard, hideSearchBar = false }: NavTypes) => {
                             </DropDown>
                         </motion.div>
                     )}
+                    <button className="text-gray-700 sm:hidden">
+                        <HiMenuAlt3 size={24} />
+                    </button>
                 </div>
             ) : (
                 <div className="flex items-center gap-3">
