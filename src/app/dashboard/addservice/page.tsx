@@ -72,7 +72,7 @@ const Page = () => {
     };
 
     return (
-        <div className=" w-full  pt-[40px] flex justify-center items-center mobile:max-sm:mb-[60px] mobile:max-sm:items-start ">
+        <div className=" w-full   h-[calc(90vh-96px)] flex justify-center items-center mobile:max-sm:mb-[60px] mobile:max-sm:items-start relative ">
             <div className="flex gap-5 mobile:max-sm:flex-col   mobile:max-sm:mt-5 ">
                 <div className="w-[40vw] h-[30vw] mobile:max-sm:h-full bg-white mobile:max-sm:w-[98vw] p-2">
                     <div className="form w-full">
@@ -165,9 +165,6 @@ const Page = () => {
                             )
                         )}
                     </div>
-                    <button className="bg-primarytheme my-2  bottom-10 py-2 px-6 right-13">
-                        save
-                    </button>
                 </div>
             </div>
         </div>

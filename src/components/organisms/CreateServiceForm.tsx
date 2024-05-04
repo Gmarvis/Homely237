@@ -88,7 +88,7 @@ const CreateServiceForm = () => {
         <form
             action=""
             onSubmit={handleAddService}
-            className="w-full flex flex-col "
+            className="w-full h-auto flex flex-col "
         >
             <label htmlFor="name" className="text-slate-700 pt-2">
                 Title{" "}
@@ -149,15 +149,16 @@ const CreateServiceForm = () => {
                 className="h-[180px] outline-none border border-gray-400 p-2 text-sm"
                 placeholder="Give clear description of the sercive your are provide, this will make your sercive stand out and atract more custumers"
             ></textarea>
-
-            {/* <FormBtn
-                isLoading={isLoading}
-                title={"Add Service"}
-                // onClick={handleAddService}
-            /> */}
+            <div className="flex absolute bottom-0 mt-10 right-20">
+                <FormBtn
+                    isLoading={isLoading}
+                    title={"Add Service"}
+                    // onClick={handleAddService}
+                />
+            </div>
             <Link
                 href={""}
-                className="text-secondrytheme text-center flex items-center w-full justify-center gap-3"
+                className="text-secondrytheme text-xs text-center flex items-center w-full justify-center gap-3"
             >
                 <p>To get better Results, Read our Guide </p>
                 <IoBookOutline size={20} />

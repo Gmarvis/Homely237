@@ -69,7 +69,7 @@ const NavBar = ({ onDashBoard, hideSearchBar = false }: NavTypes) => {
 
     return (
         <div
-            className={`flex bigScreen:px-80 w-full justify-between z-50 shadow-md ${
+            className={`flex bigScreen: w-full justify-between z-50 shadow-md ${
                 onDashBoard
                     ? " px-5 relative mobile:max-sm:fixed "
                     : "px-24 fixed "
