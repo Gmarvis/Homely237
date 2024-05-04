@@ -20,7 +20,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             <SideBar />
             <div className="w-screen ">
                 <NavBar onDashBoard />
-                <div className="px-2">{children}</div>
+                <div className="px-2 mt-[40px] ">{children}</div>
             </div>
         </div>
     );

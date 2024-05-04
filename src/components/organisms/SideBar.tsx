@@ -71,7 +71,7 @@ const SideBar = () => {
                     ))}
                 </div>
             </div>
-            <div className="flex fixed bottom-0 w-screen justify-between bg-white shadow-md sm:hidden py-1">
+            {/* <div className="flex fixed bottom-0 w-screen justify-between bg-white shadow-md sm:hidden py-1">
                 {links.map((link, i) => (
                     <Link
                         href={link.path}
@@ -86,7 +86,7 @@ const SideBar = () => {
                         <span className="text-xs">{link.name}</span>
                     </Link>
                 ))}
-            </div>
+            </div> */}
         </>
     );
 };
