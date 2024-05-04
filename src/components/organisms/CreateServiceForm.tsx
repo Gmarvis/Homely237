@@ -11,6 +11,8 @@ import useCategoryStore from "@/store/categoryStore";
 import useUserStore from "@/store/userStore";
 import { createService } from "@/utils/queries";
 import DailogBox from "../atoms/DailogBox";
+import Spinner from "../atoms/Spinner";
+import { ActionBtn } from "../atoms/buttons/ActionBtn";
 
 const CreateServiceForm = () => {
     const { categories } = useCategoryStore();
@@ -149,11 +151,11 @@ const CreateServiceForm = () => {
                 className="h-[180px] outline-none border border-gray-400 p-2 text-sm"
                 placeholder="Give clear description of the sercive your are provide, this will make your sercive stand out and atract more custumers"
             ></textarea>
-            <div className="flex absolute bottom-0 mt-10 right-20">
-                <FormBtn
-                    isLoading={isLoading}
-                    title={"Add Service"}
-                    // onClick={handleAddService}
+            <div className="flex absolute bottom-0  mt-10 right-20 mobile:max-sm:bottom-4 mobile:max-sm:right-2">
+                <ActionBtn
+                    title="create"
+                    onClick={() => {}}
+                    loading={isLoading}
                 />
             </div>
             <Link

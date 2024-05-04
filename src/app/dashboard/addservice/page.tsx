@@ -11,6 +11,7 @@ import { SingleImageDropzone } from "@/components/molucles/SingleImageDropZone";
 import { ImagePlus } from "lucide-react";
 import { LOCAL_STORAGE } from "@/utils/storage";
 import { toast } from "react-toastify";
+import { ActionBtn } from "@/components/atoms/buttons/ActionBtn";
 
 const Page = () => {
     // store upload
@@ -72,7 +73,7 @@ const Page = () => {
     };
 
     return (
-        <div className=" w-full   h-[calc(90vh-96px)] flex justify-center items-center mobile:max-sm:mb-[60px] mobile:max-sm:items-start relative ">
+        <div className=" w-full mobile:max-sm:h-full   h-[calc(90vh-96px)] flex justify-center items-center mobile:max-sm:mb-[60px] mobile:max-sm:items-start relative pb-10">
             <div className="flex gap-5 mobile:max-sm:flex-col   mobile:max-sm:mt-5 ">
                 <div className="w-[40vw] h-[30vw] mobile:max-sm:h-full bg-white mobile:max-sm:w-[98vw] p-2">
                     <div className="form w-full">
@@ -121,19 +122,19 @@ const Page = () => {
                                 className="h-full w-[50%] transition-all duration-150 bg-green-600"
                             ></div>
                         </div>
-                        <button
-                            className="bg-primarytheme w-full py-1 disabled:cursor-wait disabled:bg-primaryDark text-white"
-                            onClick={uplaodImage}
-                            disabled={isLoading}
-                        >
-                            {isLoading ? "Uploading..." : "Upload"}
-                        </button>
+                        <div className="flex justify-between">
+                            <p className="py-1 text-slate-600 self-end  px-2 rounded-md shadow-md">
+                                {images.length}/4
+                            </p>
+                            <ActionBtn
+                                title="upload"
+                                loading={isLoading}
+                                onClick={uplaodImage}
+                            />
+                        </div>
                     </div>
-                    <p className="py-1 text-slate-600 self-end">
-                        {images.length}/4
-                    </p>
 
-                    <div className="flex gap-3 mobile:max-sm:gap-2 justify-start pt-1">
+                    <div className="flex gap-3 mobile:max-sm:gap-2 mobile:max-sm:mb-40  justify-start pt-1">
                         {!images.length && (
                             <div className="h-[100px] justify-center text-center items-center w-full">
                                 <p className="text-sm text-slate-400">
