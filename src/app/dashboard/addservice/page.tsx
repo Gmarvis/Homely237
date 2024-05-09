@@ -25,10 +25,12 @@ import { Textarea } from "@/components/ui/textarea";
 import Steps from "@/app/booking/[service_id]/_components/Steps";
 import { LOCAL_STORAGE } from "@/utils/storage";
 import UploadImages from "./components/UploadImages";
+import CreatePage from "./components/CreatePage";
+import SuccessPage from "./components/SuccessPage";
 
 const formSchema = z.object({
-    title: z.string().min(5, {
-        message: "title must contain at least 5 character(s)",
+    name: z.string().min(5, {
+        message: "name must contain at least 5 character(s)",
     }),
     price: z.string().min(3, {
         message: "price must contain at least 3 digits",
@@ -39,23 +41,27 @@ const formSchema = z.object({
     description: z.string().min(50),
 });
 
+interface FormDataType {
+    name: string;
+    price: string;
+    category_id: string;
+    description: string;
+}
+
 const Page = () => {
     const [currentStep, setCurrentStep] = useState<number>(
         JSON.parse(localStorage.getItem("serviceData") || "{}").currentStep || 1
     );
-    const [data, setData] = useState({
-        title: "",
-        price: "",
-        category_id: "",
-        description: "",
-    });
+    const [data, setData] = useState<FormDataType>(
+        JSON.parse(localStorage.getItem("serviceData") || "{}").serviceDetails
+    );
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            title: data.title,
-            price: data.price,
-            category_id: data.category_id,
-            description: data.description,
+            name: data?.name || "",
+            price: data?.price || "",
+            category_id: data?.category_id || "",
+            description: data?.description || "",
         },
     });
 
@@ -81,8 +87,8 @@ const Page = () => {
     return (
         <div className="flex flex-col w-full  justify-center items-center">
             <div className="max-w-lg w-full">
-                <h1 className="text-center text-2xl py-2 text-gray-700 font-bold">
-                    Create a service in Few simple steps
+                <h1 className="text-center text-2xl pt-6 text-gray-700 font-bold">
+                    Create a service in few simple steps
                 </h1>
                 <Steps
                     steps={{
@@ -91,6 +97,7 @@ const Page = () => {
                     }}
                 />
             </div>
+
             <div className="flex flex-col w-full h-full  justify-center items-center">
                 {currentStep === 1 && (
                     <Form {...form}>
@@ -100,14 +107,14 @@ const Page = () => {
                         >
                             <FormField
                                 control={form.control}
-                                name="title"
+                                name="name"
                                 render={({ field }) => {
                                     return (
                                         <FormItem>
-                                            <FormLabel>Service Title</FormLabel>
+                                            <FormLabel>Service name</FormLabel>
                                             <FormControl>
                                                 <Input
-                                                    placeholder="enter service title"
+                                                    placeholder="enter service name"
                                                     type="text"
                                                     {...field}
                                                 />
@@ -204,12 +211,20 @@ const Page = () => {
                 )}
                 {currentStep === 2 && (
                     <UploadImages
+                        onNextClick={() => setCurrentStep(3)}
                         onPrevClick={() => {
                             setCurrentStep(1);
                             setData(serviceData.serviceDetails);
                         }}
                     />
                 )}
+                {currentStep === 3 && (
+                    <CreatePage
+                        onClickPrev={() => setCurrentStep(2)}
+                        onCreateSuccess={() => setCurrentStep(4)}
+                    />
+                )}
+                {currentStep === 4 && <SuccessPage />}
             </div>
         </div>
     );

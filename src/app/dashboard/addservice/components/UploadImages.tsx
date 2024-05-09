@@ -8,27 +8,32 @@ import { progress } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
-const UploadImages = ({ onPrevClick }: { onPrevClick: () => void }) => {
+type PropType = {
+    onPrevClick: () => void;
+    onNextClick: () => void;
+};
+
+const UploadImages = ({ onPrevClick, onNextClick }: PropType) => {
     // store upload
     const [file, setFile] = React.useState<File>();
     const { edgestore } = useEdgeStore();
     const [progress, setProgress] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
 
-    const [images, setImages] = useState<string[]>([]);
+    const [images, setImages] = useState<string[]>(
+        JSON.parse(localStorage.getItem("images") || "[]")
+    );
     const [mainImage, setMainImage] = useState("");
 
-    const savedImages = localStorage.getItem("service_images") || "[]";
+    const savedImages = localStorage.getItem("images") || "[]";
 
     useEffect(() => {
-        // if (savedImages) setImages(JSON.parse(savedImages));
-
-        setMainImage(localStorage.getItem("main_image") || "");
+        setMainImage(localStorage.getItem("product_image") || "");
     }, []);
 
     const setmainImg = (image: string) => {
         setMainImage(image);
-        localStorage.setItem("main_image", image);
+        localStorage.setItem("product_image", image);
     };
 
     const handleDeleteImage = async (image: string) => {
@@ -38,10 +43,10 @@ const UploadImages = ({ onPrevClick }: { onPrevClick: () => void }) => {
         const updateImages: any = images.filter((img: string) => img !== image);
         if (mainImage === image) {
             setMainImage("");
-            localStorage.removeItem("main_image");
+            localStorage.removeItem("product_image");
         }
         setImages(updateImages);
-        localStorage.setItem("service_images", updateImages);
+        localStorage.setItem("images", updateImages);
     };
 
     const uplaodImage = async () => {
@@ -61,10 +66,29 @@ const UploadImages = ({ onPrevClick }: { onPrevClick: () => void }) => {
                 onProgressChange: (preg) => setProgress(preg),
             });
             setImages([...images, res.url]);
-            LOCAL_STORAGE.save("service_images", [...images, res.url]);
+            LOCAL_STORAGE.save("images", [...images, res.url]);
             setIsLoading(false);
             // console.log("upload", res);
         }
+    };
+
+    const handleNext = () => {
+        const serviceData = JSON.parse(
+            localStorage.getItem("serviceData") || "{}"
+        );
+
+        if (!images.length) {
+            toast.warning("you most upload aleast one image", {
+                position: "top-right",
+                hideProgressBar: true,
+                autoClose: 3000,
+            });
+            return;
+        }
+
+        serviceData.currentStep = 3;
+        LOCAL_STORAGE.save("serviceData", serviceData);
+        onNextClick();
     };
 
     return (
@@ -119,10 +143,10 @@ const UploadImages = ({ onPrevClick }: { onPrevClick: () => void }) => {
                 </div>
             </div>
 
-            <div className="flex  gap-3 mobile:max-sm:gap-2   justify-start pt-1">
+            <div className="flex  gap-3 mobile:max-sm:gap-2  w-full  justify-start pt-1">
                 {!images.length && (
-                    <div className="h-[100px] justify-center text-center items-center w-full">
-                        <p className="text-sm text-slate-400">
+                    <div className="h-[100px]    w-full">
+                        <p className="text-sm text-center text-slate-400">
                             Upload 4 images of you you performing your service
                         </p>
                     </div>
@@ -152,7 +176,9 @@ const UploadImages = ({ onPrevClick }: { onPrevClick: () => void }) => {
                 <Button onClick={onPrevClick} className=" px-10 bg-slate-500">
                     prev
                 </Button>
-                <Button className="bg-primarytheme px-10">Next</Button>
+                <Button onClick={handleNext} className="bg-primarytheme px-10">
+                    Next
+                </Button>
             </div>
         </div>
     );
