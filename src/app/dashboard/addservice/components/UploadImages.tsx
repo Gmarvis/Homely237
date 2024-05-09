@@ -85,7 +85,7 @@ const UploadImages = ({ onPrevClick }: { onPrevClick: () => void }) => {
                 />
                 <div className="w-full flex justify-center items-center sm:hidden ">
                     <SingleImageDropzone
-                        width={200}
+                        width={350}
                         height={200}
                         value={file}
                         dropzoneOptions={{
