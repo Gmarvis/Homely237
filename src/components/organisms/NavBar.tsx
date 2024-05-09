@@ -69,7 +69,7 @@ const NavBar = ({ onDashBoard, hideSearchBar = false }: NavTypes) => {
 
     return (
         <div
-            className={`flex bigScreen: w-full justify-between z-50 shadow-md ${
+            className={`flex bigScreen:w-full fixed justify-between z-50 shadow-md ${
                 onDashBoard
                     ? " px-5 relative mobile:max-sm:fixed "
                     : "px-24 fixed "
@@ -147,6 +147,8 @@ const NavBar = ({ onDashBoard, hideSearchBar = false }: NavTypes) => {
                     )}
 
                     {showNotifiaction && (
+                        // <SheetSide />
+
                         <motion.div
                             initial={{ opacity: 0, translateY: -20 }}
                             animate={{ opacity: 1, translateY: 0 }}
