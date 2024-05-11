@@ -22,6 +22,7 @@ import useUserStore from "@/store/userStore";
 import useCategoryStore from "@/store/categoryStore";
 import useServiceStore from "@/store/serviceStore";
 import { LinkBtn, LinkBtnTheme } from "../atoms/buttons/LinkBtn";
+import { RightModal } from "./modals/RightModal";
 
 const navLinks = [
     {
@@ -166,9 +167,16 @@ const NavBar = ({ onDashBoard, hideSearchBar = false }: NavTypes) => {
                             </DropDown>
                         </motion.div>
                     )}
-                    <button className="text-gray-700 sm:hidden">
-                        <HiMenuAlt3 size={24} />
-                    </button>
+                    <RightModal
+                        title="Menu"
+                        trigger={
+                            <button className="text-gray-700 sm:hidden absolute top-[13px] right-2">
+                                <HiMenuAlt3 size={25} />
+                            </button>
+                        }
+                    >
+                        <div>Mobile Navbar</div>
+                    </RightModal>
                 </div>
             ) : (
                 <div className="flex items-center gap-3">

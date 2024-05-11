@@ -1,19 +1,19 @@
 "use client";
 import SideBar from "@/components/organisms/SideBar";
-import { useRouter } from "next/navigation";
 
 // STORE IMPORT
 import useUserStore from "@/store/userStore";
 import NavBar from "@/components/organisms/NavBar";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Auth from "../auth/page";
+import Loading from "./loading";
+import { useRouter } from "next/navigation";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
     const { user } = useUserStore();
+    const [loading, setLoading] = useState(true);
 
-    if (!user.id) {
-        return <Auth />;
-    }
+    const router = useRouter();
 
     return (
         <div className="flex justify-between  fixed h-screen w-screen mobile:max-sm:h-full mobile:max-sm:overflow-y-scroll ">
