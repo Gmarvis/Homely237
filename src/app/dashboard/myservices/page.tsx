@@ -4,7 +4,6 @@ import Link from "next/link";
 import React from "react";
 
 import { RiUpload2Line } from "react-icons/ri";
-import { RightModal } from "../../../components/organisms/modals/RightModal";
 
 const page = () => {
     return (
@@ -18,13 +17,7 @@ const page = () => {
                     </button>
                 </Link>
             </div>
-            <RightModal
-                title="Profile"
-                trigger={<button>open</button>}
-                description="hello world"
-            >
-                <p>heloo</p>
-            </RightModal>
+
             {/* <DisplayMyServices /> */}
         </div>
     );
