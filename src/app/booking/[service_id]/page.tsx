@@ -4,62 +4,103 @@ import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import * as Queries from "@/utils/queries";
-import Steps from "./_components/Steps";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 // react icons
-import { MdNavigateNext } from "react-icons/md";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import DatePicker from "./_components/DatePicker";
 
 const Page = () => {
-  const [service, setService] = useState<Service | null>();
-  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
-  const [currentStep, setCurrentStep] = useState(1);
-  const router = useRouter();
+    const [service, setService] = useState<Service | null>();
+    const [location, setLocation] = useState("");
+    const [selectedDate, setSelectedDate] = useState<Date>();
+    const [description, setDescription] = useState("");
 
-  // get Service Id form the params
-  const serviceId = usePathname().split("/")[2];
+    // get Service Id form the params
+    const serviceId = usePathname().split("/")[2];
 
-  useEffect(() => {
-    Queries.getServiceByServiceID(serviceId).then((res) => {
-      if (res.id) {
-        setService(res);
-        console.log("service", service);
-      }
-    });
-  }, []);
+    useEffect(() => {
+        Queries.getServiceByServiceID(serviceId).then((res) => {
+            if (res.id) {
+                setService(res);
+                console.log("service", service);
+            }
+        });
+    }, []);
 
-  const handleBooking = () => {
-    setCurrentStep((prev) => (prev += 1));
-  };
+    const handleBooking = (e: { preventDefault: () => void }) => {
+        e.preventDefault();
+        const bookingDetails = {
+            location,
+            selectedDate,
+            description,
+        };
 
-  return (
-    <div>
-      <NavBar hideSearchBar={true} onDashBoard={false} />
-      <div className="flex justify-center items-center mobile:max-sm:justify-start  mobile:max-sm:items-start   pt-[60px] h-[100vh] w-full relative">
-        <div className="w-[40rem] mobile:max-sm:w-full h-[35rem] shadow-md p-2 bg-white absolute border">
-          <Steps
-            steps={{
-              stpesCount: [1, 2, 3, 4],
-              currentStep: currentStep,
-            }}
-          />
+        console.log("bookingDetails", bookingDetails);
+    };
 
-          <h3 className="border border-primarytheme p-2">{service?.name}</h3>
-          <div className="w-full  flex flex-col justify-center items-center pt-10">
-            <DatePicker onChange={() => {}} />
-          </div>
+    return (
+        <div>
+            <NavBar hideSearchBar={true} onDashBoard={false} />
+            <div className="flex justify-center items-center mobile:max-sm:justify-start  mobile:max-sm:items-start   pt-[60px] h-[100vh] w-full relative">
+                <div className="w-[40rem] flex flex-col justify-center mobile:max-sm:w-full h-[35rem]  p-2 bg-white absolute shadow-md">
+                    <div className="max-w-md self-center text-center mb-10">
+                        <h1 className="text-center font-bold">
+                            Ready to Book your service?
+                        </h1>
+                        <p className="text-xs text-gray-700">
+                            lets make sure the provider get what you need by
+                            providing details in the form bellow
+                        </p>
+                    </div>
 
-          <button
-            onClick={handleBooking}
-            className="flex items-center  bg-primarytheme py-1 px-2 text-white absolute bottom-4 right-4 "
-          >
-            Next
-            <MdNavigateNext size={24} />
-          </button>
+                    <form
+                        onSubmit={handleBooking}
+                        className="flex flex-col gap-4 space-y-3"
+                    >
+                        <div>
+                            <Label>Discribe your location</Label>
+                            <Input
+                                onChange={(e) => setLocation(e.target.value)}
+                            />
+                        </div>
+                        <div className="flex flex-col">
+                            <Label>Enter date</Label>
+                            <DatePicker onSelectDate={setSelectedDate} />
+                        </div>
+                        <div>
+                            <Label className="flex py-1 justify-between">
+                                <p>
+                                    Describe what you need to help the provider
+                                    come prepared
+                                </p>
+                                <span
+                                    className={`${
+                                        description.length < 600
+                                            ? "text-red-600"
+                                            : "text-green-600"
+                                    }`}
+                                >
+                                    {description.length || 0}/ 600
+                                </span>
+                            </Label>
+                            <Textarea
+                                className="text-gray-800"
+                                onChange={(e) => setDescription(e.target.value)}
+                            />
+                        </div>
+
+                        <Button className="bg-primarytheme">Book Now</Button>
+                    </form>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default Page;
+
+// todo
+// 1 prevent users from adding past dates
+// 2
