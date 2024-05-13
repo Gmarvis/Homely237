@@ -44,7 +44,7 @@ const Page = () => {
         <div>
             <NavBar hideSearchBar={true} onDashBoard={false} />
             <div className="flex justify-center items-center mobile:max-sm:justify-start  mobile:max-sm:items-start   pt-[60px] h-[100vh] w-full relative">
-                <div className="w-[40rem] flex flex-col justify-center mobile:max-sm:w-full h-[35rem]  p-2 bg-white absolute shadow-md">
+                <div className="w-[40rem] flex flex-col justify-center mobile:max-sm:w-full h-[35rem]  p-2 bg-white absolute sm:shadow-md">
                     <div className="max-w-md self-center text-center mb-10">
                         <h1 className="text-center font-bold">
                             Ready to Book your service?
