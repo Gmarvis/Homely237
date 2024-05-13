@@ -1,18 +1,16 @@
 "use client";
 import SideBar from "@/components/organisms/SideBar";
-import { useRouter } from "next/navigation";
 
 // STORE IMPORT
 import useUserStore from "@/store/userStore";
 import NavBar from "@/components/organisms/NavBar";
-import React from "react";
-import Auth from "../auth/page";
+import Loading from "./loading";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
     const { user } = useUserStore();
 
     if (!user.id) {
-        return <Auth />;
+        return <Loading full />;
     }
 
     return (
