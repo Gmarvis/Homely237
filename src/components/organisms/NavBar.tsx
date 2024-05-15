@@ -44,11 +44,11 @@ const navLinks = [
 ];
 
 type NavTypes = {
-    onDashBoard: Boolean;
+    onDashBoard?: Boolean;
     hideSearchBar?: Boolean;
 };
 
-const NavBar = ({ onDashBoard, hideSearchBar = false }: NavTypes) => {
+const NavBar = ({ onDashBoard = false, hideSearchBar = false }: NavTypes) => {
     const { user } = useUserStore();
     const { setServices } = useServiceStore();
     const { setCategories } = useCategoryStore();
