@@ -16,27 +16,27 @@ const page = () => {
                     <div className=" max-w-2xl mobile:max-sm:max-w-full mobile:max-sm:w-full w-full space-y-3">
                         <ProfileSection />
                         <form>
-                            <Label className=" text-gray-600 text-xs">
+                            <Label className=" text-gray-800 text-xs">
                                 Name
                             </Label>
                             <Input placeholder="name" />
-                            <Label className=" text-gray-600 text-xs">
+                            <Label className=" text-gray-800 text-xs">
                                 Phone number (whatsapp)
                             </Label>
                             <Input placeholder="Phone number" type="number" />
-                            <Label className=" text-gray-600 text-xs">
+                            <Label className=" text-gray-800 text-xs">
                                 Location
                             </Label>
                             <Input placeholder="location" />
-                            <Label className=" text-gray-600 text-xs">
+                            <Label className=" text-gray-800 text-xs">
                                 National ID card front image
                             </Label>
                             <Input type="file" />
-                            <Label className=" text-gray-600 text-xs">
+                            <Label className=" text-gray-800 text-xs">
                                 National ID card back image
                             </Label>
                             <Input type="file" />
-                            <Label className=" text-gray-600 text-xs">
+                            <Label className=" text-gray-800 text-xs">
                                 Bio (say something about yourself)
                             </Label>
 
