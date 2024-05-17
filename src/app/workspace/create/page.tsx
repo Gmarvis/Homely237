@@ -41,10 +41,11 @@ const page = () => {
                             </Label>
 
                             <Textarea />
-
-                            <Button className="bg-primarytheme mt-5">
-                                Procceed
-                            </Button>
+                            <div className="flex justify-end items-end w-full">
+                                <Button className="bg-primarytheme mt-5 self-end">
+                                    Procceed
+                                </Button>
+                            </div>
                         </form>
                     </div>
                 </div>
