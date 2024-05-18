@@ -23,7 +23,7 @@ const ProfileSection = () => {
                 </button>
             </div>
             <div className="w-[60%] flex justify-center items-center">
-                <h2 className="text-center text-gray-600 text-3xl mobile:max-sm:text-xl font-semibold">
+                <h2 className="text-center text-gray-800 text-3xl mobile:max-sm:text-xl font-semibold">
                     Service Provider Profile
                 </h2>
             </div>
