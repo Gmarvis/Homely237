@@ -8,7 +8,7 @@ import { RiUpload2Line } from "react-icons/ri";
 
 const page = () => {
     return (
-        <div className="p-5 space-y-2 relative">
+        <div className="p-5 space-y-2 relative w">
             <div className="header w-full flex justify-between items-center">
                 <h3 className=" text-gray-700  ">My services</h3>
                 <Link href={"/dashboard/addservice"}>
