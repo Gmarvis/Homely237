@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { ToastContainer } from "./nextToast";
 import "react-toastify/dist/ReactToastify.min.css";
 import VerifyUser from "./auth/(verifications)/VerifyUser";
 import { EdgeStoreProvider } from "@/lib/edgestore";
+import { ToastContainer } from "./nextToast";
 
 export const metadata: Metadata = {
     title: "homygig",

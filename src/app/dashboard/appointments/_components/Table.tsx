@@ -47,11 +47,10 @@ const Table = () => {
             <div className="items-start justify-between md:flex">
                 <div className="max-w-lg">
                     <h3 className="text-gray-800 text-xl font-bold sm:text-2xl">
-                        Team members
+                        Appointments{" "}
                     </h3>
                     <p className="text-gray-600 mt-2">
-                        Lorem Ipsum is simply dummy text of the printing and
-                        typesetting industry.
+                        Approve, decline and reshedule appointents here!
                     </p>
                 </div>
             </div>
@@ -59,17 +58,17 @@ const Table = () => {
                 <table className="w-full table-auto text-sm text-left">
                     <thead className="bg-gray-50 text-gray-600 font-medium border-b">
                         <tr>
-                            <th className="py-3 px-6">Username</th>
-                            <th className="py-3 px-6">Email</th>
-                            <th className="py-3 px-6">Position</th>
-                            <th className="py-3 px-6">Salary</th>
+                            <th className="py-3 px-6">Name</th>
+                            <th className="py-3 px-6">number</th>
+                            <th className="py-3 px-6">Location</th>
+                            <th className="py-3 px-6">date</th>
                             <th className="py-3 px-6"></th>
                         </tr>
                     </thead>
                     <tbody className="text-gray-600 divide-y">
                         {tableItems.map((item, idx) => (
-                            <tr key={idx}>
-                                <td className="flex items-center gap-x-3 py-3 px-6 whitespace-nowrap">
+                            <tr key={idx} className="hover:bg-slate-300">
+                                <td className="flex items-center gap-x-3 py-3 px-6 whitespace-nowrap ">
                                     <img
                                         src={item.avatar}
                                         className="w-10 h-10 rounded-full"
@@ -92,16 +91,10 @@ const Table = () => {
                                 <td className="px-6 py-4 whitespace-nowrap">
                                     {item.salary}
                                 </td>
-                                <td className="text-right px-6 whitespace-nowrap">
-                                    <a
-                                        href="javascript:void()"
-                                        className="py-2 px-3 font-medium text-indigo-600 hover:text-indigo-500 duration-150 hover:bg-gray-50 rounded-lg"
-                                    >
-                                        Edit
-                                    </a>
-                                    <button className="py-2 leading-none px-3 font-medium text-red-600 hover:text-red-500 duration-150 hover:bg-gray-50 rounded-lg">
-                                        Delete
-                                    </button>
+                                <td className="text-center px-6 whitespace-nowrap z-50">
+                                    <p className="py-2 px-3 font-medium text-amber-500 hover:text-indigo-500 duration-150 hover:bg-gray-50 rounded-lg">
+                                        pendding
+                                    </p>
                                 </td>
                             </tr>
                         ))}
