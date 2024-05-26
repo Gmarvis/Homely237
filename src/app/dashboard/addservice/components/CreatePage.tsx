@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { createService } from "@/utils/queries";
 import React, { useEffect, useState } from "react";
 import useUserStore from "@/store/userStore";
+import { toast } from "react-toastify";
 
 type PropType = {
     onCreateSuccess: () => void;
@@ -32,12 +33,20 @@ const CreatePage = ({ ...props }: PropType) => {
 
     const handleSubmit = async () => {
         setLoading(true);
-        createService(serviceDetals).then((res) => {
+        createService(serviceDetals).then(async (res) => {
             if (res.id) {
                 localStorage.removeItem("images");
                 localStorage.removeItem("serviceData");
                 localStorage.removeItem("product_image");
                 props.onCreateSuccess();
+                setLoading(false);
+            } else {
+                let error = await res;
+                toast.error("Failed to create service! try again", {
+                    position: "top-right",
+                    hideProgressBar: true,
+                    autoClose: 3000,
+                });
                 setLoading(false);
             }
         });
@@ -64,7 +73,7 @@ const CreatePage = ({ ...props }: PropType) => {
                     </Button>
                     <span
                         onClick={props.onClickPrev}
-                        className="text-primarytheme"
+                        className="text-primarytheme hover:cursor-pointer text-sm"
                     >
                         take another look
                     </span>

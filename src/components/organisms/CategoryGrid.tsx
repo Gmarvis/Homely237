@@ -29,7 +29,7 @@ const CategoryGrid = () => {
             variants={Animation.fadeInVariantContainer}
             className="w-full flex gap-3 justify-center py-10 flex-wrap"
         >
-            {categories.map((category, i) => (
+            {categories?.map((category, i) => (
                 <Link
                     // variants={Animation.fadeGridVariants}
                     href={"/category/" + category.id}

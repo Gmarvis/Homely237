@@ -55,6 +55,7 @@ const Page = () => {
     const [data, setData] = useState<FormDataType>(
         JSON.parse(localStorage.getItem("serviceData") || "{}").serviceDetails
     );
+    const [categotyError, setCategoryError] = useState("");
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -66,6 +67,12 @@ const Page = () => {
     });
 
     const handleSubmit = (value: z.infer<typeof formSchema>) => {
+        if (!value.category_id) {
+            setCategoryError("categoty is required");
+            return;
+        }
+        setCategoryError("");
+
         const category = categories.find((cat) => cat.id === value.category_id);
         const serviceDetails = { ...value, category_name: category?.name };
         LOCAL_STORAGE.save("serviceData", { currentStep: 2, serviceDetails });
@@ -178,6 +185,11 @@ const Page = () => {
                                                         )
                                                     )}
                                                 </SelectContent>
+                                                {categotyError && (
+                                                    <span className="text-xs text-red-600">
+                                                        {categotyError}
+                                                    </span>
+                                                )}
                                             </Select>
 
                                             <FormMessage />
