@@ -12,6 +12,7 @@ import {
 
 import { HiDotsVertical } from "react-icons/hi";
 import DailogBox from "../modals/DailogBox";
+import Link from "next/link";
 
 type CardTypes = {
     service: Service;
@@ -76,7 +77,9 @@ const ServiceCard = ({
                         <DropdownMenuItem onClick={() => alert(service.name)}>
                             View
                         </DropdownMenuItem>
-                        <DropdownMenuItem>Edit</DropdownMenuItem>
+                        <Link href={`/dashboard/myservices/edit/${service.id}`}>
+                            <DropdownMenuItem>Edit</DropdownMenuItem>
+                        </Link>
                         <DailogBox
                             onClickAction={() =>
                                 onClickDelete &&

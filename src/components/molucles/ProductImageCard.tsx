@@ -29,7 +29,9 @@ const ProductImageCard = ({ image, children, showBadge }: ImageCardProps) => {
                 backgroundPosition: "center",
                 objectFit: "fill",
             }}
-            className="w-[100px] mobile:max-sm:w-[22vw]  h-[100px] mobile:max-sm:h-[22vw] bg-white shadow-md flex items-end flex-col p-2 relative bigScreen:w-[150px] bigScreen:h-[150px] "
+            className={`${
+                showBadge ? "border-4 border-secondrytheme" : ""
+            } w-[100px] mobile:max-sm:w-[22vw]  h-[100px] mobile:max-sm:h-[22vw] bg-white shadow-md flex items-end flex-col p-2 relative bigScreen:w-[150px] bigScreen:h-[150px] transition-all`}
         >
             <button
                 className="flex  self-end bg-white rounded-full shadow-md"
