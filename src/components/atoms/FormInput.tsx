@@ -5,9 +5,10 @@ type InPutProps = {
     label: string;
     onChange: (event: { target: { value: any } }) => void;
     styles?: string;
+    type?: string;
 };
 
-const FormInput = ({ label, onChange, styles }: InPutProps) => {
+const FormInput = ({ label, onChange, styles, type = "text" }: InPutProps) => {
     const [showLabel, setShowLabel] = useState(false);
     return (
         <div className={`    ${styles}  text-[12px] relative `}>
@@ -24,7 +25,7 @@ const FormInput = ({ label, onChange, styles }: InPutProps) => {
                 onChange={onChange}
                 onFocus={() => setShowLabel(true)}
                 onBlur={() => setShowLabel(false)}
-                type="text"
+                type={type}
                 className="w-full py-2 bigScreen:py-4 mobile:max-sm:py-4 px-3   outline-none"
                 placeholder={label}
             />

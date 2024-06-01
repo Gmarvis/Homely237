@@ -10,10 +10,7 @@ type BtnType = {
 const FormBtn = ({ isLoading, title, onClick }: BtnType) => {
     return (
         <button
-            className={` 
-    hover:cursor-wait disabled:cursor-wait"
-          "bg-primarytheme"
-      } text-white p-2 justify-center items-center w-full`}
+            className={`hover:bg-gray-800 disabled:cursor-wait bg-primarytheme  text-white p-2 justify-center items-center w-full`}
         >
             <span className="flex self-center justify-center">
                 {isLoading ? <Spinner /> : <>{title}</>}
