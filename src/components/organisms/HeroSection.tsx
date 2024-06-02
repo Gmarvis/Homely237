@@ -6,7 +6,7 @@ import React from "react";
 // store
 import useUserStore from "@/store/userStore";
 import CategoryGrid from "./CategoryGrid";
-import useGeoLocation from "@/geoLocationService/useGeoLocation";
+import useGeoLocation from "@/utils/service/geoLocationService/useGeoLocation";
 
 const HeroSection = () => {
     const location = useGeoLocation();

@@ -1,3 +1,4 @@
+import { getCurrentLocation } from "@/utils/queries";
 import { useEffect, useState } from "react";
 
 const useGeoLocation = () => {
@@ -24,6 +25,10 @@ const useGeoLocation = () => {
     const onSuccess = (position: {
         coords: { latitude: any; longitude: any };
     }) => {
+        getCurrentLocation(
+            position.coords.latitude,
+            position.coords.longitude
+        )?.then((res) => console.log(res));
         setLocation({
             loaded: true,
             coordinates: {
