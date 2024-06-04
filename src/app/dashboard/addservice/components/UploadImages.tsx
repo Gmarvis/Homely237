@@ -15,7 +15,7 @@ type PropType = {
 
 const UploadImages = ({ onPrevClick, onNextClick }: PropType) => {
     // store upload
-    const [file, setFile] = React.useState<File>();
+    const [file, setFile] = React.useState<any>();
     const { edgestore } = useEdgeStore();
     const [progress, setProgress] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
@@ -68,6 +68,10 @@ const UploadImages = ({ onPrevClick, onNextClick }: PropType) => {
             setImages([...images, res.url]);
             LOCAL_STORAGE.save("images", [...images, res.url]);
             setIsLoading(false);
+            setFile(null);
+            setTimeout(() => {
+                setProgress(0);
+            }, 3000);
             // console.log("upload", res);
         }
     };

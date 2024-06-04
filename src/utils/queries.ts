@@ -79,3 +79,12 @@ export const getServiceByCategoryID = (category_id: string): Promise<any> => {
         return error;
     }
 };
+
+// UPDATE PRODRUCT
+export const updateService = (id: string, newData: any): any => {
+    try {
+        return apiCall.PUT(`${SERVER_URL}/products/${id}`, newData);
+    } catch (error) {
+        return error;
+    }
+};

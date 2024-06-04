@@ -27,7 +27,11 @@ export default function RootLayout({
             <EdgeStoreProvider>
                 <VerifyUser>
                     <body className="">
-                        <ToastContainer />
+                        <ToastContainer
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick
+                        />
                         {children}
                     </body>
                 </VerifyUser>
