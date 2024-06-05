@@ -5,12 +5,11 @@ import React from "react";
 
 // store
 import useUserStore from "@/store/userStore";
-import CategoryGrid from "./CategoryGrid";
-import useGeoLocation from "@/utils/service/geoLocationService/useGeoLocation";
+import useLocationStore from "@/store/locationStore";
 
 const HeroSection = () => {
-    const location = useGeoLocation();
-    console.log(location);
+    const { currentLocation } = useLocationStore();
+    console.log("currenLocation", currentLocation);
 
     const { user } = useUserStore();
     return (

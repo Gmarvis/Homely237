@@ -1,5 +1,6 @@
 import { getCurrentLocation } from "@/utils/queries";
 import { useEffect, useState } from "react";
+import useLocationStore from "@/store/locationStore";
 
 const useGeoLocation = () => {
     type LocationType = {
@@ -8,6 +9,7 @@ const useGeoLocation = () => {
             lat: string;
             lng: string;
         };
+        locationData?: CurrentLoacation;
         error?: {
             code: number;
             message: string;
@@ -20,21 +22,31 @@ const useGeoLocation = () => {
             lat: "",
             lng: "",
         },
+        locationData: {
+            city: "",
+            continent: "",
+            continentCode: "",
+            countryCode: "",
+            countryName: "",
+            locality: "",
+        },
     });
 
-    const onSuccess = (position: {
+    const onSuccess = async (position: {
         coords: { latitude: any; longitude: any };
     }) => {
-        getCurrentLocation(
+        const data = await getCurrentLocation(
             position.coords.latitude,
             position.coords.longitude
-        )?.then((res) => console.log(res));
+        );
+
         setLocation({
             loaded: true,
             coordinates: {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude,
             },
+            locationData: data as unknown as CurrentLoacation,
         });
     };
 

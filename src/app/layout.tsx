@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "react-toastify/dist/ReactToastify.min.css";
-import VerifyUser from "./auth/(verifications)/VerifyUser";
+import SystermGard from "./auth/(verifications)/SystermGard";
 import { EdgeStoreProvider } from "@/lib/edgestore";
 import { ToastContainer } from "./nextToast";
 // import { ThemeProvider } from "next-themes";
@@ -26,7 +26,7 @@ export default function RootLayout({
           } */}
             {/* <ThemeProvider> */}
             <EdgeStoreProvider>
-                <VerifyUser>
+                <SystermGard>
                     <body className="">
                         <ToastContainer
                             hideProgressBar={false}
@@ -35,7 +35,7 @@ export default function RootLayout({
                         />
                         {children}
                     </body>
-                </VerifyUser>
+                </SystermGard>
             </EdgeStoreProvider>
             {/* </ThemeProvider> */}
         </html>

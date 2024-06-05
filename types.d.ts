@@ -39,3 +39,12 @@ interface Service {
     updatedAt?: string;
     user?: User;
 }
+
+interface CurrentLoacation {
+    city: string;
+    continent: string;
+    continentCode: string;
+    countryCode: string;
+    countryName: string;
+    locality: string;
+}
