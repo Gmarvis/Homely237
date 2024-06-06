@@ -46,7 +46,7 @@ const ServicesSection = () => {
                 </div>
             )}
 
-            <div className=" grid-cols-4 mobile:max-sm:grid-cols-2 mobile:max-sm:gap-2 mb-5 2xl:px-24 items-center justify-center mobile:max-sm:grid hidden w-full">
+            <div className=" grid-cols-4  mobile:max-sm:grid-cols-2 mobile:max-sm:gap-2 mb-5 2xl:px-24 items-center justify-center mobile:max-sm:grid hidden w-full">
                 {services
                     ?.slice(currentPage, currentPage + pageIndex)
                     .map((service, i) => (
@@ -58,7 +58,7 @@ const ServicesSection = () => {
                     ))}
             </div>
 
-            <div className="flex gap-10 pl-3 flex-wrap mx-auto items-center py-10 mobile:max-sm:hidden justify-center  ">
+            <div className="flex bigScreen:justify-evenly pl-3 flex-wrap gap-20 justify-center mx-auto items-center py-10 mobile:max-sm:hidden   ">
                 {services
                     ?.slice(currentPage, currentPage + pageIndex)
                     .map((service, i) => (

@@ -11,7 +11,7 @@ type InPutProps = {
 const FormInput = ({ label, onChange, styles, type = "text" }: InPutProps) => {
     const [showLabel, setShowLabel] = useState(false);
     return (
-        <div className={`    ${styles}  text-[12px] relative `}>
+        <div className={`    ${styles}  text-sm relative `}>
             <span
                 className={`absolute bottom-7 bigScreen:bottom-11 mobile:max-sm:bottom-11 ${
                     !showLabel

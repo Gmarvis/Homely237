@@ -70,10 +70,10 @@ const NavBar = ({ onDashBoard = false, hideSearchBar = false }: NavTypes) => {
 
     return (
         <div
-            className={`flex bigScreen:w-full fixed justify-between z-50 shadow-md ${
+            className={`flex bigScreen:w-full bigScreen:py-5 fixed justify-between z-50 shadow-md ${
                 onDashBoard
                     ? " px-5 relative mobile:max-sm:fixed "
-                    : "px-24 fixed "
+                    : "px-24 fixed bigScreen:px-80  "
             }  py-2 items-center mobile:max-sm:px-5  w-full bg-white`}
         >
             <div>
@@ -103,7 +103,7 @@ const NavBar = ({ onDashBoard = false, hideSearchBar = false }: NavTypes) => {
             {user.id ? (
                 <div className="flex justify-center items-center gap-3">
                     <Link
-                        className={`text-xs ${onDashBoard ? "hidden" : ""} `}
+                        className={`text-sm font-semibold ${onDashBoard ? "hidden" : ""} `}
                         href={"dashboard"}
                     >
                         Dashboard

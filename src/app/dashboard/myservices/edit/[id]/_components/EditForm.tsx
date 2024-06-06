@@ -117,14 +117,14 @@ const EditServiceForm = () => {
         <div className="w-full pb-4">
             {service && (
                 <div>
-                    <h3 className="text-2xl  gap-10 flex items-center w-full bg-slate-300 p-4  shadow-inner shadow-black/2 font-mono text-gray-800 ">
+                    <h3 className="text-2xl  gap-10 bigScreen:gap-36 flex items-center w-full bg-slate-300 p-4  shadow-inner shadow-black/2 font-mono text-gray-800 ">
                         <button onClick={() => router.back()}>
                             {" "}
                             <MdOutlineArrowBack size={24} />{" "}
                         </button>
                         Edit Service Details
                     </h3>
-                    <div className=" h-full flex justify-between mobile:max-lg:flex-col-reverse gap-5 py-4 px-4">
+                    <div className=" h-full flex justify-between mobile:max-lg:flex-col-reverse gap-5 py-4 px-4 bigScreen:px-40 bigScreen:py-20">
                         <div className=" w-[50%] mobile:max-md:w-full space-y-2 px-4">
                             <div>
                                 <Label>Service name</Label>
@@ -178,11 +178,11 @@ const EditServiceForm = () => {
                                         setDescription(e.target.value)
                                     }
                                     defaultValue={service?.description}
-                                    className="text-sm text-gray-800"
+                                    className="text-sm text-gray-800 min-h-52"
                                 />
                             </div>
                         </div>
-                        <div className=" w-[50%] mobile:max-md:w-full mobile:max-md:px-4 mobile:max-md:justify-center  flex justify-end ">
+                        <div className=" w-[50%] mobile:max-md:w-full border rounded-b-sm mobile:max-md:px-4 mobile:max-md:justify-center  flex justify-end ">
                             {service && (
                                 <ImageUpLoader
                                     onUpdateMainImage={(image) =>
@@ -197,7 +197,7 @@ const EditServiceForm = () => {
                             )}
                         </div>
                     </div>
-                    <div className="flex justify-end pr-6">
+                    <div className="flex justify-end pr-6 bigScreen:pr-40">
                         <ActionBtn
                             title="Update"
                             loading={loading}
