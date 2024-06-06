@@ -12,8 +12,8 @@ export default function Home() {
 		<main className="flex flex-col min-h-full">
 			<NavBar onDashBoard={false} />
 			<HeroSection />
-			{/* <ServicesSection /> */}
-			<MasonryList />
+			<ServicesSection />
+			{/* <MasonryList /> */}
 			<Testimonials />
 			<SellWithUs />
 			<Footer />

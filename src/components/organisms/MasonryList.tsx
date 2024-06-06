@@ -4,27 +4,38 @@ import Masonry from "react-responsive-masonry";
 import { PiShareNetworkThin } from "react-icons/pi";
 import ProfileAvatar from "../molucles/Avatar";
 
-const MasonryList = () => {
-	const items = Array.from({ length: 10 }).map((_, index) => (
+const MasonryList = ({
+	services,
+	onClickOpen,
+}: {
+	services: Service[];
+	onClickOpen: (id: string) => void;
+}) => {
+	const items = services.slice(0, 10).map((service, index) => (
 		<div className="" key={index}>
 			<div
-				className={`rounded-2xl w-full hover:cursor-pointer  mobile:max-sm:w-full  h-80 bg-slate-400 ${
-					index % 2 ? "h-[400px]" : "h-[300] "
+				onClick={() => service.id && onClickOpen(service.id)}
+				className={`rounded-2xl w-full object-fill hover:cursor-pointer  mobile:max-sm:w-full  h-80 bg-slate-400 ${
+					index % 2
+						? "h-[400px] mobile:max-sm:h-[300px]"
+						: "h-[300] mobile:max-sm:h-[200px]"
 				}`}
 				style={{
-					backgroundImage: `url("https://i.pinimg.com/564x/9a/4f/52/9a4f520dd3e771098fee00d60e09bf87.jpg")`,
+					backgroundImage: `url("${service.product_image}")`,
 					backgroundPosition: "center",
 					objectFit: "contain",
+					// backgroundRepeat: "no-repeat",
+					backgroundSize: "cover",
 				}}
 			>
 				{" "}
-				<div className="w-full h-full bg-slate-900 duration-300   hover:opacity-35 rounded-2xl opacity-0"></div>
+				<div className="w-full h-full bg-slate-900 duration-300   hover:opacity-20 rounded-2xl opacity-0"></div>
 			</div>
-			<h3 className="font-bold pt-1">Roadside baber best you can...</h3>
+			<h3 className="font-bold pt-1">{service.name}</h3>
 			<div className="flex justify-between items-center">
 				<div className="flex justify-center items-center gap-2">
 					<ProfileAvatar size={2} />
-					<span>Sam Gmarvis</span>
+					<span>{service.user?.name}</span>
 				</div>
 				<button className=" p-2 hover:bg-slate-200 rounded-full">
 					<PiShareNetworkThin />
