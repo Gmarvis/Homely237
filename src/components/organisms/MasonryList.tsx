@@ -45,8 +45,7 @@ const MasonryList = ({
 	));
 	return (
 		<>
-			<div className="px-24 mobile:max-sm:px-2 py-4 mobile:max-sm:hidden sm:max-lg:px-2 sm:max-lg:hidden">
-				<h3>list component</h3>
+			<div className="px-24 mobile:max-sm:px-2 py-8 mobile:max-sm:hidden sm:max-lg:px-2 sm:max-lg:hidden">
 				<Masonry columnsCount={5} gutter="15px">
 					{items}
 				</Masonry>

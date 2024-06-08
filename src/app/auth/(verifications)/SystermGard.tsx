@@ -2,28 +2,19 @@
 import useUserStore from "@/store/userStore";
 import { decodeToken } from "@/utils/jwtDecode";
 import useGeoLocation from "@/utils/service/geoLocationService/useGeoLocation";
-import useLocationStore from "@/store/locationStore";
 
 import React, { useEffect } from "react";
 
 const SystermGard = ({ children }: { children: React.ReactNode }) => {
-    const { user, setUser } = useUserStore();
-    const { setCurrentLocation } = useLocationStore();
-    const location = useGeoLocation();
+	const { user, setUser } = useUserStore();
+	useGeoLocation();
 
-    const updateLocation = () => {
-        if (location.loaded && location.locationData) {
-            setCurrentLocation(location.locationData);
-        }
-    };
+	useEffect(() => {
+		const token = localStorage?.getItem("token");
+		if (token) setUser(decodeToken(token));
+	}, []);
 
-    useEffect(() => {
-        updateLocation();
-        const token = localStorage?.getItem("token");
-        if (token) setUser(decodeToken(token));
-    }, []);
-
-    return <>{children}</>;
+	return <>{children}</>;
 };
 
 export default SystermGard;
