@@ -88,3 +88,24 @@ export const updateService = (id: string, newData: any): any => {
         return error;
     }
 };
+
+export const getCurrentLocation = async (
+    latitude: number,
+    longitude: number
+): Promise<CurrentLoacation | undefined> => {
+    try {
+        const data = await apiCall.GET(
+            `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
+        );
+        if (data) {
+            return {
+                city: data.city,
+                continent: data.continent,
+                continentCode: data.continentCode,
+                countryCode: data.countryCode,
+                countryName: data.countryName,
+                locality: data.locality,
+            };
+        }
+    } catch (error) {}
+};

@@ -1,6 +1,6 @@
 "use client";
 import NavBar from "@/components/organisms/NavBar";
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import * as Queries from "@/utils/queries";
@@ -10,21 +10,24 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import DatePicker from "./_components/DatePicker";
+import useUserStore from "@/store/userStore";
 
 const Page = () => {
     const [service, setService] = useState<Service | null>();
     const [location, setLocation] = useState("");
     const [selectedDate, setSelectedDate] = useState<Date>();
     const [description, setDescription] = useState("");
-
+    const { user } = useUserStore();
     // get Service Id form the params
     const serviceId = usePathname().split("/")[2];
+    console.log("serviceId", serviceId);
+    const service_id = useParams().id;
 
     useEffect(() => {
-        Queries.getServiceByServiceID(serviceId).then((res) => {
+        Queries.getServiceByServiceID(serviceId).then((res: Service) => {
             if (res.id) {
                 setService(res);
-                console.log("service", service);
+                console.log(res);
             }
         });
     }, []);
@@ -32,6 +35,9 @@ const Page = () => {
     const handleBooking = (e: { preventDefault: () => void }) => {
         e.preventDefault();
         const bookingDetails = {
+            user_id: user.id,
+            provider_id: service?.user?.id,
+            product_id: serviceId,
             location,
             selectedDate,
             description,
