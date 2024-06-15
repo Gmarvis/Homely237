@@ -137,7 +137,7 @@ const UploadImages = ({ onClickBack, onNextClick }: PropType) => {
 					<p className="py-1 text-slate-600 self-end  px-2 rounded-md shadow-md">
 						{images.length}/4
 					</p>
-					<ActionBtn title="upload" loading={isLoading} onClick={uplaodImage} />
+					<ActionBtn className="bg-slate-600 hover:bg-secondrytheme px-10" title="upload" loading={isLoading} onClick={uplaodImage} />
 				</div>
 			</div>
 
@@ -171,10 +171,10 @@ const UploadImages = ({ onClickBack, onNextClick }: PropType) => {
 				))}
 			</div>
 			<div className="flex justify-between gap-3 w-full ">
-				<Button onClick={onClickBack} className=" px-10 bg-slate-500">
+				<Button onClick={onClickBack} className=" px-10 bg-primarytheme hover:bg-secondrytheme">
 					Back
 				</Button>
-				<Button onClick={handleNext} className=" px-10">
+				<Button onClick={handleNext} className=" bg-primarytheme hover:bg-secondrytheme px-10">
 					Next
 				</Button>
 			</div>

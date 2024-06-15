@@ -5,16 +5,17 @@ interface PropTypes {
     loading?: boolean;
     onClick?: () => void;
     title: string;
+    className?: string
 }
 
-export const ActionBtn = ({ ...props }: PropTypes) => {
+export const ActionBtn =  ({ ...props }: PropTypes) => {
     return (
         <div className="flex gap-2  items-center ">
             {props.loading && <Spinner />}
             <button
                 disabled={props.loading}
                 onClick={props.onClick}
-                className=" bg-primarytheme hover:bg-gray-900 disabled:cursor-not-allowed disabled:bg-gray-300 px-8 p-2 text-white rounded-md"
+                className={`${props.className} bg-primarytheme hover:bg-secondrytheme disabled:cursor-not-allowed disabled:bg-gray-300 px-8 p-2 text-white rounded-md`}
             >
                 {props.title}
             </button>

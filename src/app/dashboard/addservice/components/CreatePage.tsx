@@ -33,11 +33,7 @@ const CreatePage = ({ ...props }: PropType) => {
 
 	const handleSubmit = async () => {
 		setLoading(true);
-		createService({
-			...serviceDetals,
-			city: "Yoaunde",
-			locality: "Simbok",
-		}).then(async (res) => {
+		createService(serviceDetals).then(async (res) => {
 			if (res.id) {
 				localStorage.removeItem("images");
 				localStorage.removeItem("serviceData");
@@ -72,7 +68,7 @@ const CreatePage = ({ ...props }: PropType) => {
 					</Button>
 					<span
 						onClick={props.onClickBack}
-						className="text-primarytheme hover:cursor-pointer text-sm"
+						className="bg-primarytheme hover:bg-secondrytheme px-10 text-sm"
 					>
 						take another look
 					</span>

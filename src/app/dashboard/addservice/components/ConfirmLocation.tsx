@@ -47,10 +47,10 @@ const ConfirmLocation = ({ onNextClick, onClickBack }: PropType) => {
 				<Input className="w-full" value={currentLocation.locality} />
 			</div>
 			<div className="flex gap-3 justify-between pt-16">
-				<Button onClick={onClickBack} className="bg-slate-500 px-10">
+				<Button onClick={onClickBack} className="bg-primarytheme hover:bg-secondrytheme px-10">
 					Back
 				</Button>
-				<Button className="px-10" onClick={setProductData}>
+				<Button className="px-10 bg-primarytheme hover:bg-secondrytheme" onClick={setProductData}>
 					Confirm
 				</Button>
 			</div>

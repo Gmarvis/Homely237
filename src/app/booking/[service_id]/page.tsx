@@ -12,19 +12,73 @@ import DatePicker from "./_components/DatePicker";
 import useUserStore from "@/store/userStore";
 import useLocationStore from "@/store/locationStore";
 
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import {
+	Form,
+	FormControl,
+	FormDescription,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from "@/components/ui/form";
+import { ActionBtn } from "@/components/atoms/buttons/ActionBtn";
+
 const Page = () => {
 	const [service, setService] = useState<Service | null>();
 	const [location, setLocation] = useState("");
 	const [selectedDate, setSelectedDate] = useState<Date>();
-	const [description, setDescription] = useState("");
-	const [phoneNumber, setPhomeNumber] = useState("")
 	const { user } = useUserStore();
 	const serviceId = usePathname().split("/")[2];
+	const [isLoading, setIsLoading] = useState(false);
+	const [dateError, setDateError] = useState("");
 	// console.log("serviceId", serviceId);
-
 
 	const { currentLocation } = useLocationStore();
 
+	// form schema
+	const formSchema = z.object({
+		phone_number: z
+			.string()
+			.min(9, { message: "number should not be less than (9) digits" })
+			.max(9, { message: "number should not be greater than (9) digits" }),
+		location_detials: z
+			.string()
+			.min(10, { message: "details hould be atleast 10 characters" }),
+		description: z
+			.string()
+			.min(100, { message: "description hould be atleast 10 characters" }),
+	});
+
+	const onSubmit = async (values: z.infer<typeof formSchema>) => {
+		if (!selectedDate) {
+			setDateError("date is required");
+			return;
+		}
+		setIsLoading(true)
+		const bookingDetails = {
+			...values,
+			user_id: user.id,
+			provider_id: service?.user?.id,
+			product_id: serviceId,
+			city: currentLocation.city,
+			locality: currentLocation.locality,
+			date: selectedDate
+		};
+
+		const data = await Queries.creatApointment(bookingDetails);
+		console.log(data);
+		setIsLoading(false)
+	};
+
+	const form = useForm<z.infer<typeof formSchema>>({
+		resolver: zodResolver(formSchema),
+		defaultValues: {
+			phone_number: "",
+		},
+	});
 	useEffect(() => {
 		Queries.getServiceByServiceID(serviceId).then((res: Service) => {
 			if (res.id) {
@@ -33,85 +87,106 @@ const Page = () => {
 			}
 		});
 	}, []);
-
-	const handleBooking = (e: { preventDefault: () => void }) => {
-		e.preventDefault();
-		const bookingDetails = {
-			user_id: user.id,
-			provider_id: service?.user?.id,
-			product_id: serviceId,
-			location_detials: location,
-			date:  selectedDate,
-			city: currentLocation.city,
-			locality: currentLocation.locality,
-			description,
-			phone_number: phoneNumber
-		};
-
-		Queries.creatApointment(bookingDetails)
-		console.log("bookingDetails", bookingDetails);
-	};
-
 	return (
-		<div>
+		<div className=" h-full">
 			<NavBar hideSearchBar={true} onDashBoard={false} />
-			<div className="flex justify-center items-center mobile:max-sm:justify-start  mobile:max-sm:items-start   pt-[60px] h-[100vh] w-full relative">
-				<div className="w-[40rem] flex flex-col justify-center mobile:max-sm:w-full h-auto  p-2 bg-white absolute sm:shadow-md">
-					<div className="max-w-md self-center text-center mb-10">
-						<h1 className="text-center text-3xl font-bold">
-							Ready to Book your service?
-						</h1>
-						<p className="text-xs text-gray-700">
-							lets make sure the provider get what you need by providing details
-							in the form bellow
-						</p>
-					</div>
-
-					<form
-						onSubmit={handleBooking}
-						className="flex flex-col gap-4 space-y-3"
-					>
-						<div>
-							<p> City: {currentLocation.city}</p>
-							<p> Locality: {currentLocation.locality}</p>
-						</div>
-						<div className="flex flex-col">
-							<Label>Enter date</Label>
-							<DatePicker onSelectDate={setSelectedDate} />
-						</div>
-						<div>
-							<Label>WhatsApp Number</Label>
-							<Input
-								type="number"
-								placeholder="670000000"
-								onChange={(e) => setPhomeNumber(e.target.value)}
+			<div className="flex pt-[10rem] md:max-xl:pt-[5rem] pb-10 mobile:max-md:pt-[5rem] px-24 gap-10 justify-center mobile:max-lg:flex-col mobile:max-md:px-2 ">
+				<div className="self-center text-center mb-10 w-[30%] mobile:max-lg:w-full">
+					<h1 className="text-center text-3xl font-bold">
+						Ready to Book your service?
+					</h1>
+					<p className="text-sm text-gray-700">
+						lets make sure the provider get what you need by providing details
+						in the form bellow
+					</p>
+				</div>
+				<div className="w-[50rem] flex flex-col mobile:max-sm:w-full h-auto  p-2 bg-white  sm:shadow-md">
+					<Form {...form}>
+						<form
+							onSubmit={form.handleSubmit(onSubmit)}
+							className="flex flex-col gap-4 space-y-3"
+						>
+							<div>
+								<p> City: {currentLocation.city}</p>
+								<p> Locality: {currentLocation.locality}</p>
+							</div>
+							<div className="flex flex-col">
+								<Label>Enter date</Label>
+								<DatePicker
+									onSelectDate={(date) => {
+										setSelectedDate(date)
+										setDateError("")
+									}}
+								/>
+								{dateError && (
+									<p className="text-sm font-semibold text-red-500">
+										{dateError}
+									</p>
+								)}
+							</div>
+							<FormField
+								control={form.control}
+								name="phone_number"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel>WhatsApp number</FormLabel>
+										<FormControl>
+											<Input placeholder="670000000" {...field} type="number" />
+										</FormControl>
+										<FormDescription>
+											This should be an active whatsApp number do not include
+											country code.
+										</FormDescription>
+										<FormMessage />
+									</FormItem>
+								)}
 							/>
-						</div>
-
-						<div>
-							<Label>Discribe your location</Label>
-							<Input onChange={(e) => setLocation(e.target.value)} />
-						</div>
-
-						<div>
-							<Label className="flex py-1 justify-between">
-								<p>Describe what you need to help the provider come prepared</p>
-								<span
-									className={`${
-										description.length < 600 ? "text-red-600" : "text-green-600"
-									}`}
-								>
-									{description.length || 0}/ 600
-								</span>
-							</Label>
-							<Textarea
-								className="text-gray-800"
-								onChange={(e) => setDescription(e.target.value)}
+							<FormField
+								control={form.control}
+								name="location_detials"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel>Discribe your location</FormLabel>
+										<FormControl>
+											<Input
+												placeholder="Enter location details here"
+												{...field}
+												type="text"
+											/>
+										</FormControl>
+										<FormDescription>
+											A short description of your presice location will help
+										</FormDescription>
+										<FormMessage />
+									</FormItem>
+								)}
 							/>
-						</div>
-
-						<Button className="bg-primarytheme">Book Now</Button>
-					</form>
+							<FormField
+								control={form.control}
+								name="description"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel>Description</FormLabel>
+										<FormControl>
+											<Textarea className="text-gray-800 min-h-40" {...field} />
+										</FormControl>
+										<FormDescription>
+											To help the service provider come prepare, explain what
+											you need here
+										</FormDescription>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>{" "}
+							<div className="flex w-full items-end justify-end">
+								<ActionBtn
+									className="self-end justify-end"
+									title="Book Now"
+									loading={isLoading}
+								/>
+							</div>
+						</form>
+					</Form>
 				</div>
 			</div>
 		</div>
@@ -120,6 +195,6 @@ const Page = () => {
 
 export default Page;
 
-// todo
+//  todo
 // 1 prevent users from adding past dates
 // 2
