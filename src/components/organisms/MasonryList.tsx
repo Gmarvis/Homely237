@@ -26,7 +26,8 @@ const MasonryList = ({
                     objectFit: 'contain',
                     // backgroundRepeat: "no-repeat",
                     backgroundSize: 'cover'
-                }}>
+                }}
+            >
                 {' '}
                 <div className="w-full h-full bg-slate-900 duration-300   hover:opacity-20 rounded-2xl opacity-0"></div>
             </div>

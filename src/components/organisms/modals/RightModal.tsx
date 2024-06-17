@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
     SheetTrigger,
     SheetContent,
@@ -9,9 +9,9 @@ import {
     SheetDescription,
     SheetFooter,
     SheetClose,
-    Sheet,
-} from "@/components/ui/sheet";
-import React from "react";
+    Sheet
+} from '@/components/ui/sheet';
+import React from 'react';
 
 type PropTypes = {
     title: string;
@@ -20,17 +20,12 @@ type PropTypes = {
     children: React.ReactNode;
 };
 
-export function RightModal({
-    title,
-    description,
-    trigger,
-    children,
-}: PropTypes) {
+export function RightModal({ title, description, trigger, children }: PropTypes) {
     return (
         <div className="grid grid-cols-2 gap-2">
             <Sheet>
                 <SheetTrigger asChild>{trigger}</SheetTrigger>
-                <SheetContent side={"right"}>
+                <SheetContent side={'right'}>
                     <SheetHeader>
                         <SheetTitle>{title}</SheetTitle>
                         <SheetDescription>{description}</SheetDescription>

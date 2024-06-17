@@ -1,5 +1,5 @@
-import React from "react";
-import EditServiceForm from "./_components/EditForm";
+import React from 'react';
+import EditServiceForm from './_components/EditForm';
 
 const page = () => {
     return (

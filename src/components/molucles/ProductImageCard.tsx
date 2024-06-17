@@ -1,11 +1,11 @@
-import React, { useState, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
-import { HiDotsHorizontal } from "react-icons/hi";
-import DropDown from "./DropDown";
-import Overlay from "../atoms/Overlay";
+import React, { useState, useRef, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { HiDotsHorizontal } from 'react-icons/hi';
+import DropDown from './DropDown';
+import Overlay from '../atoms/Overlay';
 
 //react icons
-import { RiVerifiedBadgeFill } from "react-icons/ri";
+import { RiVerifiedBadgeFill } from 'react-icons/ri';
 
 type ImageCardProps = {
     image: string;
@@ -25,12 +25,12 @@ const ProductImageCard = ({ image, children, showBadge }: ImageCardProps) => {
             style={{
                 backgroundImage: `url(${image})`,
 
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                objectFit: "fill",
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                objectFit: 'fill'
             }}
             className={`${
-                showBadge ? "border-4 border-secondrytheme" : ""
+                showBadge ? 'border-4 border-secondrytheme' : ''
             } w-[100px] mobile:max-sm:w-[22vw]  h-[100px] mobile:max-sm:h-[22vw] bg-white shadow-md flex items-end flex-col p-2 relative bigScreen:w-[150px] bigScreen:h-[150px] transition-all`}
         >
             <button
@@ -39,12 +39,7 @@ const ProductImageCard = ({ image, children, showBadge }: ImageCardProps) => {
             >
                 <HiDotsHorizontal size={20} />
             </button>
-            {showMenu && (
-                <Overlay
-                    transparent
-                    onClick={() => setShowImageMenu((prev) => !prev)}
-                />
-            )}
+            {showMenu && <Overlay transparent onClick={() => setShowImageMenu((prev) => !prev)} />}
             {showMenu && (
                 <motion.div
                     initial={{ opacity: 0, translateY: -20 }}

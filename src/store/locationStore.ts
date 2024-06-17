@@ -1,4 +1,4 @@
-import { create } from "zustand";
+import { create } from 'zustand';
 
 type StoreType = {
     currentLocation: CurrentLoacation;
@@ -7,15 +7,14 @@ type StoreType = {
 
 const useLocationStore = create<StoreType>((set) => ({
     currentLocation: {
-        city: "",
-        continent: "",
-        continentCode: "",
-        countryCode: "",
-        countryName: "",
-        locality: "",
+        city: '',
+        continent: '',
+        continentCode: '',
+        countryCode: '',
+        countryName: '',
+        locality: ''
     },
-    setCurrentLocation: (location) =>
-        set(() => ({ currentLocation: location })),
+    setCurrentLocation: (location) => set(() => ({ currentLocation: location }))
 }));
 
 export default useLocationStore;

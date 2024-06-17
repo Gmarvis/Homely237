@@ -1,5 +1,5 @@
-"use client";
-import { useState } from "react";
+'use client';
+import { useState } from 'react';
 
 type InPutProps = {
     label: string;
@@ -8,15 +8,13 @@ type InPutProps = {
     type?: string;
 };
 
-const FormInput = ({ label, onChange, styles, type = "text" }: InPutProps) => {
+const FormInput = ({ label, onChange, styles, type = 'text' }: InPutProps) => {
     const [showLabel, setShowLabel] = useState(false);
     return (
         <div className={`    ${styles}  text-sm relative `}>
             <span
                 className={`absolute bottom-7 bigScreen:bottom-11 mobile:max-sm:bottom-11 ${
-                    !showLabel
-                        ? "hidden"
-                        : "visible duration-700 transition ease-in-out"
+                    !showLabel ? 'hidden' : 'visible duration-700 transition ease-in-out'
                 } bg-white px-[5px]  text-primarytheme left-2`}
             >
                 {label}

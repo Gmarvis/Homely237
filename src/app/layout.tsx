@@ -1,23 +1,19 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import "react-toastify/dist/ReactToastify.min.css";
-import SystermGard from "./auth/(verifications)/SystermGard";
-import { EdgeStoreProvider } from "@/lib/edgestore";
-import { ToastContainer } from "./nextToast";
+import type { Metadata } from 'next';
+import './globals.css';
+import 'react-toastify/dist/ReactToastify.min.css';
+import SystermGard from './auth/(verifications)/SystermGard';
+import { EdgeStoreProvider } from '@/lib/edgestore';
+import { ToastContainer } from './nextToast';
 // import { ThemeProvider } from "next-themes";
 
 export const metadata: Metadata = {
-    title: "homygig",
+    title: 'homygig',
     description: "Cameroon's best home service provision platform",
-    manifest: "/manifest.json",
-    icons: { apple: "/public/icon-512x512.png" },
+    manifest: '/manifest.json',
+    icons: { apple: '/public/icon-512x512.png' }
 };
 
-export default function RootLayout({
-    children,
-}: {
-    children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en">
             {/* {
@@ -28,11 +24,7 @@ export default function RootLayout({
             <EdgeStoreProvider>
                 <SystermGard>
                     <body className="">
-                        <ToastContainer
-                            hideProgressBar={false}
-                            newestOnTop={false}
-                            closeOnClick
-                        />
+                        <ToastContainer hideProgressBar={false} newestOnTop={false} closeOnClick />
                         {children}
                     </body>
                 </SystermGard>

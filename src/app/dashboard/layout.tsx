@@ -1,10 +1,10 @@
-"use client";
-import SideBar from "@/components/organisms/SideBar";
+'use client';
+import SideBar from '@/components/organisms/SideBar';
 
 // STORE IMPORT
-import useUserStore from "@/store/userStore";
-import NavBar from "@/components/organisms/NavBar";
-import Loading from "./loading";
+import useUserStore from '@/store/userStore';
+import NavBar from '@/components/organisms/NavBar';
+import Loading from './loading';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
     const { user } = useUserStore();

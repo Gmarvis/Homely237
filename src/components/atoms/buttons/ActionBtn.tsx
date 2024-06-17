@@ -1,14 +1,14 @@
-import React from "react";
-import Spinner from "../Spinner";
+import React from 'react';
+import Spinner from '../Spinner';
 
 interface PropTypes {
     loading?: boolean;
     onClick?: () => void;
     title: string;
-    className?: string
+    className?: string;
 }
 
-export const ActionBtn =  ({ ...props }: PropTypes) => {
+export const ActionBtn = ({ ...props }: PropTypes) => {
     return (
         <div className="flex gap-2  items-center ">
             {props.loading && <Spinner />}

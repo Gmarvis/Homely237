@@ -1,18 +1,18 @@
-import React from "react";
-import Image from "next/image";
-import ProfileAvatar from "../../molucles/Avatar";
-import { useCaps } from "@/utils/service/helperFuntions";
-import { motion } from "framer-motion";
+import React from 'react';
+import Image from 'next/image';
+import ProfileAvatar from '../../molucles/Avatar';
+import { useCaps } from '@/utils/service/helperFuntions';
+import { motion } from 'framer-motion';
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+    DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu';
 
-import { HiDotsVertical } from "react-icons/hi";
-import DailogBox from "../modals/DailogBox";
-import Link from "next/link";
+import { HiDotsVertical } from 'react-icons/hi';
+import DailogBox from '../modals/DailogBox';
+import Link from 'next/link';
 
 type CardTypes = {
     service: Service;
@@ -27,7 +27,7 @@ const ServiceCard = ({
     onClick,
     onClickDelete,
     hideAuthor,
-    showMenu = false,
+    showMenu = false
 }: CardTypes) => {
     return (
         <motion.div
@@ -53,21 +53,13 @@ const ServiceCard = ({
             <div className="flex w-full px-2 justify-between items-center">
                 {service.user && (
                     <div className="flex items-center justify-center gap-1">
-                        {!hideAuthor && (
-                            <ProfileAvatar user={service.user} size={2} />
-                        )}
-                        {!hideAuthor && (
-                            <p className="smallText">{service.user.name}</p>
-                        )}
+                        {!hideAuthor && <ProfileAvatar user={service.user} size={2} />}
+                        {!hideAuthor && <p className="smallText">{service.user.name}</p>}
                     </div>
                 )}
-                {!hideAuthor && (
-                    <span className="smallText">{service.price}CFA/hour</span>
-                )}
+                {!hideAuthor && <span className="smallText">{service.price}CFA/hour</span>}
             </div>
-            {hideAuthor && (
-                <span className="smallText">{service.price}CFA/hour</span>
-            )}
+            {hideAuthor && <span className="smallText">{service.price}CFA/hour</span>}
             {showMenu && (
                 <DropdownMenu>
                     <DropdownMenuTrigger className="absolute top-2 right-2 shadow-md bg-white flex justify-center items-center rounded-full h-8 w-8">
@@ -82,9 +74,7 @@ const ServiceCard = ({
                         </Link>
                         <DailogBox
                             onClickAction={() =>
-                                onClickDelete &&
-                                service.id &&
-                                onClickDelete(service.id)
+                                onClickDelete && service.id && onClickDelete(service.id)
                             }
                             isWarning
                             title="Are you absolutely sure?"
@@ -92,9 +82,7 @@ const ServiceCard = ({
                         delete your service and remove your data from our
                         servers."
                             triggerComponent={
-                                <h3 className="px-2 py-1 hover:bg-gray-200">
-                                    Delete
-                                </h3>
+                                <h3 className="px-2 py-1 hover:bg-gray-200">Delete</h3>
                             }
                         />
                     </DropdownMenuContent>
