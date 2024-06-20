@@ -1,20 +1,20 @@
-"use client";
-import useUserStore from "@/store/userStore";
-import { decodeToken } from "@/utils/jwtDecode";
-import useGeoLocation from "@/utils/service/geoLocationService/useGeoLocation";
+'use client';
+import useUserStore from '@/store/userStore';
+import { decodeToken } from '@/utils/jwtDecode';
+import useGeoLocation from '@/utils/service/geoLocationService/useGeoLocation';
 
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 
 const SystermGard = ({ children }: { children: React.ReactNode }) => {
-	const { user, setUser } = useUserStore();
-	useGeoLocation();
+    const { user, setUser } = useUserStore();
+    useGeoLocation();
 
-	useEffect(() => {
-		const token = localStorage?.getItem("token");
-		if (token) setUser(decodeToken(token));
-	}, []);
+    useEffect(() => {
+        const token = localStorage?.getItem('token');
+        if (token) setUser(decodeToken(token));
+    }, []);
 
-	return <>{children}</>;
+    return <>{children}</>;
 };
 
 export default SystermGard;

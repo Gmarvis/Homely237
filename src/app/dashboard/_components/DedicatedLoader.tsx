@@ -1,4 +1,4 @@
-import SmoothLoader from "@/components/atoms/SmoothLoader";
+import SmoothLoader from '@/components/atoms/SmoothLoader';
 
 const DedicatedLoader = () => {
     return (

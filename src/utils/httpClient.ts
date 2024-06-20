@@ -1,46 +1,42 @@
-import { LOCAL_STORAGE } from "./storage";
+import { LOCAL_STORAGE } from './storage';
 
 const Headers = {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${LOCAL_STORAGE.get("token")}`,
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${LOCAL_STORAGE.get('token')}`
 };
 
 export default class ApiCall {
     async PUT(url: string, body: any, _headers: HeadersInit = {}) {
         return fetch(url, {
-            method: "PUT",
+            method: 'PUT',
             headers: { ...Headers, ..._headers },
-            body: JSON.stringify(body),
+            body: JSON.stringify(body)
         }).then((res) => res.json());
     }
 
     async GET(url: string, _headers: HeadersInit = {}) {
         return fetch(url, {
-            method: "GET",
-            headers: { ...Headers, ..._headers },
+            method: 'GET',
+            headers: { ...Headers, ..._headers }
         })
             .then((res) => res.json())
-            .catch((err) =>
-                console.log("an error occurs while fetching on " + url, err)
-            );
+            .catch((err) => console.log('an error occurs while fetching on ' + url, err));
     }
 
     async POST(url: string, body: any, _headers: HeadersInit = {}) {
         return fetch(url, {
-            method: "POST",
+            method: 'POST',
             headers: { ...Headers, ..._headers },
-            body: JSON.stringify(body),
+            body: JSON.stringify(body)
         })
             .then((res) => res.json())
-            .catch((err) =>
-                console.log("an error occurs while fetching on " + url, err)
-            );
+            .catch((err) => console.log('an error occurs while fetching on ' + url, err));
     }
 
     async DELETE(url: string, _headers: HeadersInit = {}) {
         return fetch(url, {
-            method: "DELETE",
-            headers: { ...Headers, ..._headers },
+            method: 'DELETE',
+            headers: { ...Headers, ..._headers }
         });
     }
 }

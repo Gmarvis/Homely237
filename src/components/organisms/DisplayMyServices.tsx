@@ -1,11 +1,11 @@
-"use client";
-import { deleteService, getServiceByUserID } from "@/utils/queries";
-import useUserStore from "@/store/userStore";
-import React, { Suspense, useEffect, useState } from "react";
-import ServiceCard from "./cards/ServiceCard";
-import ServicesSection from "./ServicesSection";
-import SmoothLoader from "../atoms/SmoothLoader";
-import { toast } from "react-toastify";
+'use client';
+import { deleteService, getServiceByUserID } from '@/utils/queries';
+import useUserStore from '@/store/userStore';
+import React, { Suspense, useEffect, useState } from 'react';
+import ServiceCard from './cards/ServiceCard';
+import ServicesSection from './ServicesSection';
+import SmoothLoader from '../atoms/SmoothLoader';
+import { toast } from 'react-toastify';
 
 /*>>>>>>>>>>>>>>THIS COMPONENT DISPLAYS ALL THE SERVICE PROVIDER'S SERVICE<<<<<<<<<<<<<*/
 const DisplayMyServices = () => {
@@ -29,10 +29,10 @@ const DisplayMyServices = () => {
         if (results === 1) {
             setMyServices(myService.filter((service) => service.id !== id));
         } else {
-            toast.error("failed to delete service", {
-                position: "top-right",
+            toast.error('failed to delete service', {
+                position: 'top-right',
                 hideProgressBar: true,
-                autoClose: 3000,
+                autoClose: 3000
             });
         }
     };

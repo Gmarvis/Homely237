@@ -1,107 +1,107 @@
-"use client";
-import Link from "next/link";
-import React from "react";
-import Image from "next/image";
-import SocialLinks from "./SocialLinks";
+'use client';
+import Link from 'next/link';
+import React from 'react';
+import Image from 'next/image';
+import SocialLinks from './SocialLinks';
 const Footer = ({ className }: { className?: string }) => {
     const companyLinks = [
         {
-            href: "",
-            name: "Partners",
+            href: '',
+            name: 'Partners'
         },
         {
-            href: "",
-            name: "Blog",
+            href: '',
+            name: 'Blog'
         },
         {
-            href: "",
-            name: "Team",
+            href: '',
+            name: 'Team'
         },
         {
-            href: "",
-            name: "Careers",
-        },
+            href: '',
+            name: 'Careers'
+        }
     ];
 
     const footerNavs = [
         {
-            label: "Company",
+            label: 'Company',
             items: [
                 {
-                    href: "",
-                    name: "Partners",
+                    href: '',
+                    name: 'Partners'
                 },
                 {
-                    href: "",
-                    name: "Blog",
+                    href: '',
+                    name: 'Blog'
                 },
                 {
-                    href: "",
-                    name: "Team",
+                    href: '',
+                    name: 'Team'
                 },
                 {
-                    href: "",
-                    name: "Careers",
-                },
-            ],
+                    href: '',
+                    name: 'Careers'
+                }
+            ]
         },
         {
-            label: "Resources",
+            label: 'Resources',
             items: [
                 {
-                    href: "",
-                    name: "contact",
+                    href: '',
+                    name: 'contact'
                 },
                 {
-                    href: "",
-                    name: "Support",
+                    href: '',
+                    name: 'Support'
                 },
                 {
-                    href: "",
-                    name: "Docs",
+                    href: '',
+                    name: 'Docs'
                 },
                 {
-                    href: "",
-                    name: "Pricing",
-                },
-            ],
+                    href: '',
+                    name: 'Pricing'
+                }
+            ]
         },
         {
-            label: "About",
+            label: 'About',
             items: [
                 {
-                    href: "",
-                    name: "Terms",
+                    href: '',
+                    name: 'Terms'
                 },
                 {
-                    href: "",
-                    name: "License",
+                    href: '',
+                    name: 'License'
                 },
                 {
-                    href: "",
-                    name: "Privacy",
+                    href: '',
+                    name: 'Privacy'
                 },
                 {
-                    href: "",
-                    name: "About US",
-                },
-            ],
-        },
+                    href: '',
+                    name: 'About US'
+                }
+            ]
+        }
     ];
 
     const services = [
         {
-            name: "Booking",
-            path: "/",
+            name: 'Booking',
+            path: '/'
         },
         {
-            name: "Listing",
-            path: "/",
+            name: 'Listing',
+            path: '/'
         },
         {
-            name: "consultations",
-            path: "/",
-        },
+            name: 'consultations',
+            path: '/'
+        }
     ];
 
     return (
@@ -110,19 +110,13 @@ const Footer = ({ className }: { className?: string }) => {
         >
             <div className="grid grid-cols-5 sm:max-md:grid-cols-2 mobile:max-sm:grid-cols-1 mobile:max-sm:gap-3">
                 <div className="logo-footer-section flex flex-col gap-2">
-                    <Link href={"/"} className={` w-full `}>
-                        <Image
-                            src={"/whitelogo.png"}
-                            alt="homygig logo"
-                            width={110}
-                            height={60}
-                        />
+                    <Link href={'/'} className={` w-full `}>
+                        <Image src={'/whitelogo.png'} alt="homygig logo" width={110} height={60} />
                     </Link>
                     <p className="text-[12px] text-gray-700">
-                        It has never been more easy to find home service
-                        providers in cameroon than now, thanks to homygig,
-                        customers are happy and service providers are exited, we
-                        are proud for making life better in Cameroon.
+                        It has never been more easy to find home service providers in cameroon than
+                        now, thanks to homygig, customers are happy and service providers are
+                        exited, we are proud for making life better in Cameroon.
                     </p>
                     <SocialLinks />
                 </div>
@@ -162,16 +156,11 @@ const Footer = ({ className }: { className?: string }) => {
 
                 <div className="subscribe flex flex-col w-full gap-4 px-2">
                     <div className="flex self-center  rounded-full bg-secondrytheme w-20 h-20 mobile:max-sm:hidden">
-                        <Image
-                            src={"/cookwithlogo.png"}
-                            width={200}
-                            height={500}
-                            alt=""
-                        />
+                        <Image src={'/cookwithlogo.png'} width={200} height={500} alt="" />
                     </div>
                     <p className="text-[12px] text-gray-700">
-                        Stay up-to-date with our latest trends and news by
-                        subscribing to our newsletters
+                        Stay up-to-date with our latest trends and news by subscribing to our
+                        newsletters
                     </p>
 
                     <form className="flex justify-between items-center border-2 border-secondrytheme ">
@@ -187,9 +176,7 @@ const Footer = ({ className }: { className?: string }) => {
                 </div>
             </div>
             <div className="copyrights  p-4">
-                <p className="text-center text-[12px] text-slate-300 ">
-                    copyrights @2024 homygig
-                </p>
+                <p className="text-center text-[12px] text-slate-300 ">copyrights @2024 homygig</p>
             </div>
         </footer>
     );

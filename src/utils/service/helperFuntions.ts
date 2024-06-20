@@ -1,2 +1,1 @@
-export const useCaps = (str: string) =>
-  `${str.charAt(0).toUpperCase()}${str.slice(1)}`;
+export const useCaps = (str: string) => `${str.charAt(0).toUpperCase()}${str.slice(1)}`;

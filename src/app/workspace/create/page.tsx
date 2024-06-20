@@ -1,8 +1,8 @@
-"use client";
-import NavBar from "@/components/organisms/NavBar";
-import React from "react";
-import ProfileSection from "../_components/ProfileSection";
-import CreateProviderForm from "../_components/CreateProviderForm";
+'use client';
+import NavBar from '@/components/organisms/NavBar';
+import React from 'react';
+import ProfileSection from '../_components/ProfileSection';
+import CreateProviderForm from '../_components/CreateProviderForm';
 
 const page = () => {
     return (

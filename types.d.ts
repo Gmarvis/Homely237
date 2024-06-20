@@ -48,3 +48,20 @@ interface CurrentLoacation {
     countryName: string;
     locality: string;
 }
+
+interface Appointment {
+    id: string;
+    user_id: string;
+    provider_id: string;
+    product_id: string;
+    description: string;
+    city: string;
+    locality: string;
+    phone_number: string;
+    location_detials: string;
+    date: Date;
+    status: string;
+    createdAt: Date;
+    updatedAt: Date;
+    user: User;
+}

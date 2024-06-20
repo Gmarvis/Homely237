@@ -1,5 +1,5 @@
-import React from "react";
-import { FaPlus } from "react-icons/fa6";
+import React from 'react';
+import { FaPlus } from 'react-icons/fa6';
 
 const ProfileSection = () => {
     return (
@@ -9,12 +9,12 @@ const ProfileSection = () => {
                 style={{
                     backgroundImage: `url(${
                         // user?.image ||
-                        "https://i.pinimg.com/564x/9e/83/75/9e837528f01cf3f42119c5aeeed1b336.jpg"
+                        'https://i.pinimg.com/564x/9e/83/75/9e837528f01cf3f42119c5aeeed1b336.jpg'
                     })`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    objectFit: "fill",
-                    backgroundRepeat: "no-repeat",
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    objectFit: 'fill',
+                    backgroundRepeat: 'no-repeat'
                     // borderRadius: "50%",
                 }}
             >

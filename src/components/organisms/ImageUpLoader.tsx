@@ -1,12 +1,12 @@
-import { ActionBtn } from "@/components/atoms/buttons/ActionBtn";
-import ProductImageCard from "@/components/molucles/ProductImageCard";
-import { SingleImageDropzone } from "@/components/molucles/SingleImageDropZone";
-import { Button } from "@/components/ui/button";
-import { useEdgeStore } from "@/lib/edgestore";
-import { LOCAL_STORAGE } from "@/utils/storage";
-import { progress } from "framer-motion";
-import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import { ActionBtn } from '@/components/atoms/buttons/ActionBtn';
+import ProductImageCard from '@/components/molucles/ProductImageCard';
+import { SingleImageDropzone } from '@/components/molucles/SingleImageDropZone';
+import { Button } from '@/components/ui/button';
+import { useEdgeStore } from '@/lib/edgestore';
+import { LOCAL_STORAGE } from '@/utils/storage';
+import { progress } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 type PropType = {
     allImages: string[];
@@ -19,7 +19,7 @@ const ImageUpLoader = ({
     allImages,
     product_image,
     onImagesUpload,
-    onUpdateMainImage,
+    onUpdateMainImage
 }: PropType) => {
     const [file, setFile] = useState<any>();
     const { edgestore } = useEdgeStore();
@@ -33,7 +33,7 @@ const ImageUpLoader = ({
     const [images, setImages] = useState<string[]>(allImages);
 
     useEffect(() => {
-        setMainImage(localStorage.getItem("product_image") || "");
+        setMainImage(localStorage.getItem('product_image') || '');
     }, []);
 
     const setmainImg = (image: string) => {
@@ -46,8 +46,8 @@ const ImageUpLoader = ({
 
         const updateImages: any = images.filter((img: string) => img !== image);
         if (mainImage === image) {
-            setMainImage("");
-            onUpdateMainImage("");
+            setMainImage('');
+            onUpdateMainImage('');
         }
         // setImages(updateImages);
         onImagesUpload(updateImages);
@@ -57,10 +57,10 @@ const ImageUpLoader = ({
     const uplaodImage = async () => {
         if (file) {
             if (images.length === 4) {
-                toast.warning("You can only uplaod 4 images", {
-                    position: "top-right",
+                toast.warning('You can only uplaod 4 images', {
+                    position: 'top-right',
                     hideProgressBar: true,
-                    autoClose: 3000,
+                    autoClose: 3000
                 });
                 return;
             }
@@ -68,7 +68,7 @@ const ImageUpLoader = ({
             setIsLoading(true);
             const res = await edgestore.publicFiles.upload({
                 file,
-                onProgressChange: (preg) => setProgress(preg),
+                onProgressChange: (preg) => setProgress(preg)
             });
             // setImages([...images, res.url]);
             onImagesUpload([...images, res.url]);
@@ -92,7 +92,7 @@ const ImageUpLoader = ({
                         value={file}
                         dropzoneOptions={{
                             maxSize: 1024 * 1024 * 1,
-                            onFileDialogCancel: () => setProgress(0),
+                            onFileDialogCancel: () => setProgress(0)
                         }}
                         onChange={(file) => {
                             setFile(file);
@@ -106,7 +106,7 @@ const ImageUpLoader = ({
                             value={file}
                             dropzoneOptions={{
                                 maxSize: 1024 * 1024 * 1,
-                                onFileDialogCancel: () => setProgress(0),
+                                onFileDialogCancel: () => setProgress(0)
                             }}
                             onChange={(file) => {
                                 setFile(file);
@@ -118,7 +118,7 @@ const ImageUpLoader = ({
                     <div className="progress w-full border h-2 my-2">
                         <div
                             style={{
-                                width: `${progress}%`,
+                                width: `${progress}%`
                             }}
                             className="h-full w-[50%] transition-all duration-150 bg-green-600"
                         ></div>
@@ -127,11 +127,7 @@ const ImageUpLoader = ({
                         <p className="py-1 text-slate-600 self-end  px-2 rounded-md shadow-md">
                             {images?.length}/4
                         </p>
-                        <ActionBtn
-                            title="upload"
-                            loading={isLoading}
-                            onClick={uplaodImage}
-                        />
+                        <ActionBtn title="upload" loading={isLoading} onClick={uplaodImage} />
                     </div>
                 </div>
 
@@ -139,36 +135,29 @@ const ImageUpLoader = ({
                     {!images.length && (
                         <div className="h-[100px]    w-full">
                             <p className="text-sm text-center text-slate-400">
-                                Upload 4 images of you you performing your
-                                service
+                                Upload 4 images of you you performing your service
                             </p>
                         </div>
                     )}
-                    {images.map(
-                        (image: any, i: React.Key | null | undefined) => (
-                            <ProductImageCard
-                                key={i}
-                                image={image}
-                                showBadge={image === mainImage}
+                    {images.map((image: any, i: React.Key | null | undefined) => (
+                        <ProductImageCard key={i} image={image} showBadge={image === mainImage}>
+                            <button
+                                className="text-sm hover:bg-slate-300  text-slate-600 p-1 duration-300"
+                                onClick={() => {
+                                    setmainImg(image);
+                                    onUpdateMainImage(image);
+                                }}
                             >
-                                <button
-                                    className="text-sm hover:bg-slate-300  text-slate-600 p-1 duration-300"
-                                    onClick={() => {
-                                        setmainImg(image);
-                                        onUpdateMainImage(image);
-                                    }}
-                                >
-                                    set as main
-                                </button>
-                                <button
-                                    className="text-sm hover:bg-slate-300  text-red-600 p-1 duration-300"
-                                    onClick={() => handleDeleteImage(image)}
-                                >
-                                    Delete
-                                </button>
-                            </ProductImageCard>
-                        )
-                    )}
+                                set as main
+                            </button>
+                            <button
+                                className="text-sm hover:bg-slate-300  text-red-600 p-1 duration-300"
+                                onClick={() => handleDeleteImage(image)}
+                            >
+                                Delete
+                            </button>
+                        </ProductImageCard>
+                    ))}
                 </div>
             </div>
         </div>

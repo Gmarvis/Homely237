@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
-import { GrFormPrevious } from "react-icons/gr";
-import { MdOutlineNavigateNext } from "react-icons/md";
-import ServiceCard from "./cards/ServiceCard";
-import ServiceCardSkeleton from "./SkeletonLoaders/ServiceCardSkeleton";
+import { useRouter } from 'next/navigation';
+import React, { useState } from 'react';
+import { GrFormPrevious } from 'react-icons/gr';
+import { MdOutlineNavigateNext } from 'react-icons/md';
+import ServiceCard from './cards/ServiceCard';
+import ServiceCardSkeleton from './SkeletonLoaders/ServiceCardSkeleton';
 
 type PropTyps = {
     services: Service[];

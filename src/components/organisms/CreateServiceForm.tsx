@@ -1,27 +1,27 @@
-"use client";
-import React, { useState } from "react";
-import FormInput from "../atoms/FormInput";
-import Link from "next/link";
-import { IoBookOutline } from "react-icons/io5";
-import FormBtn from "../atoms/buttons/FormBtn";
-import { toast } from "react-toastify";
-import { useRouter } from "next/navigation";
+'use client';
+import React, { useState } from 'react';
+import FormInput from '../atoms/FormInput';
+import Link from 'next/link';
+import { IoBookOutline } from 'react-icons/io5';
+import FormBtn from '../atoms/buttons/FormBtn';
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 // STORE IMPORTS
-import useCategoryStore from "@/store/categoryStore";
-import useUserStore from "@/store/userStore";
-import { createService } from "@/utils/queries";
-import DailogBox from "../atoms/DailogBox";
-import Spinner from "../atoms/Spinner";
-import { ActionBtn } from "../atoms/buttons/ActionBtn";
+import useCategoryStore from '@/store/categoryStore';
+import useUserStore from '@/store/userStore';
+import { createService } from '@/utils/queries';
+import DailogBox from '../atoms/DailogBox';
+import Spinner from '../atoms/Spinner';
+import { ActionBtn } from '../atoms/buttons/ActionBtn';
 
 const CreateServiceForm = () => {
     const { categories } = useCategoryStore();
     const { user } = useUserStore();
-    const [serviceName, setServiceName] = useState("");
-    const [category_name, setCategory_name] = useState("");
-    const [category_id, setCategory_id] = useState("");
-    const [price, setPrice] = useState("");
-    const [description, setDescription] = useState("");
+    const [serviceName, setServiceName] = useState('');
+    const [category_name, setCategory_name] = useState('');
+    const [category_id, setCategory_id] = useState('');
+    const [price, setPrice] = useState('');
+    const [description, setDescription] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
     // router
@@ -30,27 +30,25 @@ const CreateServiceForm = () => {
     const handleAddService = (e: { preventDefault: () => void }) => {
         e.preventDefault();
         //get service images from localstatorage
-        const images = JSON.parse(
-            localStorage.getItem("service_images") || "[]"
-        );
-        const product_image = localStorage.getItem("main_image") || images[0];
+        const images = JSON.parse(localStorage.getItem('service_images') || '[]');
+        const product_image = localStorage.getItem('main_image') || images[0];
 
         // form error
         if (!serviceName || !category_name || !description) {
-            toast.warning("Please fill the form completely", {
-                position: "top-right",
+            toast.warning('Please fill the form completely', {
+                position: 'top-right',
                 hideProgressBar: true,
-                autoClose: 3000,
+                autoClose: 3000
             });
             return;
         }
 
         // image error
         if (!images.length) {
-            toast.warning("Please add service images", {
-                position: "top-right",
+            toast.warning('Please add service images', {
+                position: 'top-right',
                 hideProgressBar: true,
-                autoClose: 3000,
+                autoClose: 3000
             });
             return;
         }
@@ -63,43 +61,36 @@ const CreateServiceForm = () => {
             product_image,
             price,
             category_id,
-            description,
+            description
         };
-        console.log("serviceDetails", serviceDetails);
+        console.log('serviceDetails', serviceDetails);
         // create service by making a post request to the backend server
         createService(serviceDetails).then((res) => {
             if (res.error) {
-                console.log("failded to create service", res.message);
+                console.log('failded to create service', res.message);
                 return;
             }
-            toast.success("Service Added successfuly", {
-                position: "top-right",
+            toast.success('Service Added successfuly', {
+                position: 'top-right',
                 hideProgressBar: true,
-                autoClose: 3000,
+                autoClose: 3000
             });
-            console.log("responce", res);
-            localStorage.removeItem("main_image");
-            localStorage.removeItem("service_images");
+            console.log('responce', res);
+            localStorage.removeItem('main_image');
+            localStorage.removeItem('service_images');
 
             setIsLoading(false);
-            router.push("/dashboard/myservices");
+            router.push('/dashboard/myservices');
         });
     };
 
     return (
-        <form
-            action=""
-            onSubmit={handleAddService}
-            className="w-full h-auto flex flex-col "
-        >
+        <form action="" onSubmit={handleAddService} className="w-full h-auto flex flex-col ">
             <label htmlFor="name" className="text-slate-700 pt-2">
-                Title{" "}
-                <span className="text-xs">
-                    (eg, cleaning, babbing, cooking, etc)
-                </span>
+                Title <span className="text-xs">(eg, cleaning, babbing, cooking, etc)</span>
             </label>
             <FormInput
-                label={"Service Title"}
+                label={'Service Title'}
                 onChange={(e) => setServiceName(e.target.value)}
                 styles="border border-gray-400"
             />
@@ -124,9 +115,7 @@ const CreateServiceForm = () => {
                     id=""
                     onChange={(e) => {
                         setCategory_id(e.target.value);
-                        const catName = categories.find(
-                            (cat) => cat.id === e.target.value
-                        );
+                        const catName = categories.find((cat) => cat.id === e.target.value);
                         if (catName) setCategory_name(catName?.name);
                     }}
                     className="bg-transparent text-sm w-full outline-none border border-gray-400 py-2 px-1"
@@ -152,14 +141,10 @@ const CreateServiceForm = () => {
                 placeholder="Give clear description of the sercive your are provide, this will make your sercive stand out and atract more custumers"
             ></textarea>
             <div className="flex absolute bottom-0  mt-10 right-20 mobile:max-sm:bottom-4 mobile:max-sm:right-2">
-                <ActionBtn
-                    title="create"
-                    onClick={() => {}}
-                    loading={isLoading}
-                />
+                <ActionBtn title="create" onClick={() => {}} loading={isLoading} />
             </div>
             <Link
-                href={""}
+                href={''}
                 className="text-secondrytheme text-xs text-center flex items-center w-full justify-center gap-3"
             >
                 <p>To get better Results, Read our Guide </p>

@@ -1,9 +1,9 @@
-import Footer from "@/components/organisms/Footer";
-import NavBar from "@/components/organisms/NavBar";
-import React from "react";
-import Hero from "./_components/heroSection";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import Footer from '@/components/organisms/Footer';
+import NavBar from '@/components/organisms/NavBar';
+import React from 'react';
+import Hero from './_components/heroSection';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
 const page = () => {
     return (
@@ -13,7 +13,7 @@ const page = () => {
                 <div className="">
                     <Hero />
                 </div>
-                <Link href={"/workspace/create"}>
+                <Link href={'/workspace/create'}>
                     <Button className="bg-primarytheme">Start Today</Button>
                 </Link>
                 <Footer />

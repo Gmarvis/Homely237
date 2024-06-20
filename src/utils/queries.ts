@@ -1,5 +1,5 @@
-import { SERVER_URL } from "./constant";
-import ApiCall from "./httpClient";
+import { SERVER_URL } from './constant';
+import ApiCall from './httpClient';
 
 const apiCall = new ApiCall();
 
@@ -11,7 +11,7 @@ type SigUpType = {
 
 // SIGN UP
 export const SIGNUP = (newUser: SigUpType) => {
-    return apiCall.POST(SERVER_URL + "/users/signup", newUser);
+    return apiCall.POST(SERVER_URL + '/users/signup', newUser);
 };
 
 type LoginType = {
@@ -22,11 +22,11 @@ type LoginType = {
 // LOGIN
 export const LOGIN = (returningUser: LoginType) => {
     // console.log(returningUser);
-    return apiCall.POST(SERVER_URL + "/users/login", returningUser);
+    return apiCall.POST(SERVER_URL + '/users/login', returningUser);
 };
 
 // GET ALL PRODUCT CATEGORIES
-export const getAllCategories = () => apiCall.GET(SERVER_URL + "/categories");
+export const getAllCategories = () => apiCall.GET(SERVER_URL + '/categories');
 
 // CREATE SERVICE(PRODUCT)
 type SevType = {
@@ -40,12 +40,12 @@ type SevType = {
     description: string;
 };
 export const createService = (serviceDetails: SevType) => {
-    return apiCall.POST(SERVER_URL + "/products", serviceDetails);
+    return apiCall.POST(SERVER_URL + '/products', serviceDetails);
 };
 
 // GET ALL SERVICES
 export const getAllServices = () => {
-    return apiCall.GET(SERVER_URL + "/products");
+    return apiCall.GET(SERVER_URL + '/products');
 };
 
 // GET SERVICE(PRODUCT) BY THE USER_ID
@@ -104,8 +104,33 @@ export const getCurrentLocation = async (
                 continentCode: data.continentCode,
                 countryCode: data.countryCode,
                 countryName: data.countryName,
-                locality: data.locality,
+                locality: data.locality
             };
         }
     } catch (error) {}
+};
+
+// Create appointments
+export const creatApointment = async (aptmData: {}) => {
+    try {
+        const data = await apiCall.POST(`${SERVER_URL}/appointments`, aptmData);
+        console.log(data);
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+// get providers appointments
+
+export const getProvidersApointments = async (id: string) => {
+    try {
+        const data = await apiCall.GET(`${SERVER_URL}/appointments/provider/${id}`).then((res) => {
+            return res;
+        });
+
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
 };

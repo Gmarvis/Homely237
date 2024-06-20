@@ -1,5 +1,5 @@
-import Link from "next/link";
-import React from "react";
+import Link from 'next/link';
+import React from 'react';
 
 const SuccessPage = () => {
     return (
@@ -21,16 +21,13 @@ const SuccessPage = () => {
                         </svg>
                     </div>
                     <div className="self-center ml-3 flex flex-col gap-2">
-                        <span className="text-green-600 font-semibold">
-                            Success
-                        </span>
+                        <span className="text-green-600 font-semibold">Success</span>
                         <p className="text-green-600 mt-1">
-                            Congratulations your service has been added
-                            successfully.
+                            Congratulations your service has been added successfully.
                         </p>
                         <Link
                             className="border px-4 py-2 my-2 text-center text-white rounded-lg bg-green-600"
-                            href={"/dashboard/myservices"}
+                            href={'/dashboard/myservices'}
                         >
                             View services
                         </Link>

@@ -1,24 +1,24 @@
-"use client";
-import { useState } from "react";
-import FormInput from "../atoms/FormInput";
-import { LOGIN } from "@/utils/queries";
-import Spinner from "../atoms/Spinner";
-import { IoWarningOutline } from "react-icons/io5";
-import { motion } from "framer-motion";
+'use client';
+import { useState } from 'react';
+import FormInput from '../atoms/FormInput';
+import { LOGIN } from '@/utils/queries';
+import Spinner from '../atoms/Spinner';
+import { IoWarningOutline } from 'react-icons/io5';
+import { motion } from 'framer-motion';
 
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next/navigation';
 
-import { decodeToken } from "@/utils/jwtDecode";
+import { decodeToken } from '@/utils/jwtDecode';
 
 // STORE IMPORTS
-import useUserStore from "@/store/userStore";
-import FormBtn from "../atoms/buttons/FormBtn";
+import useUserStore from '@/store/userStore';
+import FormBtn from '../atoms/buttons/FormBtn';
 
 const Login = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassoword] = useState("");
+    const [email, setEmail] = useState('');
+    const [password, setPassoword] = useState('');
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
+    const [error, setError] = useState('');
 
     const { setUser } = useUserStore();
     const router = useRouter();
@@ -27,29 +27,29 @@ const Login = () => {
         e.preventDefault();
         setLoading(true);
         if (!email || !password) {
-            setError("pleace fill the form completely");
+            setError('pleace fill the form completely');
             setLoading(false);
             setTimeout(() => {
-                setError("");
+                setError('');
             }, 5000);
             return;
         }
         LOGIN({ email: email, password: password }).then((res: any) => {
             if (res.token) {
                 // SAVE TOKEN TO LOCALSTORAGE SO I CAN BE DECODED LETTER AND USED
-                localStorage.setItem("token", res.token);
+                localStorage.setItem('token', res.token);
 
                 // DECODE TOKEN AND PASS USER DATE TO APP STORE
                 const userData = decodeToken(res.token);
                 setUser(userData);
                 console.log(userData);
-                router.push("/");
+                router.push('/');
                 setLoading(false);
             } else {
                 setError(`${res.message}`);
                 setLoading(false);
                 setTimeout(() => {
-                    setError("");
+                    setError('');
                 }, 5000);
                 return;
             }
@@ -65,26 +65,18 @@ const Login = () => {
                 className=" max-w-[25vw] w-[20vw] p-2 flex flex-col mobile:max-sm:w-[95vw] mobile:max-sm:max-w-[95vw] gap-3"
             >
                 <FormInput
-                    label={"Email"}
+                    label={'Email'}
                     type="email"
-                    onChange={(e: { target: { value: any } }) =>
-                        setEmail(e.target.value)
-                    }
+                    onChange={(e: { target: { value: any } }) => setEmail(e.target.value)}
                 />
 
                 <FormInput
                     type="password"
-                    label={"Password"}
-                    onChange={(e: { target: { value: any } }) =>
-                        setPassoword(e.target.value)
-                    }
+                    label={'Password'}
+                    onChange={(e: { target: { value: any } }) => setPassoword(e.target.value)}
                 />
 
-                <FormBtn
-                    title="Login"
-                    isLoading={loading}
-                    onClick={() => handleLogin}
-                />
+                <FormBtn title="Login" isLoading={loading} onClick={() => handleLogin} />
                 {error && (
                     <motion.p
                         initial={{ opacity: 0, translateY: -20 }}
@@ -94,7 +86,7 @@ const Login = () => {
                     >
                         <IoWarningOutline
                             style={{
-                                color: "yellow",
+                                color: 'yellow'
                             }}
                             size={20}
                         />

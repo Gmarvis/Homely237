@@ -7,10 +7,10 @@ import {
     AlertDialogFooter,
     AlertDialogHeader,
     AlertDialogTitle,
-    AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
+    AlertDialogTrigger
+} from '@/components/ui/alert-dialog';
 
-import React from "react";
+import React from 'react';
 
 type PropType = {
     triggerComponent: React.ReactNode;
@@ -25,7 +25,7 @@ const DailogBox = ({
     onClickAction,
     description,
     title,
-    isWarning = false,
+    isWarning = false
 }: PropType) => {
     return (
         <AlertDialog>
@@ -35,16 +35,12 @@ const DailogBox = ({
             <AlertDialogContent>
                 <AlertDialogHeader>
                     <AlertDialogTitle>{title}</AlertDialogTitle>
-                    <AlertDialogDescription>
-                        {description}
-                    </AlertDialogDescription>
+                    <AlertDialogDescription>{description}</AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                     <AlertDialogCancel>Cancel</AlertDialogCancel>
                     <AlertDialogAction
-                        className={`${
-                            isWarning ? "bg-red-600" : "bg-primarytheme"
-                        }`}
+                        className={`${isWarning ? 'bg-red-600' : 'bg-primarytheme'}`}
                         onClick={onClickAction}
                     >
                         Continue
