@@ -9,7 +9,7 @@ const ProfileCard = () => {
     return (
         <div className="w-full border border-primarytheme p-1 rounded-md flex flex-col gap-3">
             <div className="w-full flex flex-col justify-center items-center py-2 ">
-                <ProfileAvatar user={user} size={10} />
+                <ProfileAvatar image={user.image} size={10} />
                 <h3 className="text-md font-bold">{user.name}</h3>
                 <p className="text-sm text-slate-500">{user.email}</p>
             </div>
