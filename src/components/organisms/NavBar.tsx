@@ -29,32 +29,9 @@ import { MdDashboard } from 'react-icons/md';
 import { MdOutlineCleaningServices } from 'react-icons/md';
 import { FaRegCalendarAlt } from 'react-icons/fa';
 import { MdAddToPhotos } from 'react-icons/md';
+import { navLinks } from './SideBar';
 
-const navLinks = [
-    {
-        name: 'Dashboard',
-        icon: <MdDashboard size={24} />,
-        path: '/dashboard'
-    },
-    {
-        name: 'Myservices',
-        icon: <MdOutlineCleaningServices size={24} />,
 
-        path: '/dashboard/myservices'
-    },
-    {
-        name: 'Appointments',
-        icon: <FaRegCalendarAlt size={24} />,
-
-        path: '/dashboard/appointments'
-    },
-    {
-        name: 'Add Service',
-        icon: <MdAddToPhotos size={24} />,
-
-        path: '/dashboard/addservice'
-    }
-];
 
 type NavTypes = {
     onDashBoard?: Boolean;
@@ -164,6 +141,7 @@ const NavBar = ({ onDashBoard = false, hideSearchBar = false }: NavTypes) => {
                     )}
                     <RightModal
                         title="Menu"
+                        className='bg-primarytheme'
                         trigger={
                             <button className="text-gray-700 sm:hidden absolute top-[13px] right-2">
                                 <HiMenuAlt3 size={25} />
@@ -173,9 +151,10 @@ const NavBar = ({ onDashBoard = false, hideSearchBar = false }: NavTypes) => {
                         {navLinks.map((link, index) => (
                             <Link
                                 key={index}
-                                // className={`text-sm font-semibold ${onDashBoard ? 'hidden' : ''} `}
+                                className={`text-sm font-semibold text-white flex items-center gap-2`}
                                 href={link.path}
                             >
+                                {link.icon}
                                 {link.name}
                             </Link>
                         ))}

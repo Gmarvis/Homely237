@@ -10,9 +10,8 @@ import { MdDashboard } from 'react-icons/md';
 import { MdOutlineCleaningServices } from 'react-icons/md';
 import { FaRegCalendarAlt } from 'react-icons/fa';
 import { MdAddToPhotos } from 'react-icons/md';
-import { Button } from '../ui/button';
 
-const links = [
+export const navLinks = [
     {
         name: 'Dashboard',
         icon: <MdDashboard size={24} />,
@@ -53,7 +52,7 @@ const SideBar = () => {
             </Link>
 
             <div className="w-full mt-10  flex gap-3 flex-col ">
-                {links.map((link, i) => (
+                {navLinks.map((link, i) => (
                     <Link
                         href={link.path}
                         key={i}
