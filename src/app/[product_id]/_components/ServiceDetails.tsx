@@ -4,12 +4,10 @@ import * as Queries from '@/utils/queries';
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 import Image from 'next/image';
-import ServiceCard from '@/components/organisms/cards/ServiceCard';
 import { useRouter } from 'next/navigation';
 import DetailsSkeleton from './DetailsSkeleton';
 import { ImWhatsapp } from 'react-icons/im';
 import { IoMdArrowRoundBack } from 'react-icons/io';
-import Link from 'next/link';
 import MasonryList from '@/components/organisms/MasonryList';
 const ServiceDetails = () => {
     const [service, setService] = useState<Service | null>(null);

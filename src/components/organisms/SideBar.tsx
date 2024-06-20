@@ -56,9 +56,10 @@ const SideBar = () => {
                     <Link
                         href={link.path}
                         key={i}
-                        className={`flex items-center ${link.role.includes(user.role)? "visible" : "hidden"} bg-white rounded-md  sm:max-lg:px-2  sm:max-lg:items-center  sm:max-lg:justify-center  sm:max-lg:py-4 ${
+                        className={`flex items-center ${link.role.includes(user.role) ? 'visible' : 'hidden'} bg-white rounded-md  sm:max-lg:px-2  sm:max-lg:items-center  sm:max-lg:justify-center  sm:max-lg:py-4 ${
                             pathname === link.path ? ' text-primarytheme' : 'text-slate-500'
-                        } gap-2  hover:text-primarytheme delay-100 transition-all   px-4 py-2 `}>
+                        } gap-2  hover:text-primarytheme delay-100 transition-all   px-4 py-2 `}
+                    >
                         <p className="text-[500px]">{link.icon}</p>
                         <span className="text-sm sm:max-lg:hidden">{link.name}</span>
                     </Link>

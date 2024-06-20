@@ -18,7 +18,7 @@ type PropTypes = {
     description?: string;
     trigger: React.ReactNode;
     children: React.ReactNode;
-    className?: string
+    className?: string;
 };
 
 export function RightModal({ className, title, description, trigger, children }: PropTypes) {
@@ -32,9 +32,7 @@ export function RightModal({ className, title, description, trigger, children }:
                         <SheetDescription>{description}</SheetDescription>
                     </SheetHeader>
                     <div className="grid gap-4 py-4">{children}</div>
-                    <SheetFooter>
-                    
-                    </SheetFooter>
+                    <SheetFooter></SheetFooter>
                 </SheetContent>
             </Sheet>
         </div>

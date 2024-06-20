@@ -113,7 +113,8 @@ const Page = () => {
                     <Form {...form}>
                         <form
                             onSubmit={form.handleSubmit(handleSubmit)}
-                            className="max-w-3xl w-full flex flex-col gap-4 h-[55vh]">
+                            className="max-w-3xl w-full flex flex-col gap-4 h-[55vh]"
+                        >
                             <FormField
                                 control={form.control}
                                 name="name"
@@ -170,7 +171,8 @@ const Page = () => {
                                                     {categories?.map((category) => (
                                                         <SelectItem
                                                             key={category.id}
-                                                            value={category.id}>
+                                                            value={category.id}
+                                                        >
                                                             {category.name}
                                                         </SelectItem>
                                                     ))}
@@ -195,7 +197,11 @@ const Page = () => {
                                         <FormItem className="flex flex-grow flex-col">
                                             <FormLabel>Description</FormLabel>
                                             <FormControl>
-                                                <Textarea placeholder="description" {...field} className='h-full'/>
+                                                <Textarea
+                                                    placeholder="description"
+                                                    {...field}
+                                                    className="h-full"
+                                                />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>

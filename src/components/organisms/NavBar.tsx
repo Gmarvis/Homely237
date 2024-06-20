@@ -31,8 +31,6 @@ import { FaRegCalendarAlt } from 'react-icons/fa';
 import { MdAddToPhotos } from 'react-icons/md';
 import { navLinks } from './SideBar';
 
-
-
 type NavTypes = {
     onDashBoard?: Boolean;
     hideSearchBar?: Boolean;
@@ -85,9 +83,9 @@ const NavBar = ({ onDashBoard = false, hideSearchBar = false }: NavTypes) => {
                 <div className="flex justify-center items-center gap-3">
                     <Link
                         className={`text-sm font-semibold ${onDashBoard ? 'hidden' : ''} `}
-                        href={`${user.role === "admin"? 'dashboard' : 'dashboard/appointments'}`}
+                        href={`${user.role === 'admin' ? 'dashboard' : 'dashboard/appointments'}`}
                     >
-                        {`${user.role === "admin"? "Dashboard" : "Appointments"} `}
+                        {`${user.role === 'admin' ? 'Dashboard' : 'Appointments'} `}
                     </Link>
                     <BellBtn onClick={() => setShowNotification((prev) => !prev)} />
                     <div className="mobile:max-sm:hidden">
@@ -141,7 +139,7 @@ const NavBar = ({ onDashBoard = false, hideSearchBar = false }: NavTypes) => {
                     )}
                     <RightModal
                         title="Menu"
-                        className='bg-primarytheme'
+                        className="bg-primarytheme"
                         trigger={
                             <button className="text-gray-700 sm:hidden absolute top-[13px] right-2">
                                 <HiMenuAlt3 size={25} />
