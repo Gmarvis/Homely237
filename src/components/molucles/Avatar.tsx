@@ -3,17 +3,17 @@
 
 import React from 'react';
 type AvatarProps = {
-    user?: User;
+    image?: string;
     size: number;
     onClick?: () => void;
 };
 
-const ProfileAvatar = ({ user, size, onClick }: AvatarProps) => {
+const ProfileAvatar = ({ image, size, onClick }: AvatarProps) => {
     return (
         <button
             style={{
                 backgroundImage: `url(${
-                    user?.image ||
+                    image ||
                     'https://i.pinimg.com/564x/02/59/54/0259543779b1c2db9ba9d62d47e11880.jpg'
                 })`,
                 width: `${size * 10}px`,

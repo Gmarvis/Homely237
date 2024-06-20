@@ -120,3 +120,17 @@ export const creatApointment = async (aptmData: {}) => {
         console.log(error);
     }
 };
+
+// get providers appointments
+
+export const getProvidersApointments = async (id: string) => {
+    try {
+        const data = await apiCall.GET(`${SERVER_URL}/appointments/provider/${id}`).then((res) => {
+            return res;
+        });
+
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
+};

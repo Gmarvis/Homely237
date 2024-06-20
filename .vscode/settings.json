@@ -1,3 +1,11 @@
 {
-    "console-ninja.fontSize": 8
+    "console-ninja.fontSize": 8,
+    "less.format.enable": false,
+    "prettier.bracketSpacing": true,
+    "prettier.useEditorConfig": true,
+    "prettier.enable": true,
+    "prettier.proseWrap": "never",
+    "prettier.singleQuote": true,
+    "prettier.tabWidth": 4,
+    "prettier.useTabs": true
 }

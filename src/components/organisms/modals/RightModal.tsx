@@ -32,9 +32,9 @@ export function RightModal({ title, description, trigger, children }: PropTypes)
                     </SheetHeader>
                     <div className="grid gap-4 py-4">{children}</div>
                     <SheetFooter>
-                        <SheetClose asChild>
+                        {/* <SheetClose asChild>
                             <Button type="submit">Save changes</Button>
-                        </SheetClose>
+                        </SheetClose> */}
                     </SheetFooter>
                 </SheetContent>
             </Sheet>

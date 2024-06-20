@@ -95,8 +95,8 @@ const Page = () => {
     }, [setCurrentStep, currentStep]);
 
     return (
-        <div className="flex flex-col w-full  justify-center items-center">
-            <div className="max-w-lg w-full">
+        <div className="flex flex-col w-full  justify-center items-center mobile:max-sm:mb-40">
+            <div className="max-w-3xl w-full">
                 <h1 className="text-center text-2xl pt-6 text-gray-700 font-bold">
                     Create a service in few simple steps
                 </h1>
@@ -113,8 +113,7 @@ const Page = () => {
                     <Form {...form}>
                         <form
                             onSubmit={form.handleSubmit(handleSubmit)}
-                            className="max-w-lg w-full flex flex-col gap-4"
-                        >
+                            className="max-w-3xl w-full flex flex-col gap-4 h-[55vh]">
                             <FormField
                                 control={form.control}
                                 name="name"
@@ -171,8 +170,7 @@ const Page = () => {
                                                     {categories?.map((category) => (
                                                         <SelectItem
                                                             key={category.id}
-                                                            value={category.id}
-                                                        >
+                                                            value={category.id}>
                                                             {category.name}
                                                         </SelectItem>
                                                     ))}
@@ -194,10 +192,10 @@ const Page = () => {
                                 name="description"
                                 render={({ field }) => {
                                     return (
-                                        <FormItem>
+                                        <FormItem className="flex flex-grow flex-col">
                                             <FormLabel>Description</FormLabel>
                                             <FormControl>
-                                                <Textarea placeholder="description" {...field} />
+                                                <Textarea placeholder="description" {...field} className='h-full'/>
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>

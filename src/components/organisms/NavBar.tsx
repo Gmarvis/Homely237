@@ -11,6 +11,7 @@ import { motion } from 'framer-motion';
 import DropDown from '../molucles/DropDown';
 // import { useTheme } from "next-themes";
 // import ToggleThemeBtn from "../atoms/ToggleThemeBtn";
+import { usePathname } from 'next/navigation';
 
 import ProfileAvatar from '../molucles/Avatar';
 import ProfileCard from '../molucles/ProfileCard';
@@ -24,22 +25,34 @@ import useServiceStore from '@/store/serviceStore';
 import { LinkBtn, LinkBtnTheme } from '../atoms/buttons/LinkBtn';
 import { RightModal } from './modals/RightModal';
 
+import { MdDashboard } from 'react-icons/md';
+import { MdOutlineCleaningServices } from 'react-icons/md';
+import { FaRegCalendarAlt } from 'react-icons/fa';
+import { MdAddToPhotos } from 'react-icons/md';
+
 const navLinks = [
     {
-        name: 'appointments',
+        name: 'Dashboard',
+        icon: <MdDashboard size={24} />,
+        path: '/dashboard'
+    },
+    {
+        name: 'Myservices',
+        icon: <MdOutlineCleaningServices size={24} />,
+
+        path: '/dashboard/myservices'
+    },
+    {
+        name: 'Appointments',
+        icon: <FaRegCalendarAlt size={24} />,
+
         path: '/dashboard/appointments'
     },
     {
-        name: 'dashboard',
-        path: '/dashboard/appointments'
-    },
-    {
-        name: 'appointments',
-        path: '/dashboard/appointments'
-    },
-    {
-        name: 'appointments',
-        path: '/dashboard/appointments'
+        name: 'Add Service',
+        icon: <MdAddToPhotos size={24} />,
+
+        path: '/dashboard/addservice'
     }
 ];
 
@@ -49,6 +62,8 @@ type NavTypes = {
 };
 
 const NavBar = ({ onDashBoard = false, hideSearchBar = false }: NavTypes) => {
+    const pathName = usePathname();
+    console.log('pathName', pathName);
     const { user } = useUserStore();
     const { setServices } = useServiceStore();
     const { setCategories } = useCategoryStore();
@@ -93,17 +108,18 @@ const NavBar = ({ onDashBoard = false, hideSearchBar = false }: NavTypes) => {
                 <div className="flex justify-center items-center gap-3">
                     <Link
                         className={`text-sm font-semibold ${onDashBoard ? 'hidden' : ''} `}
-                        href={'dashboard'}
+                        href={`${user.role === "admin"? 'dashboard' : 'dashboard/appointments'}`}
                     >
-                        Dashboard
+                        {`${user.role === "admin"? "Dashboard" : "Appointments"} `}
                     </Link>
                     <BellBtn onClick={() => setShowNotification((prev) => !prev)} />
-
-                    <ProfileAvatar
-                        onClick={() => setShowProfile((prev) => !prev)}
-                        user={user}
-                        size={3}
-                    />
+                    <div className="mobile:max-sm:hidden">
+                        <ProfileAvatar
+                            onClick={() => setShowProfile((prev) => !prev)}
+                            image={user.image}
+                            size={3}
+                        />
+                    </div>
                     {showProfile && (
                         <Overlay onClick={() => setShowProfile((prev) => !prev)} transparent />
                     )}
@@ -154,7 +170,15 @@ const NavBar = ({ onDashBoard = false, hideSearchBar = false }: NavTypes) => {
                             </button>
                         }
                     >
-                        <div>Mobile Navbar</div>
+                        {navLinks.map((link, index) => (
+                            <Link
+                                key={index}
+                                // className={`text-sm font-semibold ${onDashBoard ? 'hidden' : ''} `}
+                                href={link.path}
+                            >
+                                {link.name}
+                            </Link>
+                        ))}
                     </RightModal>
                 </div>
             ) : (

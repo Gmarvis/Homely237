@@ -63,5 +63,5 @@ interface Appointment {
     status: string;
     createdAt: Date;
     updatedAt: Date;
-    product: Service;
+    user: User;
 }

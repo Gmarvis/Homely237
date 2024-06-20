@@ -53,7 +53,7 @@ const ServiceCard = ({
             <div className="flex w-full px-2 justify-between items-center">
                 {service.user && (
                     <div className="flex items-center justify-center gap-1">
-                        {!hideAuthor && <ProfileAvatar user={service.user} size={2} />}
+                        {!hideAuthor && <ProfileAvatar image={service.user.image} size={2} />}
                         {!hideAuthor && <p className="smallText">{service.user.name}</p>}
                     </div>
                 )}

@@ -1,3 +1,10 @@
+'use client';
+import * as QUERIES from '@/utils/queries';
+import useUserStore from '@/store/userStore';
+import { useEffect, useState } from 'react';
+import { dateFormatter } from '@/utils/date';
+import ProfileAvatar from '@/components/molucles/Avatar';
+
 const Table = () => {
     const tableItems = [
         {
@@ -42,6 +49,16 @@ const Table = () => {
         }
     ];
 
+    const [appointments, setApointments] = useState<Appointment[]>();
+
+    const { user } = useUserStore();
+
+    useEffect(() => {
+        QUERIES.getProvidersApointments(user.id).then((res) => setApointments(res));
+    }, []);
+
+    console.log(appointments);
+
     return (
         <div className="max-w-screen-xl mx-auto px-4 md:px-8">
             <div className="items-start justify-between md:flex">
@@ -64,25 +81,36 @@ const Table = () => {
                         </tr>
                     </thead>
                     <tbody className="text-gray-600 divide-y">
-                        {tableItems.map((item, idx) => (
-                            <tr key={idx} className="hover:bg-slate-300">
+                        {appointments?.map((appointment, idx) => (
+                            <tr
+                                onClick={() => alert('open appointment')}
+                                key={idx}
+                                className="hover:bg-slate-300"
+                            >
                                 <td className="flex items-center gap-x-3 py-3 px-6 whitespace-nowrap ">
-                                    <img src={item.avatar} className="w-10 h-10 rounded-full" />
+                                    <ProfileAvatar size={4} image={appointment.user.image} />
                                     <div>
                                         <span className="block text-gray-700 text-sm font-medium">
-                                            {item.name}
+                                            {appointment.user.name}
                                         </span>
                                         <span className="block text-gray-700 text-xs">
-                                            {item.email}
+                                            {appointment.user.email}
                                         </span>
                                     </div>
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap">{item.phone_nimber}</td>
-                                <td className="px-6 py-4 whitespace-nowrap">{item.position}</td>
-                                <td className="px-6 py-4 whitespace-nowrap">{item.salary}</td>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                    {appointment.phone_number}
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap">{appointment.city}</td>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                    {dateFormatter.format(new Date(appointment.date))}
+                                </td>
                                 <td className="text-center px-6 whitespace-nowrap z-50">
-                                    <p className="py-2 px-3 font-medium text-amber-500 hover:text-indigo-500 duration-150 hover:bg-gray-50 rounded-lg">
-                                        pendding
+                                    <p
+                                        onClick={() => alert('pendding')}
+                                        className="py-2 px-3 font-medium text-amber-500 hover:text-indigo-500 duration-150 hover:bg-gray-50 rounded-lg"
+                                    >
+                                        {appointment.status}
                                     </p>
                                 </td>
                             </tr>
