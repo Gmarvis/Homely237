@@ -88,7 +88,7 @@ const NavBar = ({ onDashBoard = false, hideSearchBar = false }: NavTypes) => {
                         {`${user.role === 'admin' ? 'Dashboard' : 'Appointments'} `}
                     </Link>
                     <BellBtn onClick={() => setShowNotification((prev) => !prev)} />
-                    <div className="mobile:max-sm:hidden">
+                    <div className={` ${onDashBoard ? "hidden": ""}  mobile:max-sm:hidden`}>
                         <ProfileAvatar
                             onClick={() => setShowProfile((prev) => !prev)}
                             image={user.image}
@@ -100,7 +100,7 @@ const NavBar = ({ onDashBoard = false, hideSearchBar = false }: NavTypes) => {
                     )}
                     {showProfile && (
                         <motion.div
-                            className="absolute top-[57px] right-4 w-[300px] mobile:max-sm:w-[80vw]  mobile:max-sm:right-10 z-40"
+                            className={`absolute top-[57px] right-4 w-[300px] mobile:max-sm:w-[80vw]  mobile:max-sm:right-10 z-40`}
                             initial={{ opacity: 0, translateY: -20 }}
                             animate={{ opacity: 1, translateY: 0 }}
                             transition={{ duration: 0.3 }}
@@ -141,15 +141,15 @@ const NavBar = ({ onDashBoard = false, hideSearchBar = false }: NavTypes) => {
                         title="Menu"
                         className="bg-primarytheme"
                         trigger={
-                            <button className="text-gray-700 sm:hidden absolute top-[13px] right-2">
-                                <HiMenuAlt3 size={25} />
+                            <button className="text-gray-700 sm:hidden absolute top-[13px] right-3">
+                                <HiMenuAlt3 size={30} />
                             </button>
                         }
                     >
                         {navLinks.map((link, index) => (
                             <Link
                                 key={index}
-                                className={`text-sm font-semibold text-white flex items-center gap-2`}
+                                className={`text-sm font-semibold  ${link.role.includes(user.role) ? 'visible' : 'hidden'} text-white flex items-center gap-2`}
                                 href={link.path}
                             >
                                 {link.icon}
