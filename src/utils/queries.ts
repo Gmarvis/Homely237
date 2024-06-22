@@ -25,6 +25,11 @@ export const LOGIN = (returningUser: LoginType) => {
     return apiCall.POST(SERVER_URL + '/users/login', returningUser);
 };
 
+// Get user by ID
+export const getUserById = (id: string)=>{
+    return apiCall.GET(`${SERVER_URL}/users/${id}`)
+}
+
 // GET ALL PRODUCT CATEGORIES
 export const getAllCategories = () => apiCall.GET(SERVER_URL + '/categories');
 

@@ -13,7 +13,7 @@ const HeroSection = () => {
 
     const { user } = useUserStore();
     return (
-        <section className="bg-slate-200 mt-10 bigScreen:pt-10 pb-10">
+        <section className="bg-slate-200 sm:h-[75vh] mt-10 bigScreen:pt-10 pb-10 flex justify-center items-center relative">
             <div className="max-w-screen-xl mx-auto px-4 pt-28 gap-12 text-gray-600 md:px-8">
                 <div className="space-y-5 max-w-4xl mx-auto text-center">
                     <h1 className="text-sm text-primarytheme font-medium">
@@ -33,19 +33,18 @@ const HeroSection = () => {
                     <div className="items-center justify-center gap-x-3 space-y-3 sm:flex sm:space-y-0">
                         <Link
                             href={user.id ? '/dashboard/appointments' : '/auth'}
-                            className="block py-2 px-4 text-white font-medium bg-primarytheme duration-150 hover:bg-secondrytheme active:bg-indigo-700 rounded-lg shadow-lg hover:shadow-none"
-                        >
+                            className="block py-2 px-4 text-white font-medium bg-primarytheme duration-150 hover:bg-secondrytheme active:bg-indigo-700 rounded-lg shadow-lg hover:shadow-none">
                             {user.id ? 'Appointments' : 'Get Started'}
                         </Link>
                         <a
                             href=""
-                            className="block py-2 px-4 text-gray-700 hover:text-gray-500 font-medium duration-150 active:bg-gray-100 border rounded-lg"
-                        >
+                            className="block py-2 px-4 text-gray-700 hover:text-gray-500 font-medium duration-150 active:bg-gray-100 border rounded-lg">
                             At my area
                         </a>
                     </div>
                 </div>
             </div>
+
         </section>
     );
 };

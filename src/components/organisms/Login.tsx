@@ -42,7 +42,6 @@ const Login = () => {
                 // DECODE TOKEN AND PASS USER DATE TO APP STORE
                 const userData = decodeToken(res.token);
                 setUser(userData);
-                console.log(userData);
                 router.push('/');
                 setLoading(false);
             } else {

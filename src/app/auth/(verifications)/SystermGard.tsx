@@ -1,6 +1,7 @@
 'use client';
 import useUserStore from '@/store/userStore';
 import { decodeToken } from '@/utils/jwtDecode';
+import { getUserById } from '@/utils/queries';
 import useGeoLocation from '@/utils/service/geoLocationService/useGeoLocation';
 
 import React, { useEffect } from 'react';
@@ -11,7 +12,9 @@ const SystermGard = ({ children }: { children: React.ReactNode }) => {
 
     useEffect(() => {
         const token = localStorage?.getItem('token');
-        if (token) setUser(decodeToken(token));
+        if (token) {
+            getUserById(decodeToken(token).id).then((res) => setUser(res));
+        }
     }, []);
 
     return <>{children}</>;

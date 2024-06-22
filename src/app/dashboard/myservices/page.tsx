@@ -12,7 +12,7 @@ const page = () => {
             <div className="header w-full flex justify-between items-center">
                 <h3 className=" text-gray-700  ">My services</h3>
                 <Link href={'/dashboard/addservice'}>
-                    <Button className="shadow-md py-1 px-2 text-white bg-primarytheme  flex justify-center gap-2 items-center rounded-md">
+                    <Button className="shadow-md py-1 text-white bg-primarytheme  hover:bg-secondrytheme px-4 flex justify-center gap-2 items-center rounded-md">
                         <RiUpload2Line />
                         Add Service
                     </Button>

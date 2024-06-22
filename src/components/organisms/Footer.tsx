@@ -156,7 +156,7 @@ const Footer = ({ className }: { className?: string }) => {
 
                 <div className="subscribe flex flex-col w-full gap-4 px-2">
                     <div className="flex self-center  rounded-full bg-secondrytheme w-20 h-20 mobile:max-sm:hidden">
-                        <Image src={'/cookwithlogo.png'} width={200} height={500} alt="" />
+                        <Image src={'/cookwithlogo.png'} width={200} height={500} alt=""  className='rounded-b-full'/>
                     </div>
                     <p className="text-[12px] text-gray-700">
                         Stay up-to-date with our latest trends and news by subscribing to our
