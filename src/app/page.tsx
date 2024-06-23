@@ -1,9 +1,21 @@
-import Image from "next/image";
+import NavBar from '@/components/organisms/NavBar';
+import HeroSection from '@/components/organisms/HeroSection';
+import Footer from '@/components/organisms/Footer';
+import CategoryGrid from '@/components/organisms/CategoryGrid';
+import ServicesSection from '@/components/organisms/ServicesSection';
+import Testimonials from '@/components/organisms/Testimonials';
+import SellWithUs from '@/components/organisms/CTA/SellWithUs';
 
 export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1>Welcome to HomyGig</h1>
-    </main>
-  );
+    return (
+        <main className="flex flex-col min-h-full">
+            <NavBar onDashBoard={false} />
+            <HeroSection />
+            <CategoryGrid />
+            <ServicesSection />
+            <Testimonials />
+            <SellWithUs />
+            <Footer />
+        </main>
+    );
 }
