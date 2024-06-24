@@ -23,7 +23,18 @@ const ServicesSection = () => {
     const router = useRouter();
     // console.log("TEST");
 
-    return <MasonryList services={services} onClickOpen={(id) => router.push(`/${id}`)} />;
+    return (
+        <>
+            {services?.length ? (
+                <MasonryList services={services} onClickOpen={(id) => router.push(`/${id}`)} />
+            ) : (
+                <MasonryList
+                    services={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+                    onClickOpen={(id) => router.push(`/${id}`)}
+                />
+            )}
+        </>
+    );
 
     // return (
     //     <div className="px-24  bigScreen:px-80 py-5 mobile:max-sm:px-5 flex flex-col justify-center items-center">

@@ -79,7 +79,7 @@ const NavBar = ({ onDashBoard = false, hideSearchBar = false }: NavTypes) => {
                 {!hideSearchBar && <SearchForm />}
             </div>
 
-            {user.id ? (
+            {user?.id ? (
                 <div className="flex justify-center items-center gap-3">
                     <Link
                         className={`text-sm font-semibold ${onDashBoard ? 'hidden' : ''} `}
