@@ -8,14 +8,14 @@ const MasonryList = ({
     services,
     onClickOpen
 }: {
-    services: Service[];
+    services: any[];
     onClickOpen: (id: string) => void;
 }) => {
     const items = services?.slice(0, 10).map((service, index) => (
         <div className="" key={index}>
             <div
                 onClick={() => service.id && onClickOpen(service.id)}
-                className={`rounded-2xl w-full object-fill hover:cursor-pointer shadow-md  mobile:max-sm:w-full  h-80 bg-slate-400 ${
+                className={`rounded-2xl w-full object-fill hover:cursor-pointer shadow-md  mobile:max-sm:w-full  h-80 bg-slate-300 ${!service.name ? "animate-pulse": ""}  ${
                     index % 2
                         ? 'h-[400px] mobile:max-sm:h-[300px]'
                         : 'h-[300] mobile:max-sm:h-[200px]'
@@ -52,14 +52,12 @@ const MasonryList = ({
             </div>
 
             <div className="px-24 mobile:max-sm:px-2 py-4 mobile:max-sm:hidden sm:max-lg:visible lg:hidden sm:max-lg:px-2">
-                <h3>list component</h3>
                 <Masonry columnsCount={3} gutter="15px">
                     {items}
                 </Masonry>
             </div>
 
             <div className="px-24 mobile:max-sm:px-2 py-4   sm:hidden">
-                <h3>list component</h3>
                 <Masonry columnsCount={2} gutter="15px">
                     {items}
                 </Masonry>

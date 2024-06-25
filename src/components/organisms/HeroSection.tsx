@@ -32,9 +32,9 @@ const HeroSection = () => {
                     </p>
                     <div className="items-center justify-center gap-x-3 space-y-3 sm:flex sm:space-y-0">
                         <Link
-                            href={user.id ? '/dashboard/appointments' : '/auth'}
+                            href={user?.id ? '/dashboard/appointments' : '/auth'}
                             className="block py-2 px-4 text-white font-medium bg-primarytheme duration-150 hover:bg-secondrytheme active:bg-indigo-700 rounded-lg shadow-lg hover:shadow-none">
-                            {user.id ? 'Appointments' : 'Get Started'}
+                            {user?.id ? 'Appointments' : 'Get Started'}
                         </Link>
                         <a
                             href=""
