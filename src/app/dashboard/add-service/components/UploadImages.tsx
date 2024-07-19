@@ -2,7 +2,7 @@ import { ActionBtn } from '@/components/atoms/buttons/ActionBtn';
 import ProductImageCard from '@/components/molucles/ProductImageCard';
 import { SingleImageDropzone } from '@/components/molucles/SingleImageDropZone';
 import { Button } from '@/components/ui/button';
-import { useEdgeStore } from '@/lib/edgestore';
+import { useEdgeStore } from '@/lib/edgeStore/edgestore';
 import { LOCAL_STORAGE } from '@/utils/storage';
 import { progress } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
@@ -139,10 +139,9 @@ const UploadImages = ({ onClickBack, onNextClick }: PropType) => {
                     </p>
                     <ActionBtn
                         className="bg-slate-600 hover:bg-secondrytheme px-10"
-                        title="upload"
                         loading={isLoading}
                         onClick={uplaodImage}
-                    />
+                    >upload</ActionBtn>
                 </div>
             </div>
 

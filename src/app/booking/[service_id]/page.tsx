@@ -98,8 +98,7 @@ const Page = () => {
                     <Form {...form}>
                         <form
                             onSubmit={form.handleSubmit(onSubmit)}
-                            className="flex flex-col gap-4 space-y-3"
-                        >
+                            className="flex flex-col gap-4 space-y-3">
                             <div>
                                 <p> City: {currentLocation.city}</p>
                                 <p> Locality: {currentLocation.locality}</p>
@@ -180,11 +179,9 @@ const Page = () => {
                                 )}
                             />{' '}
                             <div className="flex w-full items-end justify-end">
-                                <ActionBtn
-                                    className="self-end justify-end"
-                                    title="Book Now"
-                                    loading={isLoading}
-                                />
+                                <ActionBtn className="self-end justify-end" loading={isLoading}>
+                                    Book Now
+                                </ActionBtn>
                             </div>
                         </form>
                     </Form>

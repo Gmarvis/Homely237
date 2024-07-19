@@ -2,7 +2,7 @@ import { ActionBtn } from '@/components/atoms/buttons/ActionBtn';
 import ProductImageCard from '@/components/molucles/ProductImageCard';
 import { SingleImageDropzone } from '@/components/molucles/SingleImageDropZone';
 import { Button } from '@/components/ui/button';
-import { useEdgeStore } from '@/lib/edgestore';
+import { useEdgeStore } from '@/lib/edgeStore/edgestore';
 import { LOCAL_STORAGE } from '@/utils/storage';
 import { progress } from 'framer-motion';
 import { useEffect, useState } from 'react';
@@ -57,7 +57,7 @@ const ImageUpLoader = ({
     const uplaodImage = async () => {
         if (file) {
             if (images.length === 4) {
-                toast.warning('You can only uplaod 4 images', {
+                toast.warning('You can only upload 4 images', {
                     position: 'top-right',
                     hideProgressBar: true,
                     autoClose: 3000
@@ -120,14 +120,15 @@ const ImageUpLoader = ({
                             style={{
                                 width: `${progress}%`
                             }}
-                            className="h-full w-[50%] transition-all duration-150 bg-green-600"
-                        ></div>
+                            className="h-full w-[50%] transition-all duration-150 bg-green-600"></div>
                     </div>
                     <div className="flex justify-between">
                         <p className="py-1 text-slate-600 self-end  px-2 rounded-md shadow-md">
                             {images?.length}/4
                         </p>
-                        <ActionBtn title="upload" loading={isLoading} onClick={uplaodImage} />
+                        <ActionBtn loading={isLoading} onClick={uplaodImage}>
+                            upload
+                        </ActionBtn>
                     </div>
                 </div>
 
@@ -146,14 +147,12 @@ const ImageUpLoader = ({
                                 onClick={() => {
                                     setmainImg(image);
                                     onUpdateMainImage(image);
-                                }}
-                            >
+                                }}>
                                 set as main
                             </button>
                             <button
                                 className="text-sm hover:bg-slate-300  text-red-600 p-1 duration-300"
-                                onClick={() => handleDeleteImage(image)}
-                            >
+                                onClick={() => handleDeleteImage(image)}>
                                 Delete
                             </button>
                         </ProductImageCard>

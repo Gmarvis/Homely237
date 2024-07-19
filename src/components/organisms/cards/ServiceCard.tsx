@@ -69,7 +69,7 @@ const ServiceCard = ({
                         <DropdownMenuItem onClick={() => alert(service.name)}>
                             View
                         </DropdownMenuItem>
-                        <Link href={`/dashboard/myservices/edit/${service.id}`}>
+                        <Link href={`/dashboard/my-services/edit/${service.id}`}>
                             <DropdownMenuItem>Edit</DropdownMenuItem>
                         </Link>
                         <DailogBox

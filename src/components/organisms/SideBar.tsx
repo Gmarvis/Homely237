@@ -25,7 +25,7 @@ export const navLinks = [
         name: 'Myservices',
         icon: <MdOutlineCleaningServices size={24} />,
 
-        path: '/dashboard/myservices',
+        path: '/dashboard/my-services',
         role: ['provider', 'admin']
     },
     {
@@ -39,7 +39,7 @@ export const navLinks = [
         name: 'Add Service',
         icon: <MdAddToPhotos size={24} />,
 
-        path: '/dashboard/addservice',
+        path: '/dashboard/add-service',
         role: ['provider', 'admin']
     },
 
@@ -77,10 +77,10 @@ const SideBar = () => {
                     </Link>
                 ))}
             </div>
-            <button className='m-5 flex justify-start duration-300 items-center text-white gap-2 text-md'>
+            <Link href={'/dashboard/profile'} className='m-5 flex justify-start duration-300 items-center text-white gap-2 text-md'>
                 <ProfileAvatar size={4} image={user.image}/>
-                <span className='sm:max-lg:hidden'>Profile</span>
-            </button>
+                <span className='sm:max-lg:hidden'>{user.role}</span>
+            </Link>
         </div>
     );
 };

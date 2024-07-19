@@ -139,8 +139,7 @@ const EditServiceForm = () => {
                                         if (cat) {
                                             setCategory_name(cat.name);
                                         }
-                                    }}
-                                >
+                                    }}>
                                     <SelectTrigger>
                                         <SelectValue placeholder="select service category" />
                                     </SelectTrigger>
@@ -175,7 +174,9 @@ const EditServiceForm = () => {
                         </div>
                     </div>
                     <div className="flex justify-end pr-6 bigScreen:pr-40">
-                        <ActionBtn title="Update" loading={loading} onClick={handleUpdate} />
+                        <ActionBtn loading={loading} onClick={handleUpdate}>
+                            Update
+                        </ActionBtn>
                     </div>
                 </div>
             )}

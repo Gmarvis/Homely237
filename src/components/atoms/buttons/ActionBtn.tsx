@@ -1,14 +1,13 @@
-import React from 'react';
+import React, { ButtonHTMLAttributes, ReactNode } from 'react';
 import Spinner from '../Spinner';
-
 interface PropTypes {
     loading?: boolean;
     onClick?: () => void;
-    title: string;
-    className?: string;
+    children:  ReactNode
+    className?: string
 }
 
-export const ActionBtn = ({ ...props }: PropTypes) => {
+export const ActionBtn  = ({ ...props }: PropTypes) => {
     return (
         <div className="flex gap-2  items-center ">
             {props.loading && <Spinner />}
@@ -17,7 +16,7 @@ export const ActionBtn = ({ ...props }: PropTypes) => {
                 onClick={props.onClick}
                 className={`${props.className} bg-primarytheme hover:bg-secondrytheme disabled:cursor-not-allowed disabled:bg-gray-300 px-8 p-2 text-white rounded-md`}
             >
-                {props.title}
+                {props.children}
             </button>
         </div>
     );
