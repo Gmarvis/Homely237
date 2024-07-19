@@ -39,6 +39,7 @@ const CategoryGrid = () => {
                         <div className="h-14 w-14 mobile:max-sm:w-0 rounded-full">
                             <Image
                                 src={
+                                    category.image ||
                                     'https://i.pinimg.com/564x/05/c7/60/05c76026986116d1d7642942051a97dd.jpg'
                                 }
                                 className="rounded-full h-full w-full mobile:max-sm:hidden"

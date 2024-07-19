@@ -53,7 +53,6 @@ const ServiceDetails = () => {
                                     'https://i.pinimg.com/564x/9d/90/33/9d903364960a75dcb7f5ea8af91fa44f.jpg'
                                 }
                                 alt=""
-                                bg-red-600
                                 width={400}
                                 height={400}
                                 className="w-full h-full object-cover rounded-tl-2xl  rounded-bl-2xl mobile:max-sm:rounded-b-[0px] mobile:max-sm:rounded-t-2xl"

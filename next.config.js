@@ -3,7 +3,12 @@ const withPWA = require('next-pwa');
 
 const nextConfig = {
     images: {
-        domains: ['files.edgestore.dev', 'i.pinimg.com'],
+        remotePatterns: [
+            {
+              protocol: "https",
+              hostname: "**",
+            },
+          ],
         ...withPWA({
             dest: 'public',
             register: true,

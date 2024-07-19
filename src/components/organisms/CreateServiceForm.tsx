@@ -118,8 +118,7 @@ const CreateServiceForm = () => {
                         const catName = categories.find((cat) => cat.id === e.target.value);
                         if (catName) setCategory_name(catName?.name);
                     }}
-                    className="bg-transparent text-sm w-full outline-none border border-gray-400 py-2 px-1"
-                >
+                    className="bg-transparent text-sm w-full outline-none border border-gray-400 py-2 px-1">
                     <option> select a category</option>
                     {categories?.map((category, i) => (
                         <option key={i} value={category.id}>
@@ -138,15 +137,15 @@ const CreateServiceForm = () => {
                 // cols="30
                 // rows="10"
                 className="h-[180px] outline-none border border-gray-400 p-2 text-sm"
-                placeholder="Give clear description of the sercive your are provide, this will make your sercive stand out and atract more custumers"
-            ></textarea>
+                placeholder="Give clear description of the sercive your are provide, this will make your sercive stand out and atract more custumers"></textarea>
             <div className="flex absolute bottom-0  mt-10 right-20 mobile:max-sm:bottom-4 mobile:max-sm:right-2">
-                <ActionBtn title="create" onClick={() => {}} loading={isLoading} />
+                <ActionBtn onClick={() => {}} loading={isLoading}>
+                    create
+                </ActionBtn>
             </div>
             <Link
                 href={''}
-                className="text-secondrytheme text-xs text-center flex items-center w-full justify-center gap-3"
-            >
+                className="text-secondrytheme text-xs text-center flex items-center w-full justify-center gap-3">
                 <p>To get better Results, Read our Guide </p>
                 <IoBookOutline size={20} />
             </Link>

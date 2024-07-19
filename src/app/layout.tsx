@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import 'react-toastify/dist/ReactToastify.min.css';
 import SystermGard from './auth/(verifications)/SystermGard';
-import { EdgeStoreProvider } from '@/lib/edgestore';
+import { EdgeStoreProvider } from '@/lib/edgeStore/edgestore';
 import { ToastContainer } from './nextToast';
 // import { ThemeProvider } from "next-themes";
 

@@ -126,7 +126,7 @@ const CreateProviderForm = () => {
                 />
 
                 <div className="flex justify-end items-end w-full mt-4">
-                    <ActionBtn title="Proceed" loading={false} />
+                    <ActionBtn loading={false}>Proceed</ActionBtn>
                 </div>
             </form>
         </Form>
