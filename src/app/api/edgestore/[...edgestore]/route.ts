@@ -1,15 +1,42 @@
 import { initEdgeStore } from '@edgestore/server';
 import { createEdgeStoreNextHandler } from '@edgestore/server/adapters/next/app';
+
+type Context = {
+  userId: string;
+  userRole: UserRole;
+};
+
 const es = initEdgeStore.create();
 /**
  * This is the main router for the Edge Store buckets.
  */
 const edgeStoreRouter = es.router({
-    publicFiles: es.fileBucket()
+  publicFiles: es
+    .fileBucket({
+      maxSize: 1024 * 1024 * 1
+      // accept: ['image/jpeg', 'image/png'],
+    })
+    .beforeDelete(({ ctx, fileInfo }) => {
+      console.log('beforeDelete', ctx, fileInfo);
+      return true; // allow delete
+    }),
+
+  profilePictures: es
+    .imageBucket({
+      maxSize: 1024 * 1024 * 1
+    })
+    .beforeDelete(({ ctx, fileInfo }) => {
+      console.log('beforeDelete', ctx, fileInfo);
+      return true; // allow delete
+    }),
+
+  productImages: es.imageBucket()
 });
+
 const handler = createEdgeStoreNextHandler({
-    router: edgeStoreRouter
+  router: edgeStoreRouter
 });
+
 export { handler as GET, handler as POST };
 /**
  * This type is used to create the type-safe client for the frontend.

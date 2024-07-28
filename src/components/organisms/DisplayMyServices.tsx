@@ -6,69 +6,93 @@ import ServiceCard from './cards/ServiceCard';
 import ServicesSection from './ServicesSection';
 import SmoothLoader from '../atoms/SmoothLoader';
 import { toast } from 'react-toastify';
+import { useEdgeStore } from '@/lib/edgeStore/edgestore';
 
-/*>>>>>>>>>>>>>>THIS COMPONENT DISPLAYS ALL THE SERVICE PROVIDER'S SERVICE<<<<<<<<<<<<<*/
 const DisplayMyServices = () => {
-    const { user } = useUserStore();
-    const [myService, setMyServices] = useState<Service[]>([]);
-    const [loading, setLoading] = useState(true);
+  const { user } = useUserStore();
+  const [myService, setMyServices] = useState<Service[]>([]);
+  const [loading, setLoading] = useState(true);
 
-    const getServices = async () => {
-        getServiceByUserID(user.id).then((res: any) => {
-            setMyServices(res);
-            setLoading(false);
+  const { edgestore } = useEdgeStore();
+
+  const getServices = async () => {
+    getServiceByUserID(user.id).then((res: any) => {
+      setMyServices(res);
+      setLoading(false);
+    });
+  };
+  useEffect(() => {
+    getServices();
+  }, []);
+
+  const deleteServiceImages = async (service: Service) => {
+    let images = service.images;
+    if (!images.includes(service.product_image)) {
+      images = [service.product_image, ...images];
+    }
+    Promise.all(
+      images.map((image) => {
+        edgestore.publicFiles.delete({
+          url: image
         });
-    };
-    useEffect(() => {
-        getServices();
-    }, []);
+      })
+    )
+      .then()
+      .catch((error) => {
+        throw new Error(error);
+      });
+  };
 
-    const handleDeleteService = async (id: string) => {
-        const response = await deleteService(id);
-        const results = await response.json();
-        if (results === 1) {
-            setMyServices(myService.filter((service) => service.id !== id));
-        } else {
-            toast.error('failed to delete service', {
-                position: 'top-right',
-                hideProgressBar: true,
-                autoClose: 3000
-            });
-        }
-    };
-
-    return (
-        <div>
-            {myService?.length > 0 && (
-                <div className="flex gap-5 flex-wrap items-center py-10">
-                    <Suspense fallback={<ServicesSection />}>
-                        {myService?.map((service, i) => (
-                            <ServiceCard
-                                key={i}
-                                service={service}
-                                onClick={() => {}}
-                                hideAuthor
-                                showMenu
-                                onClickDelete={handleDeleteService}
-                            />
-                        ))}
-                    </Suspense>
-                </div>
-            )}
-
-            {loading && (
-                <div className="flex gap-5  items-center justify-center py-10 pt-44 self-center">
-                    <SmoothLoader />
-                </div>
-            )}
-
-            {myService?.length === 0 && !loading && (
-                <div className="flex gap-5 flex-wrap items-center justify-center pt-44 py-10">
-                    <h3>Opps! you dont have services yet</h3>
-                </div>
-            )}
-        </div>
+  const handleDeleteService = (service: Service) => {
+    deleteService(service.id).then(async (res) => {
+      const data = await res.json();
+      if (data === 1) setMyServices(myService.filter((service) => service.id !== service.id));
+    });
+    toast.promise(
+      async () => {
+        await deleteServiceImages(service);
+        await deleteService(service.id);
+      },
+      {
+        pending: 'Deleting service',
+        success: 'service deleted successfully',
+        error: 'Failed to delete service'
+      }
     );
+  };
+
+  return (
+    <div className=" h-full">
+      {myService?.length > 0 && (
+        <div className="flex gap-5 flex-wrap items-center py-10">
+          {myService?.map((service, i) => (
+            <ServiceCard
+              key={i}
+              service={service}
+              onClick={() => {}}
+              hideAuthor
+              showMenu
+              onClickDelete={handleDeleteService}
+            />
+          ))}
+        </div>
+      )}
+
+      {loading && (
+        <div className="flex gap-3   items-center justify-center self-center flex-wrap animate-pulse">
+          {[1, 2, 3, 4, 5, 6].map((_, index) => (
+            <div key={index} className="w-64 h-64 bg-gray-300 rounded-md shadow-md"></div>
+          ))}
+        </div>
+      )}
+
+      {myService?.length === 0 && !loading && (
+        <div className="flex gap-5 h-full w-full flex-wrap items-center justify-center ">
+          <h3>Oops! you do not have service yet</h3>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default DisplayMyServices;
