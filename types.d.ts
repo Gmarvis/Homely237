@@ -1,7 +1,13 @@
- enum UserRole {
+enum UserRole {
   ADMIN = 'admin',
   USER = 'user',
   PROVIDER = 'provider'
+}
+
+enum StatusType {
+  PENDING = 'pending',
+  ACCEPTED = 'accepted',
+  DECLINED = 'declined'
 }
 
 interface User {
@@ -46,7 +52,7 @@ interface Service {
   user?: User;
 }
 
-interface CurrentLoacation {
+interface CurrentLocation {
   city: string;
   continent: string;
   continentCode: string;
@@ -64,9 +70,9 @@ interface Appointment {
   city: string;
   locality: string;
   phone_number: string;
-  location_detials: string;
+  location_details: string;
   date: Date;
-  status: string;
+  status: StatusType;
   createdAt: Date;
   updatedAt: Date;
   user: User;

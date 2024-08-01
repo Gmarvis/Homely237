@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import 'react-toastify/dist/ReactToastify.min.css';
-import SystermGard from './auth/(verifications)/SystermGard';
-import { EdgeStoreProvider } from '@/lib/edgeStore/edgestore';
-import { ToastContainer } from './nextToast';
+import SystemGard from './(site)/auth/(verifications)/SystemGard';
+import { EdgeStoreProvider } from '@/core/lib/edgeStore/edgestore';
+import { ToastContainer } from './(site)/nextToast';
 // import { ThemeProvider } from "next-themes";
 
 export const metadata: Metadata = {
@@ -22,12 +22,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           } */}
       {/* <ThemeProvider> */}
       <EdgeStoreProvider>
-        <SystermGard>
+        <SystemGard>
           <body className="">
             <ToastContainer hideProgressBar={false} newestOnTop={false} closeOnClick />
             {children}
           </body>
-        </SystermGard>
+        </SystemGard>
       </EdgeStoreProvider>
       {/* </ThemeProvider> */}
     </html>

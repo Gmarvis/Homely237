@@ -11,7 +11,7 @@ export const cities = [
     population_proper: '5768400'
   },
   {
-    city: 'Yaoundé',
+    city: 'Yaounde',
     lat: '3.8667',
     lng: '11.5167',
     country: 'Cameroon',

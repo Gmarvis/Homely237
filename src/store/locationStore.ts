@@ -1,8 +1,8 @@
 import { create } from 'zustand';
 
 type StoreType = {
-  currentLocation: CurrentLoacation;
-  setCurrentLocation: (location: CurrentLoacation) => void;
+  currentLocation: CurrentLocation;
+  setCurrentLocation: (location: CurrentLocation) => void;
 };
 
 const useLocationStore = create<StoreType>((set) => ({
