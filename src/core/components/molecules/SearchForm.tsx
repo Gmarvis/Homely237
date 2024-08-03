@@ -3,7 +3,7 @@ import { FiSearch } from 'react-icons/fi';
 
 const SearchForm = () => {
   return (
-    <form className="w-[40vw] border border-slate-400 flex items-center px-1 rounded ">
+    <form className="w-[40vw] border border-slate-400 flex items-center px-1 hidden rounded ">
       <input
         type="text"
         className="outline-none bg-transparent border-none w-full py-2 text-sm text-gray-600"

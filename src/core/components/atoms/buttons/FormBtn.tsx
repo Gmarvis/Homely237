@@ -11,7 +11,7 @@ const FormBtn = ({ isLoading, title, onClick }: BtnType) => {
   return (
     <button
       disabled={isLoading}
-      className={`hover:bg-gray-400 disabled:cursor-wait disabled:bg-gray-500 bg-primarytheme  text-white p-2 justify-center items-center w-full`}
+      className={`hover:bg-gray-400 disabled:cursor-wait disabled:bg-gray-500 bg-primarytheme  text-white py-4 p-2 justify-center items-center w-full`}
     >
       <span className="flex self-center justify-center">
         {isLoading ? <Spinner /> : <>{title}</>}

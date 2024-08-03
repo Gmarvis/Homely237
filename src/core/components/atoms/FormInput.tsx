@@ -11,10 +11,10 @@ type InPutProps = {
 const FormInput = ({ label, onChange, styles, type = 'text' }: InPutProps) => {
   const [showLabel, setShowLabel] = useState(false);
   return (
-    <div className={`    ${styles}  text-sm relative `}>
+    <div className={`    ${styles}  text-sm relative`}>
       <span
         className={`absolute bottom-7 bigScreen:bottom-11 mobile:max-sm:bottom-11 ${
-          !showLabel ? 'hidden' : 'visible duration-700 transition ease-in-out'
+          !showLabel ? 'hidden' : 'visible duration-300 ease-in-out'
         } bg-white px-[5px]  text-primarytheme left-2`}
       >
         {label}
@@ -24,7 +24,7 @@ const FormInput = ({ label, onChange, styles, type = 'text' }: InPutProps) => {
         onFocus={() => setShowLabel(true)}
         onBlur={() => setShowLabel(false)}
         type={type}
-        className="w-full py-2 bigScreen:py-4 mobile:max-sm:py-4 px-3   outline-none"
+        className="w-full py-2 bigScreen:py-4 border mobile:max-sm:py-4 px-3   outline-none"
         placeholder={label}
       />
     </div>

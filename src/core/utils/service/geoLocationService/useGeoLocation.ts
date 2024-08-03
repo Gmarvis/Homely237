@@ -1,3 +1,4 @@
+"use client"
 import { getCurrentLocation } from '@/core/utils/queries';
 import { useEffect, useState } from 'react';
 import useLocationStore from '@/store/locationStore';

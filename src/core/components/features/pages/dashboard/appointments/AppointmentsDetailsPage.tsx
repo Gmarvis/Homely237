@@ -34,7 +34,7 @@ export default function AppointmentDetailsPage() {
   return (
     <div className="w-full h-full  flex flex-col justify-center bg-slate-100">
       {!appointment ? (
-        <div className="w-[50%] mobile:max-lg:w-full mobile:max-lg:m-0 mobile:max-lg:h-auto lg:max-2xl:w-[60%] m-auto shadow h-[85vh] flex flex-col justify-between bg-white rounded-md p-2 space-y-5">
+        <div className="w-[50%] mobile:max-lg:w-full mobile:max-lg:m-0 lg:max-2xl:w-[60%] m-auto shadow h-[85vh] flex flex-col justify-between bg-white rounded-md p-2 space-y-5">
           <div className="m-auto rounded-full ">
             <LogoLoader />
           </div>

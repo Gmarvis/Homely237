@@ -12,14 +12,16 @@ import Image from 'next/image';
 import { Dispatch, ReactNode, SetStateAction } from 'react';
 
 type PropTypes = {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
+  footer?: string | JSX.Element
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
   children: ReactNode;
+
 };
 
-export default function PopUpModal({ open, setOpen, title, description, children }: PropTypes) {
+export default function PopUpModal({ open, setOpen, title, description, children , footer}: PropTypes) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent>
@@ -30,6 +32,9 @@ export default function PopUpModal({ open, setOpen, title, description, children
         </DialogHeader>
         {children}
       </DialogContent>
+      <DialogHeader>
+        {footer}
+      </DialogHeader>
     </Dialog>
   );
 }
