@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 type PropType = {
   steps: {
-    stpesCount: number[];
+    stepsCount: number[];
     currentStep: number;
   };
 };
@@ -11,7 +11,7 @@ const Steps = ({ steps }: PropType) => {
   return (
     <div className="w-full mx-auto px-4 py-4 sm:px-0">
       <ul aria-label="Steps" className="flex items-center">
-        {steps.stpesCount.map((item, idx) => (
+        {steps.stepsCount.map((item, idx) => (
           <li
             key={idx}
             aria-current={steps.currentStep == idx + 1 ? 'step' : false}
@@ -48,7 +48,7 @@ const Steps = ({ steps }: PropType) => {
             </div>
             <hr
               className={`w-full border ${
-                idx + 1 == steps.stpesCount.length
+                idx + 1 == steps.stepsCount.length
                   ? 'hidden'
                   : '' || steps.currentStep > idx + 1
                     ? 'border-primarytheme'

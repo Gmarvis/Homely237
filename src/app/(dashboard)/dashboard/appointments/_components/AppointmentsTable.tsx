@@ -49,7 +49,9 @@ const AppointmentsTable = () => {
     }
   };
 
-  const tableHeaders = ['Name', 'message', 'sent date', 'due date', 'status', 'actions'];
+  const tableHeaders = ['name', 'message', 'sent date', 'due date', 'status',];
+
+
   const [appointments, setAppointments] = useState<Appointment[]>();
   const [loading, setLoading] = useState(false);
   const { user } = useUserStore();
@@ -89,11 +91,11 @@ const AppointmentsTable = () => {
   console.log(appointments);
 
   return (
-    <div className="max-w-screen-2xl mx-auto px-4 md:px-8 relative">
-      <div className=" justify-between md:flex flex items-center">
+    <div className="max-w-screen-2xl mx-auto px-4 mobile:max-lg:p-0 md:px-8 relative">
+      <div className=" justify-between md:flex flex items-center mobile:ma gap-5">
         <div className="max-w-lg">
           <h3 className="text-gray-800 text-xl font-bold sm:text-2xl">Appointments </h3>
-          <p className="text-gray-600 mt-2">
+          <p className="text-gray-600 mt-2 text-xs">
             {user.role !== 'user'
               ? 'Approve, decline and reschedule appointments here!'
               : 'manage all you appointments here'}
@@ -101,14 +103,16 @@ const AppointmentsTable = () => {
         </div>
 
         {user.role !== UserRole.USER && (
-          <div className="space-x-4">
+          <div className="space-x-4 justify-between flex">
             <Button
+              size={'sm'}
               onClick={getSentAppointments}
               className={`${filter === 'sent' ? 'bg-black/20' : ''} duration-300`}
               variant={'secondary'}>
               Sent
             </Button>
             <Button
+              size={'sm'}
               onClick={getReceivedAppointments}
               className={`${filter === 'received' ? 'bg-black/20' : ''} duration-300`}
               variant={'secondary'}>
@@ -127,61 +131,127 @@ const AppointmentsTable = () => {
             ))}
           </div>
         ) : (
-          <Table>
-            <TableCaption>
-              {appointments?.length ? 'A list of your recent Appointments.' : 'No new appointments'}
-            </TableCaption>
-            <TableHeader>
-              <TableRow>
-                {tableHeaders.map((header, index) => (
-                  <TableHead
-                    className={`font-semibold text-gray-950 capitalize ${index === tableHeaders.length - 1 ? 'text-end' : ''}`}
-                    key={index}>
-                    {header}
-                  </TableHead>
-                ))}
-              </TableRow>
-            </TableHeader>
-            <TableBody className="">
-              {appointments?.map((appointment, index) => (
-                <TableRow
-                  onClick={() => handleReadAppointment(appointment.id)}
-                  key={index}
-                  accessKey="user"
-                  className="hover:shadow-md rounded-md duration-300 hover:cursor-pointer">
-                  <TableCell className="font-medium">
-                    {appointment.user_id === user.id ? 'Me' : appointment.user.name}
-                  </TableCell>
-                  <TableCell>{capitalizeText(appointment.description).slice(0, 100)}...</TableCell>
-                  <TableCell>
-                    {' '}
-                    {formatDistanceToNow(appointment.createdAt, { addSuffix: true })}
-                  </TableCell>
-                  <TableCell> {dateFormatter.formatDate(appointment.date)} </TableCell>
-                  <TableCell className={`${statusColumnStyles(appointment.status)} font-semibold`}>
-                    {appointment.status.toUpperCase()}{' '}
-                  </TableCell>
-                  <TableCell>
-                    <DropDownMenu>
-                      <DropdownMenuItem onClick={() => {}}>Open</DropdownMenuItem>
-                      {user.id !== appointment.user_id && (
-                        <>
-                          <DropdownMenuItem
-                            onClick={(e) => {
-                              alert();
-                              e.stopPropagation();
-                            }}>
-                            Approve
-                          </DropdownMenuItem>
-                          <DropdownMenuItem onClick={() => alert()}>Decline</DropdownMenuItem>
-                        </>
-                      )}
-                    </DropDownMenu>
-                  </TableCell>
+          <>
+            {/* Table on big screens */}
+            <Table className='mobile:max-md:hidden'>
+              <TableCaption>
+                {appointments?.length
+                  ? 'A list of your recent Appointments.'
+                  : 'No new appointments'}
+              </TableCaption>
+              <TableHeader>
+                <TableRow>
+                  {tableHeaders.map((header, index) => (
+                    <TableHead
+                      className={`font-semibold text-gray-950 capitalize`}
+                      key={index}>
+                      {header}
+                    </TableHead>
+                  ))}
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHeader>
+              <TableBody className="">
+                {appointments?.map((appointment, index) => (
+                  <TableRow
+                    onClick={() => handleReadAppointment(appointment.id)}
+                    key={index}
+                    accessKey="user"
+                    className="hover:shadow-md rounded-md duration-300 hover:cursor-pointer">
+                    <TableCell className="font-medium">
+                      {appointment.user_id === user.id ? 'Me' : appointment.user.name}
+                    </TableCell>
+                    <TableCell>{capitalizeText(appointment.description).slice(0, 60)}...</TableCell>
+                    <TableCell>
+                      {' '}
+                      {formatDistanceToNow(appointment.createdAt, { addSuffix: true })}
+                    </TableCell>
+                    <TableCell> {dateFormatter.formatDate(appointment.date)} </TableCell>
+                    <TableCell
+                      className={`${statusColumnStyles(appointment.status)} font-semibold`}>
+                      {appointment.status.toUpperCase()}{' '}
+                    </TableCell>
+                    <TableCell>
+                      <DropDownMenu>
+                        <DropdownMenuItem onClick={() => {}}>Open</DropdownMenuItem>
+                        {user.id !== appointment.user_id && (
+                          <>
+                            <DropdownMenuItem
+                              onClick={(e) => {
+                                alert();
+                                e.stopPropagation();
+                              }}>
+                              Approve
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => alert()}>Decline</DropdownMenuItem>
+                          </>
+                        )}
+                      </DropDownMenu>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+
+            {/* Table on mobile screens */}
+
+            <Table className='md:hidden'>
+              <TableCaption>
+                {appointments?.length
+                  ? 'A list of your recent Appointments.'
+                  : 'No new appointments'}
+              </TableCaption>
+              <TableHeader>
+                <TableRow>
+                  {tableHeaders.filter((item) => ["name", "sent date", "status"].includes(item)) .map((header, index) => (
+                    <TableHead
+                      className={`font-semibold text-gray-950 capitalize ${index === tableHeaders.length - 1 ? 'text-end' : ''}`}
+                      key={index}>
+                      {header}
+                    </TableHead>
+                  ))}
+                </TableRow>
+              </TableHeader>
+              <TableBody className="text-xs">
+                {appointments?.map((appointment, index) => (
+                  <TableRow
+                    onClick={() => handleReadAppointment(appointment.id)}
+                    key={index}
+                    accessKey="user"
+                    className="hover:shadow-md rounded-md duration-300 hover:cursor-pointer">
+                    <TableCell className="font-medium">
+                      {appointment.user_id === user.id ? 'Me' : appointment.user.name}
+                    </TableCell>
+                    <TableCell>
+                      {' '}
+                      {formatDistanceToNow(appointment.createdAt, { addSuffix: true })}
+                    </TableCell>
+                  
+                    <TableCell
+                      className={`${statusColumnStyles(appointment.status)} font-semibold`}>
+                      {appointment.status.toUpperCase()}{' '}
+                    </TableCell>
+                    <TableCell>
+                      <DropDownMenu>
+                        <DropdownMenuItem onClick={() => {}}>Open</DropdownMenuItem>
+                        {user.id !== appointment.user_id && (
+                          <>
+                            <DropdownMenuItem
+                              onClick={(e) => {
+                                alert();
+                                e.stopPropagation();
+                              }}>
+                              Approve
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => alert()}>Decline</DropdownMenuItem>
+                          </>
+                        )}
+                      </DropDownMenu>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </>
         )}
       </div>
     </div>

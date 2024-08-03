@@ -21,13 +21,13 @@ import {
   Select
 } from '@/core/components/ui/select';
 import { Textarea } from '@/core/components/ui/textarea';
-import Steps from '@/app/(site)/booking/[service_id]/_components/Steps';
 import { LOCAL_STORAGE } from '@/core/utils/storage';
 import UploadImages from './components/ImageUploader';
 import CreatePage from './components/CreatePage';
 import SuccessPage from './components/SuccessPage';
 import ConfirmLocation from './components/ConfirmLocation';
 import useCategoryStore from '@/store/categoryStore';
+import Steps from '@/core/components/ui/Steps';
 
 const formSchema = z.object({
   name: z.string().min(5, {
@@ -58,7 +58,7 @@ const Page = () => {
   const [data, setData] = useState<FormDataType>(
     JSON.parse(localStorage.getItem('serviceData') || '{}').serviceDetails
   );
-  const [categotyError, setCategoryError] = useState('');
+  const [categoryError, setCategoryError] = useState('');
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -71,7 +71,7 @@ const Page = () => {
 
   const handleSubmit = (value: z.infer<typeof formSchema>) => {
     if (!value.category_id) {
-      setCategoryError('categoty is required');
+      setCategoryError('category is required');
       return;
     }
     setCategoryError('');
@@ -102,7 +102,7 @@ const Page = () => {
         </h1>
         <Steps
           steps={{
-            stpesCount: [1, 2, 3, 4],
+            stepsCount: [1, 2, 3, 4],
             currentStep: currentStep
           }}
         />
@@ -166,8 +166,8 @@ const Page = () => {
                             </SelectItem>
                           ))}
                         </SelectContent>
-                        {categotyError && (
-                          <span className="text-xs text-red-600">{categotyError}</span>
+                        {categoryError && (
+                          <span className="text-xs text-red-600">{categoryError}</span>
                         )}
                       </Select>
 

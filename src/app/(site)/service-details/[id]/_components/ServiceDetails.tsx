@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import * as Queries from '@/core/utils/queries';
-import { usePathname } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -9,15 +9,24 @@ import DetailsSkeleton from './DetailsSkeleton';
 import { ImWhatsapp } from 'react-icons/im';
 import { IoMdArrowRoundBack } from 'react-icons/io';
 import MasonryList from '@/core/components/organisms/MasonryList';
+import { Button } from '@/core/components/ui/button';
+import { PopUpModal } from '@/core/components/organisms/modals';
+import { Login } from '@/core/components/organisms';
+import SignUp from '@/core/components/organisms/SignUp';
+import { useUserStore } from '@/store';
+
 const ServiceDetails = () => {
   const [service, setService] = useState<Service | null>(null);
   const [relatedProducts, SetRelatedProducts] = useState<Service[] | null>(null);
   const [view, setView] = useState('');
+  const [openModal, setOpenModal] = useState(false);
+  const [onSign, setOnSignUp] = useState(false);
 
   const router = useRouter();
+  const { user } = useUserStore();
 
   // get Service Id form the params
-  const serviceId = usePathname().slice(1);
+  const serviceId = useParams().id as string;
 
   useEffect(() => {
     Queries.getServiceByServiceID(serviceId).then((res) => {
@@ -31,8 +40,15 @@ const ServiceDetails = () => {
         // console.log(res);
       }
     });
-  }, [serviceId]);
-  <h2>{service?.name}</h2>;
+  }, []);
+
+  const handleOnclickBookAppointment = () => {
+    if (!user.id) {
+      setOpenModal(true);
+    } else {
+      service && router.push(`/booking/${service.id}`);
+    }
+  };
 
   return (
     <>
@@ -42,8 +58,7 @@ const ServiceDetails = () => {
             <div className="iamges mobile:max-sm:w-[100%] mobile:max-sm:h-[300px] w-full h-full rounded-tl-2xl mobile:max-sm:rounded-b-[0px]  rounded-bl-2xl mobile:max-sm:rounded-2xl bg-gray-200 relative">
               <button
                 onClick={() => router.back()}
-                className="absolute left-5 top-5 bg-primarytheme hover:bg-secondrytheme duration-300 p-2 rounded-full text-white"
-              >
+                className="absolute left-5 top-5 bg-primarytheme hover:bg-secondrytheme duration-300 p-2 rounded-full text-white">
                 <IoMdArrowRoundBack size={40} />
               </button>
 
@@ -85,8 +100,7 @@ const ServiceDetails = () => {
                     <div
                       className="w-[100px] h-[100px] hover:cursor-pointer hover:scale-105 duration-300"
                       key={i}
-                      onClick={() => setView(image)}
-                    >
+                      onClick={() => setView(image)}>
                       <Image
                         src={image}
                         alt=""
@@ -98,12 +112,12 @@ const ServiceDetails = () => {
                   ))}
                 </div>
 
-                <button
-                  onClick={() => router.push(`/booking/${service.id}`)}
-                  className=" border bg-primarytheme text-white hover:bg-secondrytheme duration-300 py-3 rounded-full"
-                >
+                <Button
+                  variant={'secondary'}
+                  onClick={handleOnclickBookAppointment}
+                  className=" bg-primarytheme">
                   BOOK AN APPOINTMENT
-                </button>
+                </Button>
               </div>
             )}
           </div>
@@ -122,6 +136,22 @@ const ServiceDetails = () => {
           onClickOpen={(id) => router.push(`/${id}`)}
         />
       )}
+
+      {/* authentication modal */}
+      <PopUpModal open={openModal} setOpen={setOpenModal}>
+        {onSign ? <SignUp onSuccessSignUp={()=> setOpenModal(false)} /> : <Login onSuccessLogin={() => setOpenModal(false)} />}
+
+        <p className="text-center">
+          {onSign ? 'Already have an account' : "Don't have an account yet"}
+
+          <Button
+            onClick={() => setOnSignUp((prev) => !prev)}
+            variant={'link'}
+            className="text-primarytheme font-semibold">
+            {onSign ? 'Log in' : 'Sign Up'}
+          </Button>
+        </p>
+      </PopUpModal>
     </>
   );
 };

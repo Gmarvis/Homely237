@@ -1,3 +1,4 @@
+'use client';
 import {
   Navbar,
   HeroSection,
@@ -7,8 +8,10 @@ import {
   Footer,
   ServicesSection
 } from '@/core/components/organisms';
+import { useUserStore } from '@/store';
 
 export default function Homepage() {
+  const { user } = useUserStore();
   return (
     <main className="flex flex-col min-h-full">
       <Navbar onDashBoard={false} />
@@ -16,7 +19,7 @@ export default function Homepage() {
       <CategoryGrid />
       <ServicesSection />
       <Testimonies />
-      <SellWithUs />
+      {!user.id || user.role === "user" ? "" : <SellWithUs /> }
       <Footer />
     </main>
   );

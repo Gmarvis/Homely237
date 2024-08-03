@@ -1,3 +1,4 @@
+'use client';
 import { Input } from '@/core/components/ui/input';
 import { Textarea } from '@/core/components/ui/textarea';
 import { Label } from '@/core/components/ui/label';
@@ -5,6 +6,9 @@ import { ActionBtn } from '@/core/components/atoms/buttons/ActionBtn';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useLocationStore } from '@/store';
+import { cities } from '@/data/cm';
+
 import {
   Form,
   FormControl,
@@ -14,8 +18,16 @@ import {
   FormDescription,
   FormMessage
 } from '@/core/components/ui/form';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '@/core/components/ui/select';
+import { useEffect, useMemo, useState } from 'react';
 
-const formShema = z.object({
+const formSchema = z.object({
   service_title: z
     .string({
       message: 'service title is required'
@@ -28,20 +40,22 @@ const formShema = z.object({
       message: 'phone number is required'
     })
     .min(9, {
-      message: 'number must be 9 degits no country code needed'
+      message: 'number must be 9 digits no country code needed'
     })
-    .max(9, { message: 'number must be 9 degits code needed' }),
+    .max(9, { message: 'number must be 9 digits code needed' }),
   location: z.string(),
   // idCard_image_front: z.string(),
   // idCard_image_back: z.string(),
-  bio: z.string().min(600, {
-    message: 'bio should be at least 600 characters'
+  bio: z.string().min(100, {
+    message: 'bio should be at least 100 characters'
   })
 });
 
 const CreateProviderForm = () => {
-  const form = useForm<z.infer<typeof formShema>>({
-    resolver: zodResolver(formShema),
+  const [categoryError, setCategoryError] = useState('');
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
     defaultValues: {
       service_title: '',
       phone: '',
@@ -52,9 +66,13 @@ const CreateProviderForm = () => {
     }
   });
 
-  const handleSubmit = (values: z.infer<typeof formShema>) => {
-    console.log('vlues', values);
+  const handleSubmit = (values: z.infer<typeof formSchema>) => {
+    console.log('values', values);
   };
+
+  const currentLocation = useLocationStore().currentLocation;
+
+  console.log(currentLocation);
 
   return (
     <Form {...form}>
@@ -64,7 +82,7 @@ const CreateProviderForm = () => {
           name="service_title"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Service Tilte</FormLabel>
+              <FormLabel>Service Title</FormLabel>
               <FormControl>
                 <Input placeholder="Service title" {...field} />
               </FormControl>
@@ -95,13 +113,29 @@ const CreateProviderForm = () => {
             <FormItem>
               <FormLabel>location</FormLabel>
               <FormControl>
-                <Input placeholder="Location" {...field} />
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={currentLocation?.city}
+                  {...field}>
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder={currentLocation.city} />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {cities.map((city) => (
+                      <SelectItem key={city.city} value={city.city}>
+                        {city.city}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                  {categoryError && <span className="text-xs text-red-600">{categoryError}</span>}
+                </Select>
               </FormControl>
               <FormMessage className="text-xs" />
             </FormItem>
           )}
         />
-
         {/* <Label className=" text-gray-800 text-xs">
                     National ID card front image
                 </Label>
@@ -118,7 +152,11 @@ const CreateProviderForm = () => {
             <FormItem>
               <FormLabel>bio</FormLabel>
               <FormControl>
-                <Textarea placeholder="say something about yourself" {...field} />
+                <Textarea
+                  className="min-h-40"
+                  placeholder="say something about yourself"
+                  {...field}
+                />
               </FormControl>
               <FormMessage className="text-xs" />
             </FormItem>
