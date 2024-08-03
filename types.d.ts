@@ -77,3 +77,25 @@ interface Appointment {
   updatedAt: Date;
   user: User;
 }
+
+interface UpdateUser {
+  name?: string;
+  email?: string;
+  password?: string;
+  phone?: string;
+  location?: string;
+  image?: string;
+  location_plan?: string;
+  bio?: string;
+  idCard_image_front?: string;
+  idCard_image_back?: string;
+  service_title: string;
+  role?: Role;
+}
+
+
+ interface ErrorReturnType {
+  error:   string;
+  status:  number;
+  message: string;
+}

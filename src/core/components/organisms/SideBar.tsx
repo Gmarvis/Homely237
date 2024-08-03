@@ -58,7 +58,7 @@ const SideBar = () => {
   return (
     <div className="flex flex-col w-[15vw] bg-primarytheme h-screen shadow-md mobile:max-sm:hidden px-2">
       <Link href={'/'} className="self-center w-full flex pl-5">
-        <Image src={'/whitelogo.png'} alt="homygig logo" width={130} height={80} />
+        <Image src={'/whitelogo.png'} alt="homygig logo" width={160} height={80} />
       </Link>
 
       <div className="w-full mt-10  flex gap-3 flex-col flex-grow">

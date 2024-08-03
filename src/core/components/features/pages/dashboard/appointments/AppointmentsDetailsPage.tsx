@@ -32,7 +32,7 @@ export default function AppointmentDetailsPage() {
   }, []);
 
   return (
-    <div className="w-full h-full  flex flex-col justify-center bg-slate-100">
+    <div className="w-full h-full  flex flex-col justify-center">
       {!appointment ? (
         <div className="w-[50%] mobile:max-lg:w-full mobile:max-lg:m-0 lg:max-2xl:w-[60%] m-auto shadow h-[85vh] flex flex-col justify-between bg-white rounded-md p-2 space-y-5">
           <div className="m-auto rounded-full ">
@@ -51,7 +51,7 @@ export default function AppointmentDetailsPage() {
             </Badge>
           </div>
           <div className="space-y-4 flex-grow">
-            <div className="flex w-full justify-center items-center p-5">
+            <div className="flex w-full justify-center items-center p-2">
               <Image src={'/Calendar-bro.png'} height={200} width={200} alt="Calendar-image" />
             </div>
             <div className="flex flex-col space-y-4 justify-center px-4">

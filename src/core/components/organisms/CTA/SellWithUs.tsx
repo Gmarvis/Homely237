@@ -1,4 +1,5 @@
-import { LinkBtn, LinkBtnTheme } from '@/core/components/atoms/buttons/LinkBtn';
+import { Button } from '../../ui/button';
+import Link from 'next/link';
 
 const SellWithUs = () => {
   return (
@@ -16,8 +17,11 @@ const SellWithUs = () => {
           </p>
         </div>
         <div className="mt-4">
-          <LinkBtn title={'Start Now'} path={'/workspace'} theme={LinkBtnTheme.themeColor} />
+          {/* <LinkBtn title={'Start Now'} path={'/workspace'} theme={LinkBtnTheme.themeColor} /> */}
         </div>
+        <Link href={'/workspace'}>
+        <Button className='bg-primarytheme'>Start Now</Button>
+        </Link>
       </div>
     </section>
   );
