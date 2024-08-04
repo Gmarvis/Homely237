@@ -3,71 +3,63 @@
 import { Footer, Navbar, Testimonies, ServiceGrid, SellWithUs } from '@/core/components/organisms';
 import React, { useEffect, useState } from 'react';
 
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { getServiceByCategoryID } from '@/core/utils/queries';
 import { randomArrayWithinRange } from '@/app/(site)/category/helperFuntions';
+import HeroContainer from '@/core/components/ui/heroContainer';
+import { useUserStore, useCategoryStore } from '@/store';
+import MasonryList from '@/core/components/organisms/MasonryList';
 
 export default function ServiceCategoryPage() {
-  const [category, setCategory] = useState<Category>();
   const [services, setServices] = useState<Service[]>([]);
-  const [gridImages, setGridImages] = useState<string[]>([
-    'https://i.pinimg.com/736x/5c/6a/b6/5c6ab6f93e9d5c83a773698c8ddf25ff.jpg',
-    'https://i.pinimg.com/564x/26/fe/04/26fe04dfda1ff7a980a6e8d69fb43151.jpg',
-    'https://i.pinimg.com/564x/84/17/79/841779ded57a77c275909fe55bb70605.jpg',
-    'https://i.pinimg.com/564x/8d/9a/c0/8d9ac086df0763977f05aca1b7a79408.jpg'
-  ]);
-
-  const images = [
-    'https://i.pinimg.com/736x/5c/6a/b6/5c6ab6f93e9d5c83a773698c8ddf25ff.jpg',
-    'https://i.pinimg.com/564x/26/fe/04/26fe04dfda1ff7a980a6e8d69fb43151.jpg',
-    'https://i.pinimg.com/564x/22/fc/c1/22fcc1b8cdd61705f66abda3e66cecaa.jpg',
-    'https://i.pinimg.com/564x/84/17/79/841779ded57a77c275909fe55bb70605.jpg',
-    'https://i.pinimg.com/736x/3a/f6/7f/3af67feef15ddd8d39265ff454dc9e02.jpg',
-    'https://i.pinimg.com/564x/fa/bc/63/fabc63376f95174702bead4fd929d578.jpg',
-    'https://i.pinimg.com/564x/8d/9a/c0/8d9ac086df0763977f05aca1b7a79408.jpg'
-  ];
-
-  let interval = setInterval(() => {
-    const randomImages = randomArrayWithinRange(images, 2);
-    setGridImages(randomImages as string[]);
-  }, 6000);
-  clearInterval(interval);
+  const { user } = useUserStore();
+  const { categories } = useCategoryStore();
+  const [loading, setLoading] = useState(false);
 
   const category_id = useParams().id;
+  const router = useRouter();
+
+  const getServices = () => {
+    setLoading(true);
+    getServiceByCategoryID(category_id as unknown as string)
+      .then((res) => {
+        setServices(res);
+      })
+      .finally(() => setLoading(false));
+  };
 
   useEffect(() => {
-    getServiceByCategoryID(category_id as unknown as string).then((res) => {
-      setServices(res);
-    });
+    getServices();
   }, []);
 
+  const cat = categories.find((cat) => cat.id === category_id);
+
+  console.log('services', services);
   return (
     <>
       <div className="min-h-screen">
         <Navbar onDashBoard={false} />
-        <div className=" h-[80vh] pt-16 flex px-24 mobile:max-sm:px-5 items-center justify-between bg-gradient-to-r bg-primarytheme">
-          <h3 className="text-white text-5xl font-extrabold ">
-            Get the best <br /> Plumbing services
-          </h3>
+        <HeroContainer title={cat?.name} description="all you ever need is here" />
 
-          <div className="shapes grid grid-cols-2 gap-4 ">
-            {gridImages.map((image, i) => (
-              <div
-                key={i}
-                style={{
-                  backgroundImage: `url(${image})`
-                }}
-                className={`bg-white shadow-sm w-64  bg-center bg-cover h-52 hover:scale-105 mobile:max-sm:hidden sm:max-md:h-16 sm:max-md:w-16 transition-all duration-300 ${
-                  i === 0 ? 'rounded-tl-full rounded-bl-full ' : ' rounded-md'
-                } ${i === 3 ? 'rounded-br-full rounded-tr-full' : ''} `}
-              ></div>
-            ))}
+        {!services?.length && !loading && (
+          <div className="w-full h-80 flex justify-center items-center">
+            <h3>{`No ${cat?.name} service found`}</h3>
           </div>
-        </div>
-        <div></div>
-        <ServiceGrid title="plumbing services" services={services} />
+        )}
+        {services?.length > 0 && (
+          <MasonryList
+            services={services}
+            onClickOpen={(id) => router.push(`/service-details/${id}`)}
+          />
+        )}
+        {loading && (
+          <MasonryList
+            services={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+            onClickOpen={(id) => router.push(`/service-details/${id}`)}
+          />
+        )}
         <Testimonies />
-        <SellWithUs />
+        {![, '', 'admin', 'provider'].includes(user.role) && <SellWithUs />}
         <Footer />
       </div>
     </>

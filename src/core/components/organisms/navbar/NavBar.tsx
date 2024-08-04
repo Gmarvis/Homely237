@@ -23,6 +23,8 @@ import { navLinks } from '../SideBar';
 import useUserStore from '@/store/userStore';
 import useServiceStore from '@/store/serviceStore';
 import useCategoryStore from '@/store/categoryStore';
+import { Button } from '../../ui/button';
+import { X } from 'lucide-react';
 
 type NavTypes = {
   onDashBoard?: Boolean;
@@ -37,12 +39,13 @@ const NavBar = ({ onDashBoard = false, hideSearchBar = false }: NavTypes) => {
   const [showNotification, setShowNotification] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const [devMode, setDevMode] = useState(false);
 
   const update = async () => {
-    //Fetch all Categories from DB
+    // Fetch all Categories from DB
     const allCategories = await getAllCategories();
     setCategories(allCategories);
-    //Fetch all Services from DB
+    // Fetch all Services from DB
     const allServices = await getAllServices();
     setServices(allServices);
   };
@@ -152,6 +155,18 @@ const NavBar = ({ onDashBoard = false, hideSearchBar = false }: NavTypes) => {
       ) : (
         <div className="flex items-center gap-3">
           <LinkBtn title="Get Started" path="/auth" theme={LinkBtnTheme.themeColor} />
+        </div>
+      )}
+
+      {devMode && (
+        <div className="w-full bg-primarytheme/70 absolute left-0 top-0 flex justify-center">
+          <h3 className="py-4">This application is undergoing new changes!</h3>
+          <Button
+            onClick={() => setDevMode((prev) => !prev)}
+            variant={"link"}
+            className="absolute right-1 top-1">
+            <X />
+          </Button>
         </div>
       )}
     </div>

@@ -1,13 +1,13 @@
 import { create } from 'zustand';
 
 type StoreType = {
-  Receivedappointments: Appointment[];
+  receivedappointments: Appointment[];
   setReceivedAppointments: (appointments: Appointment[]) => void;
 };
 
 const useAppointmentStore = create<StoreType>((set) => ({
-  Receivedappointments: [],
-  setReceivedAppointments: (appointments) => set(() => ({ Receivedappointments: appointments }))
+  receivedappointments: [],
+  setReceivedAppointments: (appointments) => set(() => ({ receivedappointments: appointments }))
 }));
 
 export default useAppointmentStore;
