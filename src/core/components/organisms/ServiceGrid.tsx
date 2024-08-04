@@ -7,20 +7,20 @@ import { MdOutlineNavigateNext } from 'react-icons/md';
 import ServiceCard from './cards/ServiceCard';
 import ServiceCardSkeleton from './SkeletonLoaders/ServiceCardSkeleton';
 
-type PropTyps = {
+type PropTypes = {
   services: Service[];
-  title: string;
+  title?: string;
 };
 
-const ServiceGrid = ({ services, title }: PropTyps) => {
+const ServiceGrid = ({ services, title }: PropTypes) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [pageIndex, setPageIndex] = useState(8);
 
   const router = useRouter();
   return (
-    <div className="px-24  bigScreen:px-80 py-5 mobile:max-sm:px-5 flex flex-col justify-center items-center">
+    <div className="px-24  bigScreen:px-80 py-5 mobile:max-sm:px-5 flex flex-col items-center">
       <h3 className="font-bold text-start flex self-start text-primarytheme">
-        {title.toLocaleUpperCase()}
+        {title?.toLocaleUpperCase()}
       </h3>
 
       {!services?.length && (
@@ -39,19 +39,19 @@ const ServiceGrid = ({ services, title }: PropTyps) => {
         </div>
       )}
 
-      <div className=" grid-cols-4 mobile:max-sm:grid-cols-2 mobile:max-sm:gap-2 mb-5 2xl:px-24 items-center justify-center mobile:max-sm:grid hidden w-full">
+      <div className=" grid-cols-4 mobile:max-sm:grid-cols-2 mobile:max-sm:gap-2 mb-5 2xl:px-24 items-center mobile:max-sm:grid hidden w-full">
         {services
           ?.slice(currentPage, currentPage + pageIndex)
           .map((service, i) => (
-            <ServiceCard key={i} service={service} onClick={() => router.push(`/${service.id}`)} />
+            <ServiceCard key={i} service={service} onClick={() => router.push(`/service-details/${service.id}`)} />
           ))}
       </div>
 
-      <div className="flex gap-10 pl-3 flex-wrap mx-auto items-center py-10 mobile:max-sm:hidden justify-center  ">
+      <div className="flex gap-10 pl-3 flex-wrap mx-auto py-10 mobile:max-sm:hidden w-full ">
         {services
           ?.slice(currentPage, currentPage + pageIndex)
           .map((service, i) => (
-            <ServiceCard key={i} service={service} onClick={() => router.push(`/${service.id}`)} />
+            <ServiceCard key={i} service={service} onClick={() => router.push(`/service-details/${service.id}`)} />
           ))}
       </div>
       <div className="flex w-full justify-end gap-3">

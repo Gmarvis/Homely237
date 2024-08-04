@@ -70,12 +70,12 @@ export default function AppointmentDetailsPage() {
                 <span className="font-semibold">Location:</span> {appointment?.city}
               </h3>
               <h3>
-                <span className="font-semibold">Location Details: </span>{' '}
+                <span className="font-semibold text-wrap">Location Details: </span>{' '}
                 {appointment?.location_details}
               </h3>
 
               <p>
-                <span className="font-semibold">Location Details: </span> {appointment?.description}
+                <span className="font-semibold text-wrap">Location Details: </span> {appointment?.description}
               </p>
             </div>
           </div>
