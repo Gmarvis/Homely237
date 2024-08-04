@@ -11,20 +11,24 @@ import {
   SheetClose,
   Sheet
 } from '@/core/components/ui/sheet';
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
 type PropTypes = {
   title: string;
   description?: string;
-  trigger: React.ReactNode;
+  trigger?: React.ReactNode;
   children: React.ReactNode;
   className?: string;
+  open: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>
 };
 
-export function RightModal({ className, title, description, trigger, children }: PropTypes) {
+export function RightModal({ className, title, description, trigger, children , open,
+  setOpen
+}: PropTypes) {
   return (
     <div className={`${className}  grid grid-cols-2 gap-2`}>
-      <Sheet>
+      <Sheet open={open} onOpenChange={setOpen} >
         <SheetTrigger asChild>{trigger}</SheetTrigger>
         <SheetContent className={className} side={'right'}>
           <SheetHeader>

@@ -133,7 +133,7 @@ const ServiceDetails = () => {
       {relatedProducts && (
         <MasonryList
           services={relatedProducts.filter((item) => item.id !== serviceId)}
-          onClickOpen={(id) => router.push(`/${id}`)}
+          onClickOpen={(id) => router.push(`/service-details/${id}`)}
         />
       )}
 

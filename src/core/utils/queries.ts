@@ -85,7 +85,7 @@ export const getServiceByCategoryID = (category_id: string): Promise<any> => {
   }
 };
 
-// UPDATE PRODRUCT
+// UPDATE PRODUCT
 export const updateService = (id: string, newData: any): any => {
   try {
     return apiCall.PUT(`${SERVER_URL}/products/${id}`, newData);
@@ -162,11 +162,20 @@ export const getAppointmentById = async (id: string) => {
   }
 };
 
+// update user profile
 export const updateUserProfile = async (id: string, data: {}) => {
   try {
-    const res = await apiCall.PUT(`${SERVER_URL}/users/${id}`, data);
+    const res = await apiCall.PUT(`${SERVER_URL}/users/update/${id}`, data);
     return res;
   } catch (error) {
     console.error(error);
+  }
+};
+
+export const signUpAServiceProvider = async (id: string, userData: UpdateUser) => {
+  try {
+    return await apiCall.PUT(`${SERVER_URL}/users/create?user_id=${id}`, userData);
+  } catch (error: any) {
+    throw new Error(error);
   }
 };

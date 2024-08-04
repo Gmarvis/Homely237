@@ -3,7 +3,6 @@ import useUserStore from '@/store/userStore';
 import { decodeToken } from '@/core/utils/jwtDecode';
 import { getUserById } from '@/core/utils/queries';
 import useGeoLocation from '@/core/utils/service/geoLocationService/useGeoLocation';
-
 import React, { useEffect } from 'react';
 
 const SystemGard = ({ children }: { children: React.ReactNode }) => {

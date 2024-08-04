@@ -17,7 +17,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <SideBar />
       <main className="w-full">
         <Navbar onDashBoard />
-        <div className="px-2 absolute w-[88vw] mobile:max-sm:w-full mobile:max-sm:px-4 h-[calc(100vh-52px)] mobile:max-sm:mt-[52px]  mobile:max-sm:h-full overflow-y-scroll 4">
+        <div className="px-2 items-center  absolute w-[88vw] mobile:max-sm:w-full mobile:max-sm:px-4 h-[calc(100vh-52px)] mobile:max-sm:mt-[52px]  mobile:max-sm:h-full overflow-y-scroll">
           {children}
         </div>
       </main>

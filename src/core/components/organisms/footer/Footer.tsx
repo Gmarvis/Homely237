@@ -107,14 +107,14 @@ export default function Footer({ className }: { className?: string }) {
 
   return (
     <footer
-      className={`text-gray-500 ${className} px-24 py-5 mobile:max-sm:px-5 bg-primarytheme bigScreen:px-80`}
+      className={`text-gray-500 ${className} px-24 mobile:max-sm:px-5 bg-primarytheme bigScreen:px-24 py-10`}
     >
       <div className="grid grid-cols-5 sm:max-md:grid-cols-2 mobile:max-sm:grid-cols-1 mobile:max-sm:gap-3">
         <div className="logo-footer-section flex flex-col gap-2">
           <Link href={'/'} className={` w-full `}>
             <Image src={'/whitelogo.png'} alt="homygig logo" width={110} height={60} />
           </Link>
-          <p className="text-[12px] text-gray-700">
+          <p className="text-sm text-gray-200">
             It has never been more easy to find home service providers in cameroon than now, thanks
             to homygig, customers are happy and service providers are exited, we are proud for
             making life better in Cameroon.
@@ -132,7 +132,7 @@ export default function Footer({ className }: { className?: string }) {
               <Link
                 href={item.href}
                 key={i}
-                className=" text-[12px] text-gray-700 hover:text-secondrytheme transition-all duration-300"
+                className=" text-sm text-gray-200 hover:text-secondrytheme transition-all duration-300"
               >
                 {item.name}
               </Link>
@@ -147,7 +147,7 @@ export default function Footer({ className }: { className?: string }) {
               <Link
                 href={item.path}
                 key={i}
-                className=" text-[12px] text-gray-700 hover:text-secondrytheme transition-all duration-300 "
+                className=" text-sm text-gray-200 hover:text-secondrytheme transition-all duration-300 "
               >
                 {item.name}
               </Link>
@@ -165,7 +165,7 @@ export default function Footer({ className }: { className?: string }) {
               className="rounded-b-full"
             />
           </div>
-          <p className="text-[12px] text-gray-700">
+          <p className="text-sm  text-gray-200">
             Stay up-to-date with our latest trends and news by subscribing to our newsletters
           </p>
 

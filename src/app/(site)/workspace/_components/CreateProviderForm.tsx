@@ -7,8 +7,9 @@ import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useLocationStore } from '@/store';
+import { useUserStore } from '@/store';
 import { cities } from '@/data/cm';
-
+import { useRouter } from 'next/navigation';
 import {
   Form,
   FormControl,
@@ -25,7 +26,10 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/core/components/ui/select';
-import { useEffect, useMemo, useState } from 'react';
+import { useState } from 'react';
+import { signUpAServiceProvider } from '@/core/utils/queries';
+import { toast } from 'react-toastify';
+import { Router } from 'next/router';
 
 const formSchema = z.object({
   service_title: z
@@ -53,29 +57,51 @@ const formSchema = z.object({
 
 const CreateProviderForm = () => {
   const [categoryError, setCategoryError] = useState('');
+  const currentLocation = useLocationStore().currentLocation;
+  const { user, setUser } = useUserStore();
+
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       service_title: '',
       phone: '',
-      location: '',
+      location: currentLocation.city,
       // idCard_image_back: "",
       // idCard_image_front: "",
       bio: ''
     }
   });
 
-  const handleSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log('values', values);
+  const handleSubmit = async (values: z.infer<typeof formSchema>) => {
+    // console.log('values', values);
+    setIsLoading(true);
+
+    const data = await signUpAServiceProvider(user.id, values);
+    if (data.id) {
+      toast.success('setup successful', {
+        position: 'top-right',
+        hideProgressBar: true,
+        autoClose: 2000
+      });
+      setUser(data);
+
+      router.push('/dashboard');
+    } else {
+      toast.error(`${data.message}`, {
+        position: 'top-right',
+        hideProgressBar: true,
+        autoClose: 2000
+      });
+    }
+
+    setIsLoading(false);
   };
 
-  const currentLocation = useLocationStore().currentLocation;
-
-  console.log(currentLocation);
-
   return (
-    <Form {...form}>
+    <Form {...form} >
       <form onSubmit={form.handleSubmit(handleSubmit)}>
         <FormField
           control={form.control}
@@ -111,7 +137,7 @@ const CreateProviderForm = () => {
           name="location"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>location</FormLabel>
+              <FormLabel>Location</FormLabel>
               <FormControl>
                 <Select
                   onValueChange={field.onChange}
@@ -132,7 +158,6 @@ const CreateProviderForm = () => {
                   {categoryError && <span className="text-xs text-red-600">{categoryError}</span>}
                 </Select>
               </FormControl>
-              <FormMessage className="text-xs" />
             </FormItem>
           )}
         />
@@ -164,7 +189,7 @@ const CreateProviderForm = () => {
         />
 
         <div className="flex justify-end items-end w-full mt-4">
-          <ActionBtn loading={false}>Proceed</ActionBtn>
+          <ActionBtn loading={isLoading}>Proceed</ActionBtn>
         </div>
       </form>
     </Form>
