@@ -7,7 +7,9 @@ import { useEffect } from 'react';
 import * as Queries from '@/core/utils/queries';
 import ProfileAvatar from '@/core/components/molecules/Avatar';
 import { formatDistanceToNow } from 'date-fns';
-
+import BarChart from './BarChart';
+import { Button } from '@/core/components/ui/button';
+import Link from 'next/link';
 const cardData = [
   {
     label: 'Services',
@@ -18,19 +20,19 @@ const cardData = [
   {
     label: 'Rating',
     text: '3 Stars',
-    icon: Workflow,
+    icon: Ratio,
     description: 'your average rating based on you services'
   },
   {
     label: 'Appointments',
     text: '0',
-    icon: Workflow,
+    icon: CalendarCheck2,
     description: 'you most resent Appointments'
   },
   {
     label: 'delivered Services',
     text: '03/05',
-    icon: Workflow,
+    icon: HandshakeIcon,
     description: 'total number of services delivered'
   }
 ];
@@ -57,17 +59,25 @@ export default function DashboardPage() {
             <h3 className="text-3xl font-bold">Hi, {user.name}</h3>
             <p>Ready to grow you service business</p>
           </div>
-          <div className=" w-[50%]">
-            <Image
+          <div className=" w-[50%]"></div>
+        </CardContainer>
+        <CardContainer className="bg-[#21a898] relative ">
+          <div className="flex flex-col justify-center">
+            <h3 className="text-4xl font-semibold">Your Mobile Workshop</h3>
+            <Link href={'/dashboard/appointments'}>
+              <Button className="font-bold h-16 bg-white/55" variant={'secondary'}>
+                View Appointments
+              </Button>
+            </Link>
+          </div>
+          {/* <Image
               src={'/dashboard_hero.png'}
               width={300}
               height={300}
               alt=""
               className="absolute bottom-[-20px] right-0 mobile:max-sm:hidden"
-            />
-          </div>
+            /> */}
         </CardContainer>
-        <CardContainer></CardContainer>
       </section>
       <section className="grid grid-cols-4 gap-3 mobile:max-lg:grid-cols-2">
         {cardData.map((data, index) => (
@@ -81,8 +91,9 @@ export default function DashboardPage() {
         ))}
       </section>
       <section className="grid grid-cols-2 gap-2 h-[45vh] flex-wrap mobile:max-md:grid-cols-1">
-        <CardContainer className="h-full">
+        <CardContainer className="h-full flex-col">
           <h2 className="font-semibold">Statistics</h2>
+          <BarChart />
         </CardContainer>
         <CardContainer className="h-full flex flex-col">
           <h2 className="font-semibold">Resent Appointment</h2>
