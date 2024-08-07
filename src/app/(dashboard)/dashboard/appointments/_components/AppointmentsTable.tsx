@@ -92,7 +92,7 @@ const AppointmentsTable = () => {
 
   return (
     <div className="max-w-screen-2xl mx-auto px-4 mobile:max-lg:p-0 md:px-8 relative">
-      <div className=" justify-between md:flex flex items-center mobile:ma gap-5">
+      <div className=" justify-between md:flex flex items-center mobile:max-md:pt-5 gap-5">
         <div className="max-w-lg">
           <h3 className="text-gray-800 text-xl font-bold sm:text-2xl">Appointments </h3>
           <p className="text-gray-600 mt-2 text-xs">
