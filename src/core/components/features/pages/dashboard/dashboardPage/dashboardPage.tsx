@@ -104,20 +104,20 @@ export default function DashboardPage() {
                 <h3 className=" text-center pt-32 text-gray-600 text-sm">no recent Appointment!</h3>
               </div>
             ) : (
-              <div className="space-y-2">
+              <div className="flex gap-2 flex-col">
                 {receivedappointments.slice(0, 4).map((appointment, index) => (
-                  <CardContainer
-                    key={index}
-                    className="flex justify-between items-center hover:cursor-pointer hover:bg-slate-100 duration-300">
-                    <div className="flex gap-2">
-                      <ProfileAvatar size={4} image={appointment.user.image} />
-                      <div>
-                        <p className="font-semibold">{appointment.user.name}</p>
-                        <p className="text-xs text-gray-500">{appointment.user.email}</p>
+                  <Link href={'/dashboard/appointments'} key={index}>
+                    <CardContainer className="flex justify-between items-center hover:cursor-pointer hover:bg-slate-100 duration-300">
+                      <div className="flex gap-2">
+                        <ProfileAvatar size={4} image={appointment.user.image} />
+                        <div>
+                          <p className="font-semibold">{appointment.user.name}</p>
+                          <p className="text-xs text-gray-500">{appointment.user.email}</p>
+                        </div>
                       </div>
-                    </div>
-                    <p> {formatDistanceToNow(appointment.createdAt, { addSuffix: true })}</p>
-                  </CardContainer>
+                      <p> {formatDistanceToNow(appointment.createdAt, { addSuffix: true })}</p>
+                    </CardContainer>
+                  </Link>
                 ))}
               </div>
             )}
