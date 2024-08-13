@@ -12,7 +12,7 @@ import {
   TableHeader,
   TableRow
 } from '@/core/components/ui/table';
-import { capitalizeText } from '@/core/utils/service/helperFunctions';
+import HelperFunctions from '@/core/utils/service/helperFunctions';
 import { Button } from '@/core/components/ui/button';
 import { DropdownMenuItem } from '@/core/components/ui/dropdown-menu';
 
@@ -160,7 +160,7 @@ const AppointmentsTable = () => {
                     <TableCell className="font-medium">
                       {appointment.user_id === user.id ? 'Me' : appointment.user.name}
                     </TableCell>
-                    <TableCell>{capitalizeText(appointment.description).slice(0, 60)}...</TableCell>
+                    <TableCell>{HelperFunctions.capitalizeText(appointment.description).slice(0, 60)}...</TableCell>
                     <TableCell>
                       {' '}
                       {formatDistanceToNow(appointment.createdAt, { addSuffix: true })}

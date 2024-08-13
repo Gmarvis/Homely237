@@ -12,6 +12,10 @@ import { FaRegCalendarAlt } from 'react-icons/fa';
 import { MdAddToPhotos } from 'react-icons/md';
 import { PiUsersThreeFill } from 'react-icons/pi';
 import ProfileAvatar from '../molecules/Avatar';
+import { Button } from '../ui/button';
+import { DialogBox } from './modals';
+import HelperFunctions from '@/core/utils/service/helperFunctions';
+import { useState } from 'react';
 
 export const navLinks = [
   {
@@ -21,7 +25,7 @@ export const navLinks = [
     role: ['provider', 'admin']
   },
   {
-    name: 'Myservices',
+    name: 'Services',
     icon: <MdOutlineCleaningServices size={24} />,
 
     path: '/dashboard/my-services',
@@ -54,6 +58,7 @@ export const navLinks = [
 const SideBar = () => {
   const pathname = usePathname();
   const { user } = useUserStore();
+  const [openModal, setOpenModal] = useState(false);
 
   return (
     <div className="flex flex-col w-[15vw] bg-primarytheme h-screen shadow-md mobile:max-sm:hidden px-2">
@@ -69,20 +74,35 @@ const SideBar = () => {
             className={`flex items-center m:max-lg: ${link.role.includes(user.role) ? 'visible' : 'hidden'} ${link.role.length == 1 ? ' bg-transparent' : ''}   sm:max-lg:px-2  sm:max-lg:items-center  sm:max-lg:justify-center  sm:max-lg:py-4 rounded-sm
                         ${
                           pathname === link.path ? ' text-slate-800 pl-6' : ' text-white'
-                        } gap-2  hover:text-slate-800 duration-300 hover:pl-6  border-slate-800 transition-all   px-4 py-2 `}
-          >
+                        } gap-2  hover:text-slate-800 duration-300 hover:pl-6  border-slate-800 transition-all   px-4 py-2 `}>
             <p className="text-[500px]">{link.icon}</p>
             <span className="text-sm sm:max-lg:hidden">{link.name}</span>
           </Link>
         ))}
       </div>
-      <Link
-        href={'/dashboard/profile'}
-        className="m-5 flex justify-start duration-300 items-center text-white gap-2 text-md"
-      >
-        <ProfileAvatar size={4} image={user.image} />
-        <span className="sm:max-lg:hidden">{user.role}</span>
-      </Link>
+      {pathname === '/dashboard/profile' ? (
+        <Button
+          onClick={() => setOpenModal(true)}
+          variant={'secondary'}
+          className="my-3 justify-center items-center w-full">
+          Logout
+        </Button>
+      ) : (
+        <Link
+          href={'/dashboard/profile'}
+          className="m-5 flex justify-start duration-300 items-center text-white gap-2 text-md">
+          <ProfileAvatar size={4} image={user.image} />
+          <span className="sm:max-lg:hidden">{user.role}</span>
+        </Link>
+      )}
+      <DialogBox
+        open={openModal}
+        setOpen={setOpenModal}
+        title={'Are you sure yo want to logout?'}
+        onClickAction={HelperFunctions.handleLogout}
+        isWarning
+        description={'if you are sure click on the continue button to proceed'}
+      />
     </div>
   );
 };

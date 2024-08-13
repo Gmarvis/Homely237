@@ -20,9 +20,7 @@ import { getAllCategories, getAllServices } from '@/core/utils/queries';
 import { LinkBtn, LinkBtnTheme } from '../../atoms/buttons/LinkBtn';
 import { RightModal } from '../modals/RightModal';
 import { navLinks } from '../SideBar';
-import useUserStore from '@/store/userStore';
-import useServiceStore from '@/store/serviceStore';
-import useCategoryStore from '@/store/categoryStore';
+import { useUserStore, useServiceStore, useCategoryStore } from '@/store/';
 import { Button } from '../../ui/button';
 import { X } from 'lucide-react';
 
@@ -163,7 +161,7 @@ const NavBar = ({ onDashBoard = false, hideSearchBar = false }: NavTypes) => {
           <h3 className="py-4">This application is undergoing new changes!</h3>
           <Button
             onClick={() => setDevMode((prev) => !prev)}
-            variant={"link"}
+            variant={'link'}
             className="absolute right-1 top-1">
             <X />
           </Button>

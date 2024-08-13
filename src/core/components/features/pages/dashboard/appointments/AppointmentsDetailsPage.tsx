@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation';
 import { getAppointmentById } from '@/core/utils/queries';
 import { ArrowLeft } from 'lucide-react';
 import { Button } from '@/core/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import { Badge } from '@/core/components/ui/badge';
 import Image from 'next/image';
 import { LogoLoader } from '@/core/components/loaders';
 import { dateFormatter } from '@/core/utils/date';
