@@ -4,11 +4,20 @@ import SideBar from '@/core/components/organisms/SideBar';
 import Loading from './loading';
 import useUserStore from '@/store/userStore';
 import { Navbar } from '@/core/components/organisms';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const { user } = useUserStore();
+  const router = useRouter();
 
-  if (!user.id) {
+  useEffect(() => {
+    if (!user?.id) {
+      router.push('/');
+    }
+  },[]);
+
+  if (!user?.id) {
     return <Loading full />;
   }
 

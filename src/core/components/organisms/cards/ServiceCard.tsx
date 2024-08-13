@@ -10,9 +10,9 @@ import {
 } from '@/core/components/ui/dropdown-menu';
 
 import { HiDotsVertical } from 'react-icons/hi';
-import DialogBox from '../modals/DialogBox';
+import DialogBox from '../modals/dailogBox/DialogBox';
 import Link from 'next/link';
-import { capitalizeText } from '@/core/utils/service/helperFunctions';
+import HelperFunctions from '@/core/utils/service/helperFunctions';
 
 type CardTypes = {
   service: Service;
@@ -37,8 +37,7 @@ const ServiceCard = ({
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
       className="shadow-lg border border-gray-100 rounded-md w-64 overflow-hidden  relative mobile:max-sm:w-[100%] self-center items-center bg-white pb-2"
-      onClick={onClick}
-    >
+      onClick={onClick}>
       <Image
         src={service.product_image}
         alt=""
@@ -49,7 +48,7 @@ const ServiceCard = ({
         className="w-[100%] h-[150px] object-cover hover:scale-110 duration-300 transition-all hover:cursor-pointer"
       />
       <div className="flex p-2 justify-between w-full items-center">
-        <h3 className="subText  rounded-md">{capitalizeText(service.name)}</h3>
+        <h3 className="subText  rounded-md">{HelperFunctions.capitalizeText(service.name)}</h3>
         <p className="smallText">{service.category_name}</p>
       </div>
       <div className="flex w-full px-2 justify-between items-center">
@@ -76,8 +75,7 @@ const ServiceCard = ({
               onClick={(e) => {
                 setOpenModal(true);
                 e.stopPropagation();
-              }}
-            >
+              }}>
               Delete
             </DropdownMenuItem>
           </DropdownMenuContent>

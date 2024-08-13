@@ -1,8 +1,7 @@
 'use client';
 import Card, { CardContainer } from '@/core/components/ui/card';
-import { Users, Workflow, CalendarCheck2, Ratio, HandshakeIcon } from 'lucide-react';
+import { Workflow, CalendarCheck2, Ratio, HandshakeIcon } from 'lucide-react';
 import { useAppointmentStore, useUserStore } from '@/store';
-import Image from 'next/image';
 import { useEffect } from 'react';
 import * as Queries from '@/core/utils/queries';
 import ProfileAvatar from '@/core/components/molecules/Avatar';

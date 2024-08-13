@@ -43,7 +43,7 @@ const ServiceDetails = () => {
   }, []);
 
   const handleOnclickBookAppointment = () => {
-    if (!user.id) {
+    if (!user?.id) {
       setOpenModal(true);
     } else {
       service && router.push(`/booking/${service.id}`);
@@ -52,10 +52,10 @@ const ServiceDetails = () => {
 
   return (
     <>
-      <div className="pt-[55px] mobile:max-sm:pt-[60px] mobile:max-sm:px-2 px-24 bigScreen:px-80 gap-5 mobile:max-sm:gap-1">
+      <div className="pt-[70px] mobile:max-sm:pt-[60px] mobile:max-sm:px-2 px-24 bigScreen:px-80 gap-5 mobile:max-sm:gap-1">
         <div className="flex flex-col gap-2 h-[80vh] mt-10 rounded-3xl shadow-md border mobile:max-sm:h-full">
-          <div className="flex  h-full mobile:max-sm:flex-col justify-between items-center shadow-sm mobile:max-sm:p-0">
-            <div className="iamges mobile:max-sm:w-[100%] mobile:max-sm:h-[300px] w-full h-full rounded-tl-2xl mobile:max-sm:rounded-b-[0px]  rounded-bl-2xl mobile:max-sm:rounded-2xl bg-gray-200 relative">
+          <div className="flex h-full mobile:max-sm:flex-col justify-between items-center shadow-sm mobile:max-sm:p-0">
+            <div className=" mobile:max-sm:w-[100%] mobile:max-sm:h-[300px] w-full h-full rounded-tl-2xl mobile:max-sm:rounded-b-[0px]  rounded-bl-2xl mobile:max-sm:rounded-2xl bg-gray-200 relative">
               <button
                 onClick={() => router.back()}
                 className="absolute left-5 top-5 bg-primarytheme hover:bg-secondrytheme duration-300 p-2 rounded-full text-white">
@@ -83,7 +83,7 @@ const ServiceDetails = () => {
                     </h3>
                     <p className="text-slate-600 text-sm">{service?.category_name} services</p>
                   </div>
-                  <button className="" onClick={() => alert('conneting to whatsApp')}>
+                  <button className="" onClick={() => alert('connecting to whatsApp')}>
                     <ImWhatsapp size={30} className="text-green-600" />
                   </button>
                 </div>
