@@ -14,8 +14,6 @@ import { Login } from '@/core/components/organisms';
 import SignUp from '@/core/components/organisms/SignUp';
 import { useUserStore } from '@/store';
 import SocialShare from '@/core/components/organisms/SocialMediaBTns';
-import { DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu';
-import DropDown from '@/core/components/molecules/DropDown';
 
 const ServiceDetails = () => {
   const [service, setService] = useState<Service | null>(null);
