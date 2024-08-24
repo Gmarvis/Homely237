@@ -77,31 +77,39 @@ const CreateProviderForm = () => {
 
   const handleSubmit = async (values: z.infer<typeof formSchema>) => {
     // console.log('values', values);
-    setIsLoading(true);
+    try {
+      setIsLoading(true);
 
-    const data = await signUpAServiceProvider(user.id, values);
-    if (data.id) {
-      toast.success('setup successful', {
-        position: 'top-right',
-        hideProgressBar: true,
-        autoClose: 2000
+      const data = await signUpAServiceProvider(user.id, {
+        role: 'provider',
+        ...values
       });
-      setUser(data);
+      if (data.id) {
+        toast.success('setup successful', {
+          position: 'top-right',
+          hideProgressBar: true,
+          autoClose: 2000
+        });
+        setUser(data);
 
-      router.push('/dashboard');
-    } else {
-      toast.error(`${data.message}`, {
-        position: 'top-right',
-        hideProgressBar: true,
-        autoClose: 2000
-      });
+        router.push('/dashboard');
+      } else {
+        toast.error(`${data.message}`, {
+          position: 'top-right',
+          hideProgressBar: true,
+          autoClose: 2000
+        });
+      }
+
+      setIsLoading(false);
+    } catch (error) {
+      console.error( "error trying to update user",  error)
+      setIsLoading(false);
     }
-
-    setIsLoading(false);
   };
 
   return (
-    <Form {...form} >
+    <Form {...form}>
       <form onSubmit={form.handleSubmit(handleSubmit)}>
         <FormField
           control={form.control}

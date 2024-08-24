@@ -113,10 +113,10 @@ const NavBar = ({ onDashBoard = false, hideSearchBar = false }: NavTypes) => {
             // <SheetSide />
 
             <motion.div
-              initial={{ opacity: 0, translateY: -20 }}
-              animate={{ opacity: 1, translateY: 0 }}
+            initial={{ opacity: 0, translateX: 20 }}
+            animate={{ opacity: 1, translateX: 0.3 }}
               transition={{ duration: 0.3 }}
-              className="absolute top-[57px] right-2 z-40">
+              className="absolute top-[57px] right-1 z-40">
               <DropDown
                 title={'Notifications'}
                 onBlur={() => setShowNotification((prev) => !prev)}
