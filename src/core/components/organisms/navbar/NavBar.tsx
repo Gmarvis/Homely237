@@ -92,9 +92,9 @@ const NavBar = ({ onDashBoard = false, hideSearchBar = false }: NavTypes) => {
           {showProfile && <Overlay onClick={() => setShowProfile((prev) => !prev)} transparent />}
           {showProfile && (
             <motion.div
-              className={`absolute top-[57px] right-4 w-[300px] mobile:max-sm:w-[80vw]  mobile:max-sm:right-10 z-40`}
-              initial={{ opacity: 0, translateY: -20 }}
-              animate={{ opacity: 1, translateY: 0 }}
+              className={`absolute top-[57px] right-2 w-[300px] mobile:max-sm:w-[80vw]  mobile:max-sm:right-10 z-40`}
+              initial={{ opacity: 1, translateX: 20 }}
+              animate={{ opacity: 1, translateX: 0 }}
               transition={{ duration: 0.3 }}>
               <DropDown
                 title="Profile"

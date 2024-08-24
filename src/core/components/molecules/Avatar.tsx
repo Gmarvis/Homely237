@@ -11,7 +11,7 @@ type AvatarProps = {
 const ProfileAvatar = ({ image, size, onClick }: AvatarProps) => {
   return (
     <button
-      className="shadow-3xl  bg-white/20"
+      className="shadow-3xl  bg-white/20 border"
       style={{
         backgroundImage: `url(${
           image || 'https://i.pinimg.com/564x/02/59/54/0259543779b1c2db9ba9d62d47e11880.jpg'
