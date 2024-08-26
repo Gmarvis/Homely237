@@ -7,15 +7,17 @@ import { ArrowLeft } from 'lucide-react';
 import { Button } from '@/core/components/ui/button';
 import { Badge } from '@/core/components/ui/badge';
 import Image from 'next/image';
-import { LogoLoader } from '@/core/components/loaders';
+import { LogoLoader, SpinningLoader } from '@/core/components/loaders';
 import { dateFormatter } from '@/core/utils/date';
 import { useUserStore } from '@/store';
+import * as QUERIES from '@/core/utils/queries';
 
 import { formatDistanceToNow } from 'date-fns';
 
 export default function AppointmentDetailsPage() {
   const [appointment, SetAppointment] = useState<Appointment>();
   const id = useParams().id;
+  const [upDating, setUpdating] = useState(false);
 
   const getAppointment = async () => {
     const data = await getAppointmentById(id as string);
@@ -30,6 +32,17 @@ export default function AppointmentDetailsPage() {
   useEffect(() => {
     getAppointment();
   }, []);
+
+  const handleRespToAppointment = async (id: string, status: string) => {
+    setUpdating(true);
+    await QUERIES.updateAppointment(id, { status: status }).then((res) => {
+      if (res.id) {
+        SetAppointment(res);
+        setUpdating(false);
+      }
+    });
+    setUpdating(false);
+  };
 
   return (
     <div className="w-full h-full  flex flex-col justify-center">
@@ -75,23 +88,54 @@ export default function AppointmentDetailsPage() {
               </h3>
 
               <p>
-                <span className="font-semibold text-wrap">Location Details: </span> {appointment?.description}
+                <span className="font-semibold text-wrap">Location Details: </span>{' '}
+                {appointment?.description}
               </p>
             </div>
           </div>
 
-          <div className=" flex justify-end gap-3">
-            {user.id === appointment.user_id ? (
-              <>
-                <Button variant={'outline'}>Edit Appointment</Button>
-              </>
-            ) : (
-              <>
-                <Button variant={'destructive'}>Decline</Button>
-                <Button variant={'outline'}>Approve</Button>
-              </>
-            )}
-          </div>
+          {appointment.status !== 'pending' ? (
+            <div className="flex justify-center pb-10 duration-300">
+              <Button
+                variant={'ghost'}
+                className={`${appointment.status === 'accepted' ? 'text-green-600' : 'text-red-500'}`}>
+                Appointment {appointment.status}
+              </Button>
+            </div>
+          ) : (
+            <div className=" flex justify-center gap-10">
+              {user.id === appointment.user_id ? (
+                <>
+                  <Button variant={'outline'}>Edit Appointment</Button>
+                </>
+              ) : (
+                <>
+                  {upDating ? (
+                    <div className="pb-10">
+                      <SpinningLoader />
+                    </div>
+                  ) : (
+                    <div className="pb-10 space-x-5">
+                      <Button
+                        onClick={() => {
+                          handleRespToAppointment(appointment.id, 'declined');
+                        }}
+                        variant={'destructive'}>
+                        Decline
+                      </Button>
+                      <Button
+                        onClick={() => {
+                          handleRespToAppointment(appointment.id, 'accepted');
+                        }}
+                        variant={'outline'}>
+                        Approve
+                      </Button>
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
+          )}
         </div>
       )}
     </div>

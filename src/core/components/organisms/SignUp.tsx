@@ -30,7 +30,7 @@ const SignUp = ({ onSuccessSignUp }: PropTypes) => {
     e.preventDefault();
     setLoading(true);
     if (!name || !email || !password) {
-      setError('pleace fill the form completely');
+      setError('please fill the form completely');
       setLoading(false);
       setTimeout(() => {
         setError('');

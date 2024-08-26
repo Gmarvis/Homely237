@@ -167,6 +167,14 @@ export const getAppointmentById = async (id: string) => {
   }
 };
 
+export const updateAppointment = async (id: string, data: UpdateAppointment) => {
+  try {
+    return await apiCall.PUT(`${SERVER_URL}/appointments/${id}`, data);
+  } catch (error: any) {
+    throw new Error(error);
+  }
+};
+
 // update user profile
 export const updateUserProfile = async (id: string, data: {}) => {
   try {
