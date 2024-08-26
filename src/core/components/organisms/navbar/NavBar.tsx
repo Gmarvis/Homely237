@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import SearchForm from '../../molecules/SearchForm';
 import BellBtn from '../../atoms/buttons/BellBtn';
 import { HiMenuAlt3 } from 'react-icons/hi';
@@ -23,6 +23,8 @@ import { navLinks } from '../SideBar';
 import { useUserStore, useServiceStore, useCategoryStore } from '@/store/';
 import { Button } from '../../ui/button';
 import { X } from 'lucide-react';
+import { DialogBox } from '../modals';
+import HelperFunctions from '@/core/utils/service/helperFunctions';
 
 type NavTypes = {
   onDashBoard?: Boolean;
@@ -38,6 +40,7 @@ const NavBar = ({ onDashBoard = false, hideSearchBar = false }: NavTypes) => {
   const [showProfile, setShowProfile] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [devMode, setDevMode] = useState(false);
+  const [openDialog, setOpenDialog] = useState(false);
 
   const update = async () => {
     // Fetch all Categories from DB
@@ -89,9 +92,9 @@ const NavBar = ({ onDashBoard = false, hideSearchBar = false }: NavTypes) => {
           {showProfile && <Overlay onClick={() => setShowProfile((prev) => !prev)} transparent />}
           {showProfile && (
             <motion.div
-              className={`absolute top-[57px] right-4 w-[300px] mobile:max-sm:w-[80vw]  mobile:max-sm:right-10 z-40`}
-              initial={{ opacity: 0, translateY: -20 }}
-              animate={{ opacity: 1, translateY: 0 }}
+              className={`absolute top-[57px] right-2 w-[300px] mobile:max-sm:w-[80vw]  mobile:max-sm:right-10 z-40`}
+              initial={{ opacity: 1, translateX: 20 }}
+              animate={{ opacity: 1, translateX: 0 }}
               transition={{ duration: 0.3 }}>
               <DropDown
                 title="Profile"
@@ -110,10 +113,10 @@ const NavBar = ({ onDashBoard = false, hideSearchBar = false }: NavTypes) => {
             // <SheetSide />
 
             <motion.div
-              initial={{ opacity: 0, translateY: -20 }}
-              animate={{ opacity: 1, translateY: 0 }}
+            initial={{ opacity: 0, translateX: 20 }}
+            animate={{ opacity: 1, translateX: 0.3 }}
               transition={{ duration: 0.3 }}
-              className="absolute top-[57px] right-2 z-40">
+              className="absolute top-[57px] right-1 z-40">
               <DropDown
                 title={'Notifications'}
                 onBlur={() => setShowNotification((prev) => !prev)}
@@ -142,13 +145,30 @@ const NavBar = ({ onDashBoard = false, hideSearchBar = false }: NavTypes) => {
                 {link.name}
               </Link>
             ))}
-            <Link
-              href={'/dashboard/profile'}
-              className="absolute bottom-4 flex justify-center items-center gap-4">
-              <ProfileAvatar size={4} image={user.image} />
-              <span className="font-medium text-white">{user.name}</span>
-            </Link>
+            {pathName === '/dashboard/profile' ? (
+              <Button
+                onClick={() => setOpenDialog(true)}
+                variant={'secondary'}
+                className="my-3 justify-center items-center  absolute w-40  bottom-3 left-2">
+                Logout
+              </Button>
+            ) : (
+              <Link
+                href={'/dashboard/profile'}
+                className="absolute bottom-4 flex justify-center items-center gap-4">
+                <ProfileAvatar size={4} image={user.image} />
+                <span className="font-medium text-white">{user.name}</span>
+              </Link>
+            )}
           </RightModal>
+          <DialogBox
+            open={openDialog}
+            setOpen={setOpenDialog}
+            title={'Are you sure yo want to logout?'}
+            onClickAction={HelperFunctions.handleLogout}
+            isWarning
+            description={'if you are sure click on the continue button to proceed'}
+          />
         </div>
       ) : (
         <div className="flex items-center gap-3">

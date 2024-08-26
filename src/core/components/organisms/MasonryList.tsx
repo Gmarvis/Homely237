@@ -1,8 +1,9 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import Masonry from 'react-responsive-masonry';
 import { PiShareNetworkThin } from 'react-icons/pi';
 import ProfileAvatar from '../molecules/Avatar';
+import { Button } from '../ui/button';
 
 const MasonryList = ({
   services,
@@ -24,8 +25,7 @@ const MasonryList = ({
           objectFit: 'contain',
           // backgroundRepeat: "no-repeat",
           backgroundSize: 'cover'
-        }}
-      >
+        }}>
         {' '}
         <div className="w-full h-full bg-slate-900 duration-300   hover:opacity-20 rounded-2xl opacity-0"></div>
       </div>
@@ -35,9 +35,11 @@ const MasonryList = ({
           <ProfileAvatar size={2} />
           <span>{service.user?.name}</span>
         </div>
-        <button className=" p-2 hover:bg-slate-200 rounded-full">
-          <PiShareNetworkThin />
-        </button>
+        {
+          <Button variant={'outline'} className=" p-2 hover:bg-slate-200 ">
+            {service.price} /hr
+          </Button>
+        }
       </div>
     </div>
   ));

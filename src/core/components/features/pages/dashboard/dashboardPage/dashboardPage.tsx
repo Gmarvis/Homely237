@@ -98,7 +98,7 @@ export default function DashboardPage() {
           <h2 className="font-semibold">Resent Appointment</h2>
 
           <div className="w-full h-full">
-            {!receivedappointments.length ? (
+            {!receivedappointments?.length ? (
               <div className=" m-auto ">
                 <h3 className=" text-center pt-32 text-gray-600 text-sm">no recent Appointment!</h3>
               </div>

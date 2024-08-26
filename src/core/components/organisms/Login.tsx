@@ -13,7 +13,7 @@ import { useRouter, usePathname } from 'next/navigation';
 // STORE IMPORTS
 // import useUserStore from '@/store/userStore';
 import FormBtn from '../atoms/buttons/FormBtn';
-import { LOGIN } from '@/core/utils/queries';
+import { getProfile, LOGIN } from '@/core/utils/queries';
 import useUserStore from '@/store/userStore';
 import { decodeToken } from '@/core/utils/jwtDecode';
 import { Input } from '../ui/input';
@@ -32,7 +32,7 @@ const Login = ({ onSuccessLogin }: PropTypes) => {
   const router = useRouter();
   const pathName = usePathname();
 
-  const handleLogin = (e: any) => {
+  const handleLogin = async (e: any) => {
     e.preventDefault();
     setLoading(true);
     if (!email || !password) {
@@ -44,22 +44,24 @@ const Login = ({ onSuccessLogin }: PropTypes) => {
       return;
     }
 
-    LOGIN({ email: email, password: password }).then((res: any) => {
-      if (res.token) {
-        // SAVE TOKEN TO LOCALSTORAGE SO I CAN BE DECODED LETTER AND USED
-        localStorage.setItem('token', res.token);
-
-        // DECODE TOKEN AND PASS USER DATE TO APP STORE
-        const userData = decodeToken(res.token);
-        setUser(userData);
-        setLoading(false);
-        if (!pathName.includes('auth')) {
-          onSuccessLogin && onSuccessLogin();
-        } else {
-          router.push('/');
+    await LOGIN({ email: email, password: password }).then(async (res: any) => {
+      setLoading(true);
+      if (res.access_token) {
+        localStorage.setItem('token', res.access_token);
+        const { id } = decodeToken(res.access_token);
+        console.log('user ig', id);
+        const user = await getProfile(id);
+        if (user.id) {
+          setUser(user);
+          if (!pathName.includes('auth')) {
+            onSuccessLogin && onSuccessLogin();
+          } else {
+            router.push('/');
+          }
+          setLoading(false);
         }
       } else {
-        setError(`${res.message}`);
+        setError(res.message);
         setLoading(false);
         setTimeout(() => {
           setError('');
@@ -67,7 +69,7 @@ const Login = ({ onSuccessLogin }: PropTypes) => {
         return;
       }
     });
-    // setLoading(false);
+    setLoading(false);
   };
 
   return (
@@ -76,7 +78,6 @@ const Login = ({ onSuccessLogin }: PropTypes) => {
       <form
         onSubmit={handleLogin}
         className=" p-4 flex flex-col mobile:max-sm:w-[95vw] mobile:max-sm:max-w-[95vw] gap-3 w-full">
-
         <FormInput
           label={'Email'}
           type="email"

@@ -6,7 +6,6 @@ import { useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import DetailsSkeleton from './DetailsSkeleton';
-import { ImWhatsapp } from 'react-icons/im';
 import { IoMdArrowRoundBack } from 'react-icons/io';
 import MasonryList from '@/core/components/organisms/MasonryList';
 import { Button } from '@/core/components/ui/button';
@@ -14,6 +13,7 @@ import { PopUpModal } from '@/core/components/organisms/modals';
 import { Login } from '@/core/components/organisms';
 import SignUp from '@/core/components/organisms/SignUp';
 import { useUserStore } from '@/store';
+import SocialShare from '@/core/components/organisms/SocialMediaBTns';
 
 const ServiceDetails = () => {
   const [service, setService] = useState<Service | null>(null);
@@ -75,7 +75,7 @@ const ServiceDetails = () => {
             {!service ? (
               <DetailsSkeleton />
             ) : (
-              <div className="detials w-[100%] flex flex-col gap-5 p-5 h-full ">
+              <div className="details w-[100%] flex flex-col gap-5 p-5 h-full ">
                 <div className="flex justify-between">
                   <div className="">
                     <h3 className="font-bold text-gray-700 text-2xl">
@@ -83,9 +83,11 @@ const ServiceDetails = () => {
                     </h3>
                     <p className="text-slate-600 text-sm">{service?.category_name} services</p>
                   </div>
-                  <button className="" onClick={() => alert('connecting to whatsApp')}>
-                    <ImWhatsapp size={30} className="text-green-600" />
-                  </button>
+                  <SocialShare
+                    imageUrl={service.product_image}
+                    url={window.location.href}
+                    title={''}
+                  />
                 </div>
                 <div className="flex-grow">
                   <span className="bg-secondrytheme p-1 px-3  text-white">
@@ -139,7 +141,11 @@ const ServiceDetails = () => {
 
       {/* authentication modal */}
       <PopUpModal open={openModal} setOpen={setOpenModal}>
-        {onSign ? <SignUp onSuccessSignUp={()=> setOpenModal(false)} /> : <Login onSuccessLogin={() => setOpenModal(false)} />}
+        {onSign ? (
+          <SignUp onSuccessSignUp={() => setOpenModal(false)} />
+        ) : (
+          <Login onSuccessLogin={() => setOpenModal(false)} />
+        )}
 
         <p className="text-center">
           {onSign ? 'Already have an account' : "Don't have an account yet"}

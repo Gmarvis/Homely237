@@ -10,6 +10,12 @@ enum StatusType {
   DECLINED = 'declined'
 }
 
+enum AppointmentStatus {
+  PENDING = 'pending',
+  ACCEPTED = 'accepted',
+  DECLINED = 'declined'
+}
+
 interface User {
   bio?: string;
   createdAt: string;
@@ -93,9 +99,14 @@ interface UpdateUser {
   role?: Role;
 }
 
-
- interface ErrorReturnType {
-  error:   string;
-  status:  number;
+interface ErrorReturnType {
+  error: string;
+  status: number;
   message: string;
+}
+
+interface UpdateAppointment {
+  description?: string;
+  location?: string;
+  status?: string;
 }

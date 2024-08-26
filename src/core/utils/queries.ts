@@ -11,7 +11,7 @@ type SigUpType = {
 
 // SIGN UP
 export const SIGNUP = (newUser: SigUpType) => {
-  return apiCall.POST(SERVER_URL + '/users/signup', newUser);
+  return apiCall.POST(SERVER_URL + '/auth/signup', newUser);
 };
 
 type LoginType = {
@@ -22,11 +22,16 @@ type LoginType = {
 // LOGIN
 export const LOGIN = (returningUser: LoginType) => {
   // console.log(returningUser);
-  return apiCall.POST(SERVER_URL + '/users/login', returningUser);
+  return apiCall.POST(SERVER_URL + '/auth/login', returningUser);
 };
 
 // Get user by ID
-export const getUserById = (id: string) => {
+// export const getUserById = (id: string) => {
+//   return apiCall.GET(`${SERVER_URL}/users/${id}`, { cache: 'no-store' });
+// };
+
+// Get Profile
+export const getProfile = (id: string) => {
   return apiCall.GET(`${SERVER_URL}/users/${id}`, { cache: 'no-store' });
 };
 
@@ -157,6 +162,14 @@ export const getSentAnointments = async (id: string) => {
 export const getAppointmentById = async (id: string) => {
   try {
     return await apiCall.GET(`${SERVER_URL}/appointments/${id}`);
+  } catch (error: any) {
+    throw new Error(error);
+  }
+};
+
+export const updateAppointment = async (id: string, data: UpdateAppointment) => {
+  try {
+    return await apiCall.PUT(`${SERVER_URL}/appointments/${id}`, data);
   } catch (error: any) {
     throw new Error(error);
   }

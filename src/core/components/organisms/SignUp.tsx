@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import FormInput from '../atoms/FormInput';
-import { SIGNUP } from '@/core/utils/queries';
+import { getProfile, SIGNUP as SIGHUP } from '@/core/utils/queries';
 import { IoWarningOutline } from 'react-icons/io5';
 import { motion } from 'framer-motion';
 import { decodeToken } from '@/core/utils/jwtDecode';
@@ -30,20 +30,19 @@ const SignUp = ({ onSuccessSignUp }: PropTypes) => {
     e.preventDefault();
     setLoading(true);
     if (!name || !email || !password) {
-      setError('pleace fill the form completely');
+      setError('please fill the form completely');
       setLoading(false);
       setTimeout(() => {
         setError('');
       }, 5000);
       return;
     }
-    SIGNUP({ name, email, password }).then((res: any) => {
-      if (res.token) {
-        // SAVE TOKEN TO LOCALSTORAGE SO I CAN BE DECODED LETTER AND USED
-        localStorage.setItem('token', res.token);
-        // DECODE TOKEN AND PASS USER DATE TO APP STORE
-        const userData = decodeToken(res.token);
-        setUser(userData);
+    SIGHUP({ name, email, password }).then(async (res: any) => {
+      if (res.access_token) {
+        localStorage.setItem('token', res.access_token);
+        const { id } = decodeToken(res.access_token);
+        const user = await getProfile(id);
+        setUser(user)
         if (!pathName.includes('auth')) {
           onSuccessSignUp && onSuccessSignUp();
         } else {

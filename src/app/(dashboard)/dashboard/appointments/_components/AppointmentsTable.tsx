@@ -49,13 +49,14 @@ const AppointmentsTable = () => {
     }
   };
 
-  const tableHeaders = ['name', 'message', 'sent date', 'due date', 'status',];
-
+  const tableHeaders = ['name', 'message', 'sent date', 'due date', 'status'];
 
   const [appointments, setAppointments] = useState<Appointment[]>();
   const [loading, setLoading] = useState(false);
   const { user } = useUserStore();
   const [filter, setFilter] = useState<'sent' | 'received'>('received');
+  const [upDating, setUpdating] = useState(false);
+
   const router = useRouter();
 
   const getReceivedAppointments = () => {
@@ -86,6 +87,18 @@ const AppointmentsTable = () => {
 
   const handleReadAppointment = (id: string) => {
     router.push(`/dashboard/appointments/${id}`);
+  };
+
+  // todo approve and decline appointments
+  const handleRespToAppointment = (id: string, status: string) => {
+    setUpdating(true);
+    QUERIES.updateAppointment(id, { status: status }).then((res) => {
+      if (res.id) {
+        const filteredApt = appointments?.filter((appointment) => appointment.id !== id);
+        filteredApt && setAppointments([res, ...filteredApt]);
+        setUpdating(false);
+      }
+    });
   };
 
   console.log(appointments);
@@ -133,7 +146,7 @@ const AppointmentsTable = () => {
         ) : (
           <>
             {/* Table on big screens */}
-            <Table className='mobile:max-md:hidden'>
+            <Table className="mobile:max-md:hidden">
               <TableCaption>
                 {appointments?.length
                   ? 'A list of your recent Appointments.'
@@ -142,9 +155,7 @@ const AppointmentsTable = () => {
               <TableHeader>
                 <TableRow>
                   {tableHeaders.map((header, index) => (
-                    <TableHead
-                      className={`font-semibold text-gray-950 capitalize`}
-                      key={index}>
+                    <TableHead className={`font-semibold text-gray-950 capitalize`} key={index}>
                       {header}
                     </TableHead>
                   ))}
@@ -158,9 +169,11 @@ const AppointmentsTable = () => {
                     accessKey="user"
                     className="hover:shadow-md rounded-md duration-300 hover:cursor-pointer">
                     <TableCell className="font-medium">
-                      {appointment.user_id === user.id ? 'Me' : appointment.user.name}
+                      {appointment.user_id === user.id ? 'Me' : appointment.user?.name}
                     </TableCell>
-                    <TableCell>{HelperFunctions.capitalizeText(appointment.description).slice(0, 60)}...</TableCell>
+                    <TableCell>
+                      {HelperFunctions.capitalizeText(appointment.description).slice(0, 60)}...
+                    </TableCell>
                     <TableCell>
                       {' '}
                       {formatDistanceToNow(appointment.createdAt, { addSuffix: true })}
@@ -171,21 +184,33 @@ const AppointmentsTable = () => {
                       {appointment.status.toUpperCase()}{' '}
                     </TableCell>
                     <TableCell>
-                      <DropDownMenu>
-                        <DropdownMenuItem onClick={() => {}}>Open</DropdownMenuItem>
-                        {user.id !== appointment.user_id && (
-                          <>
-                            <DropdownMenuItem
-                              onClick={(e) => {
-                                alert();
-                                e.stopPropagation();
-                              }}>
-                              Approve
-                            </DropdownMenuItem>
-                            <DropdownMenuItem onClick={() => alert()}>Decline</DropdownMenuItem>
-                          </>
-                        )}
-                      </DropDownMenu>
+                      {upDating ? (
+                        <div className="w-8 h-8 rounded-full  border-t-2 border-r-2 animate-spin"></div>
+                      ) : (
+                        <DropDownMenu>
+                          <DropdownMenuItem onClick={() => {}}>Open</DropdownMenuItem>
+                          {user.id !== appointment.user_id && (
+                            <>
+                              <DropdownMenuItem
+                                className={`${appointment.status !== 'pending' ? 'hidden' : ''}`}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleRespToAppointment(appointment.id, 'accepted');
+                                }}>
+                                Approve
+                              </DropdownMenuItem>
+                              <DropdownMenuItem
+                                className={`${appointment.status !== 'pending' ? 'hidden' : ''}`}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleRespToAppointment(appointment.id, 'declined');
+                                }}>
+                                Decline
+                              </DropdownMenuItem>
+                            </>
+                          )}
+                        </DropDownMenu>
+                      )}
                     </TableCell>
                   </TableRow>
                 ))}
@@ -194,7 +219,7 @@ const AppointmentsTable = () => {
 
             {/* Table on mobile screens */}
 
-            <Table className='md:hidden'>
+            <Table className="md:hidden">
               <TableCaption>
                 {appointments?.length
                   ? 'A list of your recent Appointments.'
@@ -202,13 +227,15 @@ const AppointmentsTable = () => {
               </TableCaption>
               <TableHeader>
                 <TableRow>
-                  {tableHeaders.filter((item) => ["name", "sent date", "status"].includes(item)) .map((header, index) => (
-                    <TableHead
-                      className={`font-semibold text-gray-950 capitalize ${index === tableHeaders.length - 1 ? 'text-end' : ''}`}
-                      key={index}>
-                      {header}
-                    </TableHead>
-                  ))}
+                  {tableHeaders
+                    .filter((item) => ['name', 'sent date', 'status'].includes(item))
+                    .map((header, index) => (
+                      <TableHead
+                        className={`font-semibold text-gray-950 capitalize ${index === tableHeaders.length - 1 ? 'text-end' : ''}`}
+                        key={index}>
+                        {header}
+                      </TableHead>
+                    ))}
                 </TableRow>
               </TableHeader>
               <TableBody className="text-xs">
@@ -225,27 +252,39 @@ const AppointmentsTable = () => {
                       {' '}
                       {formatDistanceToNow(appointment.createdAt, { addSuffix: true })}
                     </TableCell>
-                  
+
                     <TableCell
                       className={`${statusColumnStyles(appointment.status)} font-semibold`}>
                       {appointment.status.toUpperCase()}{' '}
                     </TableCell>
                     <TableCell>
-                      <DropDownMenu>
-                        <DropdownMenuItem onClick={() => {}}>Open</DropdownMenuItem>
-                        {user.id !== appointment.user_id && (
-                          <>
-                            <DropdownMenuItem
-                              onClick={(e) => {
-                                alert();
-                                e.stopPropagation();
-                              }}>
-                              Approve
-                            </DropdownMenuItem>
-                            <DropdownMenuItem onClick={() => alert()}>Decline</DropdownMenuItem>
-                          </>
-                        )}
-                      </DropDownMenu>
+                      {upDating ? (
+                        <div className="w-8 h-8 rounded-full  border-t-2 border-r-2 animate-spin"></div>
+                      ) : (
+                        <DropDownMenu>
+                          <DropdownMenuItem onClick={() => {}}>Open</DropdownMenuItem>
+                          {user.id !== appointment.user_id && (
+                            <>
+                              <DropdownMenuItem
+                                className={`${appointment.status !== 'pending' ? 'hidden' : ''}`}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleRespToAppointment(appointment.id, 'accepted');
+                                }}>
+                                Approve
+                              </DropdownMenuItem>
+                              <DropdownMenuItem
+                                className={`${appointment.status !== 'pending' ? 'hidden' : ''}`}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleRespToAppointment(appointment.id, 'declined');
+                                }}>
+                                Decline
+                              </DropdownMenuItem>
+                            </>
+                          )}
+                        </DropDownMenu>
+                      )}
                     </TableCell>
                   </TableRow>
                 ))}
