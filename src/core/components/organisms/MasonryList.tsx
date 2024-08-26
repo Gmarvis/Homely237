@@ -35,9 +35,9 @@ const MasonryList = ({
           <ProfileAvatar size={2} />
           <span>{service.user?.name}</span>
         </div>
-        {
-          <Button variant={'outline'} className=" p-2 hover:bg-slate-200 ">
-            {service.price} /hr
+        {services.length > 0 &&
+          <Button variant={'outline'} className=" p-2 hover:bg-slate-200 border-none">
+            {service.price} {`${service.price ? "/hr" : ""}`}
           </Button>
         }
       </div>
