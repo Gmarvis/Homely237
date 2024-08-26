@@ -92,7 +92,7 @@ const SideBar = () => {
           href={'/dashboard/profile'}
           className="m-5 flex justify-start duration-300 items-center text-white gap-2 text-md">
           <ProfileAvatar size={4} image={user.image} />
-          <span className="sm:max-lg:hidden">{user.role}</span>
+          <span className="sm:max-lg:hidden">{user.name}</span>
         </Link>
       )}
       <DialogBox
