@@ -42,7 +42,7 @@ const SignUp = ({ onSuccessSignUp }: PropTypes) => {
         localStorage.setItem('token', res.access_token);
         const { id } = decodeToken(res.access_token);
         const user = await getProfile(id);
-        setUser(user)
+        setUser(user);
         if (!pathName.includes('auth')) {
           onSuccessSignUp && onSuccessSignUp();
         } else {
@@ -79,6 +79,9 @@ const SignUp = ({ onSuccessSignUp }: PropTypes) => {
           label="password"
           onChange={(e: { target: { value: any } }) => setPassword(e.target.value)}
         />
+        <p id="password-description " className="password-description text-xs">
+          Use at least 8 characters with a mix of letters, numbers, and symbols.
+        </p>
 
         <FormBtn title="Sign Up" onClick={() => handleSignUp} isLoading={loading} />
         {error && (
