@@ -87,10 +87,11 @@ export default function AppointmentDetailsPage() {
                 {appointment?.location_details}
               </h3>
 
-              <p>
-                <span className="font-semibold text-wrap">Location Details: </span>{' '}
+              <div className='w-full break-all'>
+                <p className="font-semibold text-wrap break-all ">Location Details: </p>{' '}
+                
                 {appointment?.description}
-              </p>
+              </div>
             </div>
           </div>
 
