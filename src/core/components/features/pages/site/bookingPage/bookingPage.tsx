@@ -110,11 +110,11 @@ const BookingPage = () => {
       <Navbar hideSearchBar={true} onDashBoard={false} />
       <div className="flex pt-[10rem] md:max-xl:pt-[5rem] h-full pb-10 mobile:max-md:w-full mobile:max-md:pt-[5rem] px-24 gap-10 justify-center items-center mobile:max-lg:flex-col mobile:max-md:px-2 ">
         <div
-          className="bg-cover bg-center self-center text-center w-[50%] h-full mobile:max-md:w-full mobile:max-lg:w-full rounded-lg"
+          className="bg-cover bg-center self-center text-center w-[50%] h-full mobile:max-md:w-full  mobile:max-lg:w-full rounded-lg"
           style={{
             backgroundImage: `url('${service?.product_image}')`
           }}>
-          <div className="bg-slate-900/70 h-full w-full rounded-lg flex justify-center items-center text-white">
+          <div className="bg-slate-900/70 h-full w-full rounded-lg flex justify-center items-center px-8 text-white">
             <div className="self-center pb-12 mobile:max-md:pt-60 pt-24">
               <h1 className="text-center  font-bold">Book an Appointment with</h1>
               <h1 className="text-center text-6xl font-bold mobile:max-md:text-2xl">{service?.name}</h1>
