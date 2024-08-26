@@ -17,7 +17,7 @@ const ProfileCard = () => {
         <p className="text-sm text-slate-500">{user.email}</p>
       </div>
 
-      <Link href={''}>
+      <Link href={'/dashboard/profile'}>
         <button className="bg-primarytheme w-full py-1 text-white">View Profile</button>
       </Link>
       <button onClick={() => setOpenModal(true)} className=" w-full py-1 text-primarytheme mt-2">
