@@ -6,7 +6,7 @@ import CreateProviderForm from '../_components/CreateProviderForm';
 
 const page = () => {
   return (
-    <div className='h-screen'>
+    <div className="h-screen">
       <Navbar />
       <div className="pt-52 mobile:max-md:pt-20 px-24 w-full  mobile:max-sm:px-2 pb-10">
         <div className="w-full flex justify-center">

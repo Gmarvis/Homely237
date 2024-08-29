@@ -38,7 +38,7 @@ const BookingPage = () => {
   // console.log("serviceId", serviceId);
 
   const { currentLocation } = useLocationStore();
-  const router = useRouter()
+  const router = useRouter();
 
   // form schema
   const formSchema = z.object({
@@ -74,7 +74,7 @@ const BookingPage = () => {
             hideProgressBar: true,
             autoClose: 3000
           });
-          router.push(`/dashboard/appointments/${res.id}`)
+          router.push(`/dashboard/appointments/${res.id}`);
         } else {
           throw new Error(res);
         }
@@ -113,11 +113,14 @@ const BookingPage = () => {
           className="bg-cover bg-center self-center text-center w-[50%] h-full mobile:max-md:w-full  mobile:max-lg:w-full rounded-lg"
           style={{
             backgroundImage: `url('${service?.product_image}')`
-          }}>
+          }}
+        >
           <div className="bg-slate-900/70 h-full w-full rounded-lg flex justify-center items-center px-8 text-white">
             <div className="self-center pb-12 mobile:max-md:pt-60 pt-24">
               <h1 className="text-center  font-bold">Book an Appointment with</h1>
-              <h1 className="text-center text-6xl font-bold mobile:max-md:text-2xl">{service?.name}</h1>
+              <h1 className="text-center text-6xl font-bold mobile:max-md:text-2xl">
+                {service?.name}
+              </h1>
               <p className="text-sm text-gray-300">
                 lets make sure the provider get what you need by providing details in the form
                 bellow

@@ -20,7 +20,7 @@ const SellWithUs = () => {
           {/* <LinkBtn title={'Start Now'} path={'/workspace'} theme={LinkBtnTheme.themeColor} /> */}
         </div>
         <Link href={'/workspace'}>
-        <Button className='bg-primarytheme'>Start Now</Button>
+          <Button className="bg-primarytheme">Start Now</Button>
         </Link>
       </div>
     </section>

@@ -20,21 +20,11 @@ export default function BarChart() {
   ];
 
   return (
-    <ResponsiveContainer className='flex justify-start' width={'100%'} height={350}>
+    <ResponsiveContainer className="flex justify-start" width={'100%'} height={350}>
       <BarGraph data={statistics}>
-        <XAxis dataKey={"month"}
-        tickLine={false}
-        axisLine={false}
-        stroke='#88888'
-        fontSize={12}
-        />
-        <YAxis  dataKey={"total"}
-           tickLine={false}
-           axisLine={false}
-           stroke='#88888'
-           fontSize={12}
-        />
-        <Bar dataKey={"total"} radius={[4,4,0,0]} clipPath='right' fill='#7a8c8a'/>
+        <XAxis dataKey={'month'} tickLine={false} axisLine={false} stroke="#88888" fontSize={12} />
+        <YAxis dataKey={'total'} tickLine={false} axisLine={false} stroke="#88888" fontSize={12} />
+        <Bar dataKey={'total'} radius={[4, 4, 0, 0]} clipPath="right" fill="#7a8c8a" />
       </BarGraph>
     </ResponsiveContainer>
   );

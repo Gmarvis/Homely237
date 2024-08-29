@@ -37,7 +37,8 @@ const ServiceCard = ({
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
       className="shadow-lg border border-gray-100 rounded-md w-64 overflow-hidden  relative mobile:max-sm:w-[100%] self-center items-center bg-white pb-2"
-      onClick={onClick}>
+      onClick={onClick}
+    >
       <Image
         src={service.product_image}
         alt=""
@@ -75,7 +76,8 @@ const ServiceCard = ({
               onClick={(e) => {
                 setOpenModal(true);
                 e.stopPropagation();
-              }}>
+              }}
+            >
               Delete
             </DropdownMenuItem>
           </DropdownMenuContent>

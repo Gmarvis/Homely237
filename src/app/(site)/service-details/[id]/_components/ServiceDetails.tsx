@@ -58,7 +58,8 @@ const ServiceDetails = () => {
             <div className=" mobile:max-sm:w-[100%] mobile:max-sm:h-[300px] w-full h-full rounded-tl-2xl mobile:max-sm:rounded-b-[0px]  rounded-bl-2xl mobile:max-sm:rounded-2xl bg-gray-200 relative">
               <button
                 onClick={() => router.back()}
-                className="absolute left-5 top-5 bg-primarytheme hover:bg-secondrytheme duration-300 p-2 rounded-full text-white">
+                className="absolute left-5 top-5 bg-primarytheme hover:bg-secondrytheme duration-300 p-2 rounded-full text-white"
+              >
                 <IoMdArrowRoundBack size={40} />
               </button>
 
@@ -102,7 +103,8 @@ const ServiceDetails = () => {
                     <div
                       className="w-[100px] h-[100px] hover:cursor-pointer hover:scale-105 duration-300"
                       key={i}
-                      onClick={() => setView(image)}>
+                      onClick={() => setView(image)}
+                    >
                       <Image
                         src={image}
                         alt=""
@@ -117,7 +119,8 @@ const ServiceDetails = () => {
                 <Button
                   variant={'secondary'}
                   onClick={handleOnclickBookAppointment}
-                  className=" bg-primarytheme">
+                  className=" bg-primarytheme"
+                >
                   BOOK AN APPOINTMENT
                 </Button>
               </div>
@@ -153,7 +156,8 @@ const ServiceDetails = () => {
           <Button
             onClick={() => setOnSignUp((prev) => !prev)}
             variant={'link'}
-            className="text-primarytheme font-semibold">
+            className="text-primarytheme font-semibold"
+          >
             {onSign ? 'Log in' : 'Sign Up'}
           </Button>
         </p>

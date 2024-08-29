@@ -103,7 +103,7 @@ const CreateProviderForm = () => {
 
       setIsLoading(false);
     } catch (error) {
-      console.error( "error trying to update user",  error)
+      console.error('error trying to update user', error);
       setIsLoading(false);
     }
   };
@@ -150,7 +150,8 @@ const CreateProviderForm = () => {
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={currentLocation?.city}
-                  {...field}>
+                  {...field}
+                >
                   <FormControl>
                     <SelectTrigger>
                       <SelectValue placeholder={currentLocation.city} />

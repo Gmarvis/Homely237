@@ -121,14 +121,16 @@ const AppointmentsTable = () => {
               size={'sm'}
               onClick={getSentAppointments}
               className={`${filter === 'sent' ? 'bg-black/20' : ''} duration-300`}
-              variant={'secondary'}>
+              variant={'secondary'}
+            >
               Sent
             </Button>
             <Button
               size={'sm'}
               onClick={getReceivedAppointments}
               className={`${filter === 'received' ? 'bg-black/20' : ''} duration-300`}
-              variant={'secondary'}>
+              variant={'secondary'}
+            >
               {' '}
               Received
             </Button>
@@ -167,7 +169,8 @@ const AppointmentsTable = () => {
                     onClick={() => handleReadAppointment(appointment.id)}
                     key={index}
                     accessKey="user"
-                    className="hover:shadow-md rounded-md duration-300 hover:cursor-pointer">
+                    className="hover:shadow-md rounded-md duration-300 hover:cursor-pointer"
+                  >
                     <TableCell className="font-medium">
                       {appointment.user_id === user.id ? 'Me' : appointment.user?.name}
                     </TableCell>
@@ -180,7 +183,8 @@ const AppointmentsTable = () => {
                     </TableCell>
                     <TableCell> {dateFormatter.formatDate(appointment.date)} </TableCell>
                     <TableCell
-                      className={`${statusColumnStyles(appointment.status)} font-semibold`}>
+                      className={`${statusColumnStyles(appointment.status)} font-semibold`}
+                    >
                       {appointment.status.toUpperCase()}{' '}
                     </TableCell>
                     <TableCell>
@@ -196,7 +200,8 @@ const AppointmentsTable = () => {
                                 onClick={(e) => {
                                   e.stopPropagation();
                                   handleRespToAppointment(appointment.id, 'accepted');
-                                }}>
+                                }}
+                              >
                                 Approve
                               </DropdownMenuItem>
                               <DropdownMenuItem
@@ -204,7 +209,8 @@ const AppointmentsTable = () => {
                                 onClick={(e) => {
                                   e.stopPropagation();
                                   handleRespToAppointment(appointment.id, 'declined');
-                                }}>
+                                }}
+                              >
                                 Decline
                               </DropdownMenuItem>
                             </>
@@ -232,7 +238,8 @@ const AppointmentsTable = () => {
                     .map((header, index) => (
                       <TableHead
                         className={`font-semibold text-gray-950 capitalize ${index === tableHeaders.length - 1 ? 'text-end' : ''}`}
-                        key={index}>
+                        key={index}
+                      >
                         {header}
                       </TableHead>
                     ))}
@@ -244,7 +251,8 @@ const AppointmentsTable = () => {
                     onClick={() => handleReadAppointment(appointment.id)}
                     key={index}
                     accessKey="user"
-                    className="hover:shadow-md rounded-md duration-300 hover:cursor-pointer">
+                    className="hover:shadow-md rounded-md duration-300 hover:cursor-pointer"
+                  >
                     <TableCell className="font-medium">
                       {appointment.user_id === user.id ? 'Me' : appointment.user.name}
                     </TableCell>
@@ -254,7 +262,8 @@ const AppointmentsTable = () => {
                     </TableCell>
 
                     <TableCell
-                      className={`${statusColumnStyles(appointment.status)} font-semibold`}>
+                      className={`${statusColumnStyles(appointment.status)} font-semibold`}
+                    >
                       {appointment.status.toUpperCase()}{' '}
                     </TableCell>
                     <TableCell>
@@ -270,7 +279,8 @@ const AppointmentsTable = () => {
                                 onClick={(e) => {
                                   e.stopPropagation();
                                   handleRespToAppointment(appointment.id, 'accepted');
-                                }}>
+                                }}
+                              >
                                 Approve
                               </DropdownMenuItem>
                               <DropdownMenuItem
@@ -278,7 +288,8 @@ const AppointmentsTable = () => {
                                 onClick={(e) => {
                                   e.stopPropagation();
                                   handleRespToAppointment(appointment.id, 'declined');
-                                }}>
+                                }}
+                              >
                                 Decline
                               </DropdownMenuItem>
                             </>

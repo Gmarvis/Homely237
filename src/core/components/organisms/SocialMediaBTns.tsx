@@ -1,4 +1,4 @@
-import { FacebookShareButton, WhatsappShareButton , } from 'react-share';
+import { FacebookShareButton, WhatsappShareButton } from 'react-share';
 import { FaFacebook } from 'react-icons/fa';
 import { IoLogoWhatsapp } from 'react-icons/io';
 
@@ -13,7 +13,8 @@ export default function SocialShare({ title = 'Homygig', ...props }: PropTypes) 
     <div className="flex justify-center items-center gap-4 p-2">
       <FacebookShareButton
         title=""
-        url={'http://localhost:3000/service-details/555c1e35-56a6-446b-975e-e34594437a81'}>
+        url={'http://localhost:3000/service-details/555c1e35-56a6-446b-975e-e34594437a81'}
+      >
         <FaFacebook className="text-blue-500 " size={24} />
       </FacebookShareButton>
 
