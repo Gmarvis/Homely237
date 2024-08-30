@@ -5,7 +5,7 @@ import AppointmentsTable from './_components/AppointmentsTable';
 
 const page = () => {
   return (
-    <div className="py-4">
+    <div className="py-4 ">
       <AppointmentsTable />
     </div>
   );
