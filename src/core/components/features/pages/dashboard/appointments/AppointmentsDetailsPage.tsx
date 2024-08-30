@@ -53,7 +53,7 @@ export default function AppointmentDetailsPage() {
           </div>
         </div>
       ) : (
-        <div className="w-[50%] mobile:max-lg:w-full mobile:max-lg:m-0 mobile:max-lg:h-auto lg:max-2xl:w-[60%] m-auto shadow h-[85vh] flex flex-col justify-between bg-white rounded-md p-2 space-y-5">
+        <div className="w-[50%] bg-primarytheme/20 mobile:max-lg:w-full mobile:max-lg:m-0 mobile:max-lg:h-auto lg:max-2xl:w-[60%] m-auto shadow h-[85vh] flex flex-col justify-between bg-white rounded-md p-2 space-y-5">
           <div className="flex justify-between">
             <Button onClick={() => router.back()} variant={'outline'} className="text-gray-700">
               <ArrowLeft />
@@ -87,9 +87,8 @@ export default function AppointmentDetailsPage() {
                 {appointment?.location_details}
               </h3>
 
-              <div className='w-full break-all'>
+              <div className="w-full break-all">
                 <p className="font-semibold text-wrap break-all ">Location Details: </p>{' '}
-                
                 {appointment?.description}
               </div>
             </div>
@@ -99,7 +98,8 @@ export default function AppointmentDetailsPage() {
             <div className="flex justify-center pb-10 duration-300">
               <Button
                 variant={'ghost'}
-                className={`${appointment.status === 'accepted' ? 'text-green-600' : 'text-red-500'}`}>
+                className={`${appointment.status === 'accepted' ? 'text-green-600' : 'text-red-500'}`}
+              >
                 Appointment {appointment.status}
               </Button>
             </div>
@@ -121,14 +121,16 @@ export default function AppointmentDetailsPage() {
                         onClick={() => {
                           handleRespToAppointment(appointment.id, 'declined');
                         }}
-                        variant={'destructive'}>
+                        variant={'destructive'}
+                      >
                         Decline
                       </Button>
                       <Button
                         onClick={() => {
                           handleRespToAppointment(appointment.id, 'accepted');
                         }}
-                        variant={'outline'}>
+                        variant={'outline'}
+                      >
                         Approve
                       </Button>
                     </div>

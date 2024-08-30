@@ -1,9 +1,9 @@
-"use client"
+'use client';
 
 import { cn } from '@/core/lib/utils';
 import { LucideIcon } from 'lucide-react';
 
-export type CardProps  = {
+export type CardProps = {
   label: string;
   icon: LucideIcon;
   text: string;
@@ -12,7 +12,7 @@ export type CardProps  = {
 
 export default function Card(props: CardProps) {
   return (
-    <CardContainer className='flex-col hover:cursor-pointer hover:bg-slate-100 duration-300'>
+    <CardContainer className="flex-col hover:cursor-pointer hover:bg-slate-100 duration-300">
       <section className="flex justify-between gap-2">
         <p className="text-sm">{props.label}</p>
         <props.icon className="w-4 h-4 text-gray-400" />

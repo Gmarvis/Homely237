@@ -1,7 +1,5 @@
-import { BookingPage } from "@/core/components/features/pages/site";
+import { BookingPage } from '@/core/components/features/pages/site';
 
-export default function page(){
-  return (
-    <BookingPage/>
-  )
+export default function page() {
+  return <BookingPage />;
 }

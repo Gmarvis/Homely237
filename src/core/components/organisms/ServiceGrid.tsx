@@ -43,7 +43,11 @@ const ServiceGrid = ({ services, title }: PropTypes) => {
         {services
           ?.slice(currentPage, currentPage + pageIndex)
           .map((service, i) => (
-            <ServiceCard key={i} service={service} onClick={() => router.push(`/service-details/${service.id}`)} />
+            <ServiceCard
+              key={i}
+              service={service}
+              onClick={() => router.push(`/service-details/${service.id}`)}
+            />
           ))}
       </div>
 
@@ -51,7 +55,11 @@ const ServiceGrid = ({ services, title }: PropTypes) => {
         {services
           ?.slice(currentPage, currentPage + pageIndex)
           .map((service, i) => (
-            <ServiceCard key={i} service={service} onClick={() => router.push(`/service-details/${service.id}`)} />
+            <ServiceCard
+              key={i}
+              service={service}
+              onClick={() => router.push(`/service-details/${service.id}`)}
+            />
           ))}
       </div>
       <div className="flex w-full justify-end gap-3">

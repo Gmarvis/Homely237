@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "husky"
   },
   "dependencies": {
     "@edgestore/react": "^0.1.6",
@@ -30,6 +31,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
     "framer-motion": "^11.0.3",
+    "husky": "^9.1.5",
     "jwt-decode": "^4.0.0",
     "lucide-react": "^0.323.0",
     "next": "14.0.4",

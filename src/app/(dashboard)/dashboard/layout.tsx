@@ -15,7 +15,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     if (!user?.id) {
       router.push('/');
     }
-  },[]);
+  }, []);
 
   if (!user?.id) {
     return <Loading full />;

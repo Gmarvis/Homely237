@@ -59,13 +59,15 @@ const NavBar = ({ onDashBoard = false, hideSearchBar = false }: NavTypes) => {
     <div
       className={`flex bigScreen:w-full bigScreen:py-5 fixed justify-between z-30 shadow-md ${
         onDashBoard ? ' px-5 relative mobile:max-sm:fixed ' : 'px-24 fixed '
-      }  py-2 items-center mobile:max-sm:px-5  w-full bg-white slate-3 00`}>
+      }  py-2 items-center mobile:max-sm:px-5  w-full bg-white slate-3 00`}
+    >
       <div>
         <Link
           href={'/'}
           className={`self-center w-full ${
             onDashBoard ? 'sm:hidden mobile:max-sm:visible' : ''
-          }  flex items-center justify-center`}>
+          }  flex items-center justify-center`}
+        >
           <Image src={'/logohomygig.png'} alt="homygig logo" width={150} height={65} />
         </Link>
       </div>
@@ -78,7 +80,8 @@ const NavBar = ({ onDashBoard = false, hideSearchBar = false }: NavTypes) => {
         <div className="flex justify-center items-center gap-3">
           <Link
             className={`text-sm font-semibold ${onDashBoard ? 'hidden' : ''} `}
-            href={`${['admin', 'provider'].includes(user.role) ? '/dashboard' : '/dashboard/appointments'}`}>
+            href={`${['admin', 'provider'].includes(user.role) ? '/dashboard' : '/dashboard/appointments'}`}
+          >
             {`${['admin', 'provider'].includes(user.role) ? 'Dashboard' : 'Appointments'} `}
           </Link>
           <BellBtn onClick={() => setShowNotification((prev) => !prev)} />
@@ -95,11 +98,13 @@ const NavBar = ({ onDashBoard = false, hideSearchBar = false }: NavTypes) => {
               className={`absolute top-[57px] right-2 w-[300px] mobile:max-sm:w-[80vw]  mobile:max-sm:right-10 z-40`}
               initial={{ opacity: 1, translateX: 20 }}
               animate={{ opacity: 1, translateX: 0 }}
-              transition={{ duration: 0.3 }}>
+              transition={{ duration: 0.3 }}
+            >
               <DropDown
                 title="Profile"
                 onBlur={() => setShowProfile((prev) => !prev)}
-                className={''}>
+                className={''}
+              >
                 <ProfileCard />
               </DropDown>
             </motion.div>
@@ -113,14 +118,16 @@ const NavBar = ({ onDashBoard = false, hideSearchBar = false }: NavTypes) => {
             // <SheetSide />
 
             <motion.div
-            initial={{ opacity: 0, translateX: 20 }}
-            animate={{ opacity: 1, translateX: 0.3 }}
+              initial={{ opacity: 0, translateX: 20 }}
+              animate={{ opacity: 1, translateX: 0.3 }}
               transition={{ duration: 0.3 }}
-              className="absolute top-[57px] right-1 z-40">
+              className="absolute top-[57px] right-1 z-40"
+            >
               <DropDown
                 title={'Notifications'}
                 onBlur={() => setShowNotification((prev) => !prev)}
-                className="w-[20vw]">
+                className="w-[20vw]"
+              >
                 <h3>no new notification</h3>
               </DropDown>
             </motion.div>
@@ -128,19 +135,22 @@ const NavBar = ({ onDashBoard = false, hideSearchBar = false }: NavTypes) => {
 
           <button
             onClick={() => setOpenModal((prev) => !prev)}
-            className="text-gray-700 sm:hidden absolute top-[13px] right-3">
+            className="text-gray-700 sm:hidden absolute top-[13px] right-3"
+          >
             <HiMenuAlt3 size={30} />
           </button>
           <RightModal
             open={openModal}
             setOpen={setOpenModal}
             title="Menu"
-            className="bg-primarytheme">
+            className="bg-primarytheme"
+          >
             {navLinks.map((link, index) => (
               <Link
                 key={index}
                 className={`text-sm font-semibold  ${link.role.includes(user.role) ? 'visible' : 'hidden'} text-white flex items-center gap-2`}
-                href={link.path}>
+                href={link.path}
+              >
                 {link.icon}
                 {link.name}
               </Link>
@@ -149,13 +159,15 @@ const NavBar = ({ onDashBoard = false, hideSearchBar = false }: NavTypes) => {
               <Button
                 onClick={() => setOpenDialog(true)}
                 variant={'secondary'}
-                className="my-3 justify-center items-center  absolute w-40  bottom-3 left-2">
+                className="my-3 justify-center items-center  absolute w-40  bottom-3 left-2"
+              >
                 Logout
               </Button>
             ) : (
               <Link
                 href={'/dashboard/profile'}
-                className="absolute bottom-4 flex justify-center items-center gap-4">
+                className="absolute bottom-4 flex justify-center items-center gap-4"
+              >
                 <ProfileAvatar size={4} image={user.image} />
                 <span className="font-medium text-white">{user.name}</span>
               </Link>
@@ -182,7 +194,8 @@ const NavBar = ({ onDashBoard = false, hideSearchBar = false }: NavTypes) => {
           <Button
             onClick={() => setDevMode((prev) => !prev)}
             variant={'link'}
-            className="absolute right-1 top-1">
+            className="absolute right-1 top-1"
+          >
             <X />
           </Button>
         </div>

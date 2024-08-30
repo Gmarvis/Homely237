@@ -77,7 +77,8 @@ const Login = ({ onSuccessLogin }: PropTypes) => {
       <h3 className="font-bold text-[24px]">Login To Your Account</h3>
       <form
         onSubmit={handleLogin}
-        className=" p-4 flex flex-col mobile:max-sm:w-[95vw] mobile:max-sm:max-w-[95vw] gap-3 w-full">
+        className=" p-4 flex flex-col mobile:max-sm:w-[95vw] mobile:max-sm:max-w-[95vw] gap-3 w-full"
+      >
         <FormInput
           label={'Email'}
           type="email"
@@ -90,14 +91,14 @@ const Login = ({ onSuccessLogin }: PropTypes) => {
           onChange={(e: { target: { value: any } }) => setPassword(e.target.value)}
         />
 
-
         <FormBtn title="Login" isLoading={loading} onClick={() => handleLogin} />
         {error && (
           <motion.p
             initial={{ opacity: 0, translateY: -20 }}
             animate={{ opacity: 1, translateY: 0 }}
             transition={{ duration: 0.3 }}
-            className="bg-red-300 p-4 flex justify-center items-center text-xs gap-1 mobile:max-sm:mb-4">
+            className="bg-red-300 p-4 flex justify-center items-center text-xs gap-1 mobile:max-sm:mb-4"
+          >
             <IoWarningOutline
               style={{
                 color: 'yellow'

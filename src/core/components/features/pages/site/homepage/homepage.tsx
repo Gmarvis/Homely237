@@ -19,7 +19,7 @@ export default function Homepage() {
       <CategoryGrid />
       <ServicesSection />
       <Testimonies />
-      {![, "", "admin", "provider"].includes(user?.role) && <SellWithUs />}
+      {![, '', 'admin', 'provider'].includes(user?.role) && <SellWithUs />}
       <Footer />
     </main>
   );
