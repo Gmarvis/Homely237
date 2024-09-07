@@ -14,6 +14,14 @@ export default class ApiCall {
     }).then((res) => res.json());
   }
 
+  async PATCH(url: string, body: any, _headers: HeadersInit = {}) {
+    return fetch(url, {
+      method: 'PATCH',
+      headers: { ...Headers, ..._headers },
+      body: JSON.stringify(body)
+    }).then((res) => res.json());
+  }
+
   async GET(url: string, _headers: HeadersInit = {}) {
     return fetch(url, {
       method: 'GET',

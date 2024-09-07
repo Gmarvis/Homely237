@@ -58,7 +58,8 @@ const BookingPage = () => {
     setIsLoading(true);
     const bookingDetails = {
       ...values,
-      user_id: user.id,
+      sender_id: user.id,
+      sender_name: user.name,
       provider_id: service?.user?.id,
       product_id: serviceId,
       city: currentLocation.city,
