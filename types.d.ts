@@ -69,7 +69,7 @@ interface CurrentLocation {
 
 interface Appointment {
   id: string;
-  user_id: string;
+  sender_id: string;
   provider_id: string;
   product_id: string;
   description: string;
@@ -109,4 +109,17 @@ interface UpdateAppointment {
   description?: string;
   location?: string;
   status?: string;
+}
+
+interface NotificationType {
+  id: string;
+  type: string;
+  sender_id: string;
+  recipient_id: string;
+  title: string;
+  body: string;
+  appointment_id: string;
+  read_status: boolean;
+  createdAt: Date;
+  updatedAt: Date;
 }

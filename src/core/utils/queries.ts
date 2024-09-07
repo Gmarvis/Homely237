@@ -148,6 +148,7 @@ export const getReceivedAnointments = async (id: string) => {
 export const getSentAnointments = async (id: string) => {
   try {
     const data = await apiCall.GET(`${SERVER_URL}/appointments/user/${id}`).then((res) => {
+      console.log;
       return res;
     });
 
@@ -190,5 +191,35 @@ export const signUpAServiceProvider = async (id: string, userData: UpdateUser) =
     return await apiCall.PUT(`${SERVER_URL}/users/create?user_id=${id}`, userData);
   } catch (error: any) {
     throw new Error(error);
+  }
+};
+
+export const getNotifications = async (user_id: string) => {
+  try {
+    return await apiCall.GET(`${SERVER_URL}/notifications/${user_id}`);
+  } catch (error) {
+    console.error('an error occurred while getting notifications', error);
+  }
+};
+
+export const deleteNotification = async (notification_id: string) => {
+  try {
+    return await apiCall.DELETE(`${SERVER_URL}/notifications/${notification_id}`);
+  } catch (error) {}
+};
+
+export const deleteAllNotification = async (user_id: string) => {
+  try {
+    return await apiCall.DELETE(`${SERVER_URL}/notifications?user_id=${user_id}`);
+  } catch (error) {}
+};
+
+export const readNotification = async (notification_id: string) => {
+  try {
+    return await apiCall.PATCH(`${SERVER_URL}/notifications/${notification_id}`, {
+      read_status: true
+    });
+  } catch (error) {
+    console.error(error);
   }
 };

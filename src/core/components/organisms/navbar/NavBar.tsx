@@ -25,6 +25,7 @@ import { Button } from '../../ui/button';
 import { X } from 'lucide-react';
 import { DialogBox } from '../modals';
 import HelperFunctions from '@/core/utils/service/helperFunctions';
+import NotificationModal from './Notifications-modal';
 
 type NavTypes = {
   onDashBoard?: Boolean;
@@ -58,7 +59,7 @@ const NavBar = ({ onDashBoard = false, hideSearchBar = false }: NavTypes) => {
   return (
     <div
       className={`flex bigScreen:w-full bigScreen:py-5 fixed justify-between z-30 shadow-md ${
-        onDashBoard ? ' px-5 relative mobile:max-sm:fixed ' : 'px-24 fixed '
+        onDashBoard ? ' px-5 relative mobile:max-sm:fixed ' : 'px-24 fixed'
       }  py-2 items-center mobile:max-sm:px-5  w-full bg-white slate-3 00`}
     >
       <div>
@@ -117,20 +118,7 @@ const NavBar = ({ onDashBoard = false, hideSearchBar = false }: NavTypes) => {
           {showNotification && (
             // <SheetSide />
 
-            <motion.div
-              initial={{ opacity: 0, translateX: 20 }}
-              animate={{ opacity: 1, translateX: 0.3 }}
-              transition={{ duration: 0.3 }}
-              className="absolute top-[57px] right-1 z-40"
-            >
-              <DropDown
-                title={'Notifications'}
-                onBlur={() => setShowNotification((prev) => !prev)}
-                className="w-[20vw]"
-              >
-                <h3>no new notification</h3>
-              </DropDown>
-            </motion.div>
+            <NotificationModal onBlur={() => setShowNotification((prev) => !prev)} />
           )}
 
           <button

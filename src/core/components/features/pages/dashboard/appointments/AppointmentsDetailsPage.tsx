@@ -105,7 +105,7 @@ export default function AppointmentDetailsPage() {
             </div>
           ) : (
             <div className=" flex justify-center gap-10">
-              {user.id === appointment.user_id ? (
+              {user.id === appointment.sender_id ? (
                 <>
                   <Button variant={'outline'}>Waiting for Response</Button>
                 </>
