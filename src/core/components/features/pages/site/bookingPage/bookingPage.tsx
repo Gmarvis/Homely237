@@ -11,7 +11,7 @@ import { Textarea } from '@/core/components/ui/textarea';
 import useUserStore from '@/store/userStore';
 import useLocationStore from '@/store/locationStore';
 
-import { z } from 'zod';
+import { date, z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import {
@@ -47,10 +47,13 @@ const BookingPage = () => {
       .min(9, { message: 'number should not be less than (9) digits' })
       .max(9, { message: 'number should not be greater than (9) digits' }),
     location_details: z.string().min(10, { message: 'details should be at least 10 characters' }),
-    description: z.string().min(100, { message: 'description should be at least 100 characters' })
+    description: z.string().min(100, { message: 'description should be at least 100 characters' }),
+    city: z.string(),
+    locality: z.string()
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    console.log(values);
     if (!selectedDate) {
       setDateError('date is required');
       return;
@@ -62,10 +65,11 @@ const BookingPage = () => {
       sender_name: user.name,
       provider_id: service?.user?.id,
       product_id: serviceId,
-      city: currentLocation.city,
-      locality: currentLocation.locality,
       date: selectedDate
+      // city: currentLocation.city
     };
+
+    console.log(bookingDetails);
 
     await Queries.createAppointment(bookingDetails)
       .then((res) => {
@@ -132,10 +136,6 @@ const BookingPage = () => {
         <div className="w-[50rem] flex flex-col mobile:max-sm:w-full h-full relative  p-4 bg-white  sm:shadow-md">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-4 space-y-3">
-              <div>
-                <p> City: {currentLocation.city}</p>
-                <p> Locality: {currentLocation.locality}</p>
-              </div>
               <div className="flex flex-col">
                 <Label>Enter date</Label>
                 <DatePicker
@@ -146,6 +146,38 @@ const BookingPage = () => {
                 />
                 {dateError && <p className="text-sm font-semibold text-red-500">{dateError}</p>}
               </div>
+              <FormField
+                control={form.control}
+                name="city"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Current City</FormLabel>
+
+                    <FormControl>
+                      <Input
+                        defaultValue={user.location}
+                        placeholder="Example: Yaounde"
+                        {...field}
+                        type="location"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="locality"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>You Quoter/locality </FormLabel>
+                    <FormControl>
+                      <Input placeholder="example: Bastos" {...field} type="text" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
               <FormField
                 control={form.control}
                 name="phone_number"
@@ -169,7 +201,11 @@ const BookingPage = () => {
                   <FormItem>
                     <FormLabel>Describe your location</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter location details here" {...field} type="text" />
+                      <Input
+                        placeholder="example: adjacent to hotel Jouvence, 100 meters form carrefour Jouvence"
+                        {...field}
+                        type="text"
+                      />
                     </FormControl>
                     <FormDescription>
                       A short description of your preside location will help

@@ -53,7 +53,7 @@ export default function AppointmentDetailsPage() {
           </div>
         </div>
       ) : (
-        <div className="w-[50%] bg-primarytheme/20 mobile:max-lg:w-full mobile:max-lg:m-0 mobile:max-lg:h-auto lg:max-2xl:w-[60%] m-auto shadow h-[85vh] flex flex-col justify-between bg-white rounded-md p-2 space-y-5">
+        <div className="w-[50%]  mobile:max-lg:w-full mobile:max-lg:m-0 mobile:max-lg:h-auto lg:max-2xl:w-[60%] m-auto shadow h-[70vh] mobile:max-sm:mt-20 flex flex-col justify-between rounded-md p-2 space-y-5">
           <div className="flex justify-between">
             <Button onClick={() => router.back()} variant={'outline'} className="text-gray-700">
               <ArrowLeft />
