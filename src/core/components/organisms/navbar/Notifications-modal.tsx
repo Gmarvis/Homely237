@@ -62,10 +62,14 @@ export default function NotificationModal({ ...props }: PropTypes) {
       initial={{ opacity: 0, translateX: 20 }}
       animate={{ opacity: 1, translateX: 0.3 }}
       transition={{ duration: 0.3 }}
-      className="absolute top-[70px] right-1 z-40"
+      className="absolute top-[77px] mobile:max-sm:top-[70px] right-1 h-screen z-40 "
     >
-      <DropDown title={'Notifications'} onBlur={props.onBlur} className="w-[400px]">
-        <div className="div h-[86vh]">
+      <DropDown
+        title={'Notifications'}
+        onBlur={props.onBlur}
+        className="w-[400px] mobile:max-sm:w-[85vw]"
+      >
+        <div className=" h-[calc(100vh-130px)]">
           <div className="flex flex-col space-y-2 animate-pulse">
             {!notifications &&
               new Array(12)
