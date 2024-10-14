@@ -1,4 +1,6 @@
 # **HOMYGIG**
+[![PWA](https://homygig.vercel.app/favicon.ico)](https://homygig.vercel.app)
+
 
 ## _Best home service listing and Booking Application in Cameroon_
 
