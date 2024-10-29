@@ -26,15 +26,6 @@ HOMYGIG is a home service provision listing web Application, that enables servic
 
 ![image](https://github.com/Gmarvis/homygig_frontend/assets/106551910/8ae901ef-7d2d-4798-9860-7e2af7bb46da)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-npm dev
-# or
-bun dev
-```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
