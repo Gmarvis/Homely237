@@ -8,7 +8,7 @@ HOMYGIG is a home service provision listing web Application, that enables servic
 
 [Visit HomyGig and see How cool it is](https://homygig.vercel.app/)
 
-## Why HomyGiG?
+## About HomyGiG
 
 ### For Service Provider
 
